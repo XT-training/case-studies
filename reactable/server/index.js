@@ -6,6 +6,11 @@ const logger = require('./logger');
 const argv = require('./argv');
 const port = require('./port');
 const setup = require('./middlewares/frontendMiddleware');
+
+const mongoose = require('mongoose');
+
+const invoiceRouter = require('./routes/invoice');
+
 const isDev = process.env.NODE_ENV !== 'production';
 const ngrok =
   (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel
@@ -16,6 +21,30 @@ const app = express();
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
+
+const dbURI =
+  'mongodb+srv://avinash:test123@reactable-mxnew.gcp.mongodb.net/reactable?retryWrites=true';
+
+const options = {
+  reconnectTries: Number.MAX_VALUE,
+  poolSize: 10,
+};
+
+mongoose
+  .connect(
+    dbURI,
+    options,
+  )
+  .then(
+    () => {
+      console.log('Database connection established!');
+    },
+    err => {
+      console.log('Error connecting Database instance due to: ', err);
+    },
+  );
+
+app.use('/api/invoice', invoiceRouter);
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
