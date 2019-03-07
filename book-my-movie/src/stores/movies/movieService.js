@@ -1,13 +1,15 @@
 import axios from 'axios';
 import { apiBaseUrl } from './../../config';
-import { GetMoviesByTheather } from './moviesAction';
+import { GetMovies } from './moviesAction';
 
-export const getMovieList = () => {
+export const getMovieList = (queryparams) => {
 	const url = `${apiBaseUrl}/movie/filter`;
 	return dispatch => {
-		axios.get(url)
+		axios.get(url, {
+			params: queryparams
+		})
 		.then(response => {
-			dispatch(GetMoviesByTheather(response.data));
+			dispatch(GetMovies(response.data));
 		});
 	};
 };

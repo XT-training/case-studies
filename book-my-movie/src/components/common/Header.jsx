@@ -5,6 +5,8 @@ import { Icon } from 'react-icons-kit'
 import {calendar, film} from 'react-icons-kit/fa'
 import './Header.scss';
 
+// Header Tab component
+
 const Header = () => {
 	return (
 			<header className="header">
