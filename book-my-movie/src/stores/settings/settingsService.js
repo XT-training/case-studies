@@ -6,7 +6,7 @@ export const getDays = () => {
 	return dispatch => {
 		const weeks = settingData.numOfDays.map(num => {
 			const day = num === 0 ? 'Today': num === 1 ? 'Tomorrow' : moment().add(num, 'days').format('dddd');
-			const date = moment().add(num, 'days').format('DD-MM-YYYY');
+			const date = moment().add(num, 'days').format('MM/DD/YYYY');
 			return {
 				day,
 				date,

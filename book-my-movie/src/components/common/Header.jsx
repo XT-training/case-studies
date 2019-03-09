@@ -1,19 +1,26 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 import { Icon } from 'react-icons-kit'
 import {calendar, film} from 'react-icons-kit/fa'
 import './Header.scss';
+
+// Header Tab component
 
 const Header = () => {
 	return (
 			<header className="header">
 				<NavLink exact to="/" className="header-movie">
 					<Icon icon={film} />
-					<span className="title">Title</span>
+					<span className="title">
+						<FormattedMessage id="header.tab.title" />
+					</span>
 				</NavLink>
 				<NavLink to="/screen-time" className="header-timing">
 					<Icon icon={calendar} />
-					<span className="title">Screen Times</span>
+					<span className="title">
+						<FormattedMessage id="header.tab.screeTimes" />
+					</span>
 				</NavLink>
 			</header>
 	);

@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import Search from './Search.jsx';
 import './MovieSelector.scss';
 
 const rootClass = 'movie-selector';
 
-const ResultDisplay = ({ value })=> {
+const ResultDisplay = ({ result })=> {
 	return (
 		<div className={`${rootClass}__result-display`}>
-			{value}
+			<FormattedMessage id="search.titles" values={{search: result}} />
 		</div>
 	);
 };
 
 ResultDisplay.propTypes = {
-	value: PropTypes.string,
+	result: PropTypes.number,
 }; 
 
 const MoviePoster = ({ movie }) => {
@@ -62,9 +63,11 @@ class MovieSelector extends Component {
 	}
 
 	render() {
+		const { movies } = this.props;
+
 		return (
 			<div className={rootClass}>
-				<ResultDisplay value="39 titles in theathers" />
+				<ResultDisplay result={movies.length} />
 				<Search />
 				<div className={`${rootClass}__grid row`}>
 					{this.renderMovies()}

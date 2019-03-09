@@ -85,25 +85,31 @@ class ScreenSelector extends PureComponent {
 		getDays();
 	}
 
+	// handle day selection
 	handleDaySelect(selectedDay) {
+		const { getTiming, getMovieList } = this.props;
 		this.setState({
 			selectedDay,
 		});
-		this.props.getTiming();
+		getMovieList({ searchdate :selectedDay.date });// Get Movies by Date
+		getTiming(); // Get Time slots
 	}
 
+	// handle slot selection
 	handleSlotSelect(selectedSlot) {
 		this.setState({
 			selectedSlot,
 		});
 	}
 
+	// handle remove date
 	removeSelectedDate() {
 		this.setState({
 			selectedDay: null,
 		});
 	}
 
+	// handle remove slot
 	removeSelectedSlot() {
 		this.setState({
 			selectedSlot: null,
@@ -119,28 +125,28 @@ class ScreenSelector extends PureComponent {
 			<div className="bg-info day-selector__selected-day">
 				{selectedDay.day}
 				<button
-				type="button"
-				className="close"
-				aria-label="Close"
-				onClick={this.removeSelectedDate}>
-					<span aria-hidden="true">&times;</span>
+					type="button"
+					className="close"
+					aria-label="Close"
+					onClick={this.removeSelectedDate}>
+						<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 		);
 	}
 
 	renderSelectedSlot() {
-		const {selectedSlot} = this.state;
+		const { selectedSlot } = this.state;
 
 		return (
 			<div className="bg-info day-selector__selected-day">
 				{selectedSlot}
 				<button
-				type="button"
-				className="close"
-				aria-label="Close"
-				onClick={this.removeSelectedSlot}>
-					<span aria-hidden="true">&times;</span>
+					type="button"
+					className="close"
+					aria-label="Close"
+					onClick={this.removeSelectedSlot}>
+						<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 		);
