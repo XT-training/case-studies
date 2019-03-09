@@ -20,10 +20,10 @@ ResultDisplay.propTypes = {
 
 const MoviePoster = ({ movie }) => {
 	const nodeClass = `${rootClass}__movie`;
-	const { moviePoster, movieName } = movie;
+	const { moviePoster, movieName, _id } = movie;
 
 	return (
-		<div className={`${nodeClass} col-6`}>
+		<div id={_id} className={`${nodeClass} col-6`}>
 			<div className={`${nodeClass}__item `}>
 				<img src={moviePoster} className={`img-responsive ${nodeClass}__item__img`} alt={movieName}></img>
 				<div className={`${nodeClass}__item__title`}>{movieName}</div>
