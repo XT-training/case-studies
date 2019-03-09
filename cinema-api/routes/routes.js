@@ -18,6 +18,7 @@ const {
     eventEdit,
     eventDelete,
     eventFilter,
+    eventPopulatedFilter,
     dateFilter
 } = require('../controllers/eventController');
 const {
@@ -42,10 +43,11 @@ module.exports = function(app) {
     app.delete(`${apiURL}/movie/delete/:id`, movieDelete);
     app.get(`${apiURL}/movie/filter`, movieFilter);
 
-    /* theatre REST API */
+    /* event REST API */
     app.post(`${apiURL}/event/create`, eventCreate);
     app.get(`${apiURL}/event/edit`, eventEdit);
     app.delete(`${apiURL}/event/delete/:id`, eventDelete);
+    app.get(`${apiURL}/event/populate/filter`, eventPopulatedFilter);
     app.get(`${apiURL}/event/filter`, eventFilter);
     app.get(`${apiURL}/date/filter`, dateFilter);
     

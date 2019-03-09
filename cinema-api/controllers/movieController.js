@@ -1,5 +1,5 @@
 const { Theatre, Movie, MovieDate, Event } = require('../../db/model')
-const { handleError } = require('../utils')
+const { handleError, filterDates, stitchMovieWithDate } = require('../utils')
 
 module.exports = {
 	movieCreate: function (req, res, next) {
@@ -33,7 +33,7 @@ module.exports = {
 			"_theatreId": []
 		}
 		// const id = req.params.id;
-		Movie.findByIdAndUpdate('5c7d5b8644218bef7315259b', movie, { new: true }, function (err, model) {
+		Movie.findByIdAndUpdate('5c7d5ca344218bef731525a4', movie, { new: true }, function (err, model) {
 			if (err) return handleError(err);
 			res.send(model)
 		});
@@ -48,6 +48,9 @@ module.exports = {
 		});
 	},
 	movieFilter: function (req, res, next) {
+		const id = req.params.id;
+		const findIt = id ? { _id: id } : {};
+
 		//fetch id from movie collection
 		//fetch id of date and theatre & date
 		//return data for theatre and date
@@ -55,28 +58,42 @@ module.exports = {
 		const theatreId = query.theatre;
 		const searchTerm = query.search;
 		const searchdate = query.searchdate;
+		const start = query.timeStart;
+		const end = query.timeEnd;
 
 		if (theatreId && !searchdate) {
-			Movie.find({ '_theatreId': { $in: theatreId } }, function (err, movie) {
+			Movie.find({ 'theatres': { $in: theatreId } }, function (err, movie) {
 				if (searchTerm) {
-					res.send(movie.filter(data => (data.movieName.indexOf(searchTerm) != -1)))
+					res.send(movie.filter(data => ((data.movieName).toLowerCase().indexOf(searchTerm.toLowerCase()) != -1)))
 				} else {
 					res.send(movie);
 				}
-			});
+			}).populate('dates');
 		} else if (theatreId && searchdate) {
 			MovieDate.find({
 				'dates': { $elemMatch: { date: searchdate } }
 			}, function (err, dates) {
-				const dateIds = dates.map((v, i) => v.id);
 				if (err) return handleError(err);
-				Movie.find({
-					'_theatreId': { $in: theatreId },
-					'_dateId': { $in: dateIds }
-				}, function (err, docs) {
-					if (err) return handleError(err);
-					res.send(docs)
-				})
+				if (start && end) {
+					const dateParsed = filterDates(dates, start, end);
+					const dateIds = dateParsed.map((v, i) => v._id);
+					Movie.find({
+						'theatres': { $in: theatreId },
+						'dates': { $in: dateIds }
+					}, function (err, movies) {
+						if (err) return handleError(err);
+						res.send(stitchMovieWithDate(dateParsed, movies))
+					})
+				} else {
+					const dateIds = dates.map((v, i) => v.id);
+					Movie.find({
+						'theatres': { $in: theatreId },
+						'dates': { $in: dateIds }
+					}, function (err, docs) {
+						if (err) return handleError(err);
+						res.send(docs)
+					})
+				}
 			});
 		} else {
 			const id = req.params.id;

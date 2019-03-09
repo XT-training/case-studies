@@ -53,7 +53,7 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
     <h1>AUDI / DATE</h1>
-    <form action="http://localhost:4001/theatre/audi/create" method="post">
+    <form action="http://localhost:4001/api/v1/theatre/audi/create" method="post">
         <fieldset>
 
             <!-- Form Name -->
@@ -110,7 +110,7 @@
             xmlhttp.send();
         }
         
-        ajax('http://localhost:4001/theatre/filter', theatreCallback, true)
+        ajax('http://localhost:4001/api/v1/theatre/filter', theatreCallback, true)
         
         
     </script>

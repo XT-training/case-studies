@@ -9,16 +9,16 @@ module.exports = {
 		MovieDate(dates).save(function (err, date) {
 			if (err) return handleError(err);
 			var event = {
-				_theatreId: rb._theatreId,
-				_movieId: rb._movieId,
-				_hallId: rb._id,
-				_dateId: date._id
+				theatres: rb._theatreId,
+				movies: rb._movieId,
+				dates: date._id,
+				halls: rb._hallId
 			}
 			Event(event).save(function (err, evt) {
 				if (err) return handleError(err);
-				Movie.findByIdAndUpdate(rb._movieId, { 
-					$push: { _theatreId: rb._theatreId, _dateId: date._id, _eventId: evt._id } 
-				}, {new: true}, function (err, movie) {
+				Movie.findByIdAndUpdate(rb._movieId, {
+					$push: { theatres: rb._theatreId, dates: date._id, events: evt._id }
+				}, { new: true }, function (err, movie) {
 					if (err) return handleError(err);
 					res.json({
 						"dates": date,
@@ -41,23 +41,39 @@ module.exports = {
 			if (err) return handleError(err);
 			MovieDate.deleteMany({}, function (err) {
 				if (err) return handleError(err);
-				res.send("DELETED!!!")
+				Movie.deleteMany({}, function (err) {
+					if (err) return handleError(err);
+					res.send("OK")
+				});
 			});
 		});
 	},
+	eventPopulatedFilter: function(req,res,next) {
+		// User.findOne({ username: username })
+    	// .populate('posts').exec((err, posts) => {
+		// 	console.log("Populated User " + posts);
+		// })
+		Event.
+			findOne({ _id: '5c82326f9fd3657048bff57c' })
+			.populate('movies')
+			.exec((err, posts) => {
+				res.send(posts);
+			})
+	},
 	eventFilter: function (req, res, next) {
-		const findIt = req.params.id ? {_id: id} : {};
+		const findIt = req.params.id ? { _id: id } : {};
 		Event.find(findIt, function (err, events) {
 			if (err) return handleError(err);
 			MovieDate.find(findIt, function (err, dates) {
 				if (err) return handleError(err);
-				res.send(events)
+				res.send({events, dates})
 			})
 		})
+		
 	},
 	dateFilter: function (req, res, next) {
-		const findIt = req.params.id ? {_id: id} : {};
-		MovieDate.find({ 'dates': {$elemMatch: {date: findIt}} }, function (err, dates) {
+		const findIt = req.params.id ? { _id: id } : {};
+		MovieDate.find({}, function (err, dates) {
 			if (err) return handleError(err);
 			res.send(dates)
 		})

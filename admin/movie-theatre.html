@@ -53,7 +53,7 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
     <h1>MOVIE / THEATRE</h1>
-    <form action="http://localhost:4001/movie/create" method="post">
+    <form action="http://localhost:4001/api/v1/movie/create" method="post">
         <fieldset>
 
             <!-- Form Name -->
@@ -62,7 +62,9 @@
             <!-- Text input-->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="movieName">Movie Name</label>
-                    <input id="movieName" name="movieName" type="text" placeholder="movieName"
+                    <input id="movieName" name="movietext" type="text" placeholder="movieName"
+                        class="form-control input-md">
+                    <input id="movieNameHidden" name="movieName" type="hidden" 
                         class="form-control input-md">
             </div>
 
@@ -96,7 +98,7 @@
             </div>
         </fieldset>
     </form>
-    <form action="http://localhost:4001/theatre/create" method="post">
+    <form action="http://localhost:4001/api/v1/theatre/create" method="post">
         <fieldset>
 
             <!-- Form Name -->
@@ -130,6 +132,7 @@
     <script type="text/javascript">
         const movieCallback = function(response) {
             var res = response ? JSON.parse(response) : {};
+            document.getElementById("movieNameHidden").value = res.Title
             document.getElementById("movie_Actors").value = res.Actors
             document.getElementById("movie_Genre").value = res.Genre
             document.getElementById("movie_Language").value = res.Language
