@@ -10,7 +10,7 @@ class App extends React.PureComponent {
   constructor(props) {
     super(props)
     const sagaMiddleware = createSagaMiddleware();
-    this.store = createStore(reducer, applyMiddleware(sagaMiddleware));
+    this.store = createStore(reducer(), applyMiddleware(sagaMiddleware));
     sagaMiddleware.run(saga);
   }
 

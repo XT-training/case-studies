@@ -1,3 +1,4 @@
-import React from 'react';
+import { connect } from 'react-redux';
+import Pagination from '../../components/Pagination/PaginationComponent';
 
-export default () => <div>This is Pagination</div>;
+export default connect()(Pagination);

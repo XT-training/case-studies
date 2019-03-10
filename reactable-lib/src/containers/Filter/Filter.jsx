@@ -1,3 +1,4 @@
-import React from 'react';
+import { connect } from 'react-redux';
+import Filter from '../../components/Filter/FilterComponent';
 
-export default () => <div>This is filter</div>;
+export default connect()(Filter);

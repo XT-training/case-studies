@@ -5,7 +5,7 @@ export function* fetchData({ fetchData, settings }){
   const response = yield call(fetchData, settings);
   console.log("response is ", response);
   const { data, metadata } = response;
-  yield put(fetchDataSuccess(data, metadata));
+  return yield put(fetchDataSuccess(data, metadata));
 }
 
 export function* watchFetchData(){
