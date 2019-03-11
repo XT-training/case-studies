@@ -42,7 +42,8 @@
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "prettify": "prettier --write"
+    "prettify": "prettier --write",
+    "server": "nodemon server"
   },
   "lint-staged": {
     "*.js": [
@@ -140,6 +141,7 @@
     "lint-staged": "7.3.0",
     "ngrok": "3.1.0",
     "node-plop": "0.16.0",
+    "nodemon": "^1.18.10",
     "null-loader": "0.1.1",
     "offline-plugin": "5.0.5",
     "plop": "2.1.0",
