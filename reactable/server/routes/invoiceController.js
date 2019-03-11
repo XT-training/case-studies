@@ -1,10 +1,5 @@
 const Invoice = require('../model/InvoiceModel');
 
-const filter = {
-  ALL: 'all',
-  STATUS: 'status',
-};
-
 // order : asc | desc
 
 exports.get = (req, res) => {
@@ -14,11 +9,14 @@ exports.get = (req, res) => {
     orderby,
     order = 'asc',
   } = req.query;
-  Invoice.count({}, (err, count) => {
+  const filter = req.query.filter ? JSON.parse(req.query.filter) : [];
+  const filterObj = getFilterObj(filter);
+  console.log('-----', filterObj);
+  Invoice.count(filterObj, (err, count) => {
     if (err) {
       res.status(500).send(err);
     }
-    Invoice.find({})
+    Invoice.find(filterObj)
       .sort({ [orderby]: order })
       .skip(parseInt(startindex, 10))
       .limit(parseInt(itemsperpage, 10))
@@ -35,10 +33,29 @@ exports.get = (req, res) => {
           metaData.orderby = orderby;
           metaData.order = order;
         }
+        if (filter.length) {
+          metaData.filter = filter;
+        }
         res.status(200).json({
           data: invoice,
           metaData,
         });
       });
   });
+};
+
+const getFilterObj = filterArr => {
+  const filterObj = {};
+  filterArr.forEach(filter => {
+    const key = Object.keys(filter)[0];
+    if (typeof filter[key] === 'object') {
+      filterObj[key] = {
+        [`$gte`]: filter[key].start,
+        [`$lte`]: filter[key].end,
+      };
+    } else {
+      filterObj[key] = filter[key];
+    }
+  });
+  return filterObj;
 };
