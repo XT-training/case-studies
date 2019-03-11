@@ -1,4 +1,4 @@
-import { combineReducers, createStore, applyMiddleware } from 'redux';
+import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import settingsReducer from './settings/settingsReducer';
 import { moviesListReducer, theatersReducer, theaterReducer } from './movies/movieReducer';
@@ -9,7 +9,18 @@ const reducer = combineReducers({
 	theaters: theatersReducer,
 	theater: theaterReducer,
 });
-
-const store = createStore(reducer, applyMiddleware(thunk));
+const middleware = [
+	thunk
+];
+const store = createStore(
+	reducer, 
+	compose(
+		applyMiddleware(...middleware),
+		typeof window === 'object' &&
+		typeof window.devToolsExtension !== 'undefined'
+			? window.devToolsExtension()
+			: f => f
+	)
+);
 
 export default store;

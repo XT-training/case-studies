@@ -38,13 +38,7 @@ Steps for adding and mapping theatres/movies/hall/dates/events
 `/api/v1/movie/filter?theatre=<theatreId>&searchdate=<searchDate>`
 
 - Get Movies - based on theatre/date/timeStart/timeEnd
+`/api/v1/movie/filter?theatre=<theatreId>&searchdate=<searchDate>&timeStart=<Number>&timeEnd=<Number>`
 
 - Get Dates/Movie Details - based on theatre/
-
-
-
-
-
-
-Mongo Restore  
-mongodump  --db cinema-experience -o ~/Desktop/mongo-backup
+`/api/v1/movie/filter?theatre=<theatreId>`

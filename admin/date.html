@@ -55,7 +55,7 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
     <h1>Map Dates for Movie</h1>
-    <form action="http://localhost:4001/event/create" method="post">
+    <form action="http://localhost:4001/api/v1/event/create" method="post">
         <fieldset>
 
             <!-- Form Name -->
@@ -130,7 +130,7 @@
                     template += `<option value="${v._id}">${v.theatreName}</option>`
                 })
                 theatreId.innerHTML = template;
-                ajax(`http://localhost:4001/theatre/audi/filter/${theatreId.value}`, hallCallback, true)
+                ajax(`http://localhost:4001/api/v1/theatre/audi/filter/${theatreId.value}`, hallCallback, true)
             } else {
                 theatreId.innerHTML = `<option value="0">No theatres</option>`;
             }
@@ -205,10 +205,10 @@
         //fill in First Date
         document.getElementById("add-new-date").click();
         //Trigger ajax with callbacks
-        ajax('http://localhost:4001/theatre/filter', theatreCallback, true)
-        ajax('http://localhost:4001/movie/filter', movieCallback, true)
+        ajax('http://localhost:4001/api/v1/theatre/filter', theatreCallback, true)
+        ajax('http://localhost:4001/api/v1/movie/filter', movieCallback, true)
         document.getElementById('_theatreId').onchange = function (e) {
-            ajax(`http://localhost:4001/theatre/audi/filter/${e.target.value}`, hallCallback, true)
+            ajax(`http://localhost:4001/api/v1/theatre/audi/filter/${e.target.value}`, hallCallback, true)
         };
         
     </script>

@@ -15,9 +15,9 @@ const theatreSchema = Schema({
 
 const movieSchema = Schema({
     _mid: Schema.Types.ObjectId,
-    _theatreId: [{ type: Schema.Types.ObjectId, ref: 'Theatre' }],
-    _dateId: [{ type: Schema.Types.ObjectId, ref: 'Date' }],
-    _eventId: [{ type: Schema.Types.ObjectId, ref: 'Event' }],
+    theatres: [{ type: Schema.Types.ObjectId, ref: 'Theatre' }],
+    dates: [{ type: Schema.Types.ObjectId, ref: 'Date' }],
+    events: [{ type: Schema.Types.ObjectId, ref: 'Event' }],
     movieName: String,
     movieActors: String,
     movieGenre: String,
@@ -61,18 +61,18 @@ const dateSchema = Schema({
 
 const eventSchema = Schema({
     _eid: Schema.Types.ObjectId,
-    _theatreId: { type: Schema.Types.ObjectId, ref: 'Theatre' },
-    _movieId: { type: Schema.Types.ObjectId, ref: 'Movie' },
-    _dateId: { type: Schema.Types.ObjectId, ref: 'Date' },
-    _hallId: { type: Schema.Types.ObjectId, ref: 'Hall' }
+    theatres: { type: Schema.Types.ObjectId, ref: 'Theatre' },
+    movies: { type: Schema.Types.ObjectId, ref: 'Movie' },
+    dates: { type: Schema.Types.ObjectId, ref: 'Date' },
+    halls: { type: Schema.Types.ObjectId, ref: 'Hall' }
 }); 
 
-const Theatre = mongoose.model('Theatre', theatreSchema);
-const Movie = mongoose.model('Movie', movieSchema);
-const MovieDate = mongoose.model('Date', dateSchema);
-const Review = mongoose.model('Review', reviewSchema);
-const Event = mongoose.model('Event', eventSchema);
-const Hall = mongoose.model('Hall', hallSchema);
+const Theatre = mongoose.model('Theatre', theatreSchema, 'theatres');
+const Movie = mongoose.model('Movie', movieSchema, 'movies');
+const MovieDate = mongoose.model('Date', dateSchema, 'dates');
+const Review = mongoose.model('Review', reviewSchema, 'reviews');
+const Event = mongoose.model('Event', eventSchema, 'events');
+const Hall = mongoose.model('Hall', hallSchema, 'halls');
 
 
 module.exports = {

@@ -21,7 +21,7 @@ ResultDisplay.propTypes = {
 
 const MoviePoster = ({ movie }) => {
 	const nodeClass = `${rootClass}__movie`;
-	const { moviePoster, movieName } = movie;
+	const { moviePoster, movieName, _id } = movie;
 
 	return (
 		<div className={`${nodeClass} col-6`}>
