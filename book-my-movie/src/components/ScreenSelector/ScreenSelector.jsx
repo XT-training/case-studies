@@ -1,6 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom'
+import ScreeningList from './ScreeningList.jsx';
+
 import './ScreenSelector.scss';
+
+const rootClass = 'screen-selector';
 
 /**
  * SLOT SELECTOR COMPONENT
@@ -18,7 +23,7 @@ const SlotSelector = ({ timings, handleSlotSelect }) => {
 	});
 
 	return (
-		<div className="day-selector__section__list">
+		<div className={`${rootClass}__section__list`}>
 			{slotElem}
 		</div>
 	)
@@ -47,7 +52,7 @@ const DaySelector = ({ days, handleDaySelect }) => {
 	});
 
 	return (
-		<div className="day-selector__section__list">
+		<div className={`${rootClass}__section__list`}>
 			{daysElem}
 		</div>
 	);
@@ -81,7 +86,8 @@ class ScreenSelector extends PureComponent {
 	}
 
 	componentDidMount() {
-		const { getDays } = this.props;
+		const { getDays, getMovieList } = this.props;
+		getMovieList();// Get Movies by Date
 		getDays();
 	}
 
@@ -122,7 +128,7 @@ class ScreenSelector extends PureComponent {
 			return null;
 		}
 		return (
-			<div className="bg-info day-selector__selected-day">
+			<div className={`bg-info ${rootClass}__selected-day`}>
 				{selectedDay.day}
 				<button
 					type="button"
@@ -139,7 +145,7 @@ class ScreenSelector extends PureComponent {
 		const { selectedSlot } = this.state;
 
 		return (
-			<div className="bg-info day-selector__selected-day">
+			<div className={`bg-info ${rootClass}__selected-day`}>
 				{selectedSlot}
 				<button
 					type="button"
@@ -154,17 +160,24 @@ class ScreenSelector extends PureComponent {
 
 	render() {
 		const { selectedDay, selectedSlot } =this.state;
-		const { timings, days } = this.props;
+		const { timings, days, movies, theater } = this.props;
+
+		if(!theater._id){
+			return <Redirect to="/" />;
+		}
 
 		return (
-			<div className="day-selector">
+			<div className={rootClass}>
 				{this.renderSelectedDay()}
 				{selectedSlot && this.renderSelectedSlot()}
-				<div className="day-selector__section">
+				<div className={`${rootClass}__section`}>
 					{(selectedDay)
 						? !selectedSlot && <SlotSelector timings={timings} handleSlotSelect={this.handleSlotSelect} />
 						: <DaySelector days={days} handleDaySelect={this.handleDaySelect}/>
 					}
+				</div>
+				<div className={`${rootClass}__result`}>
+					<ScreeningList movies={movies} />
 				</div>
 			</div>
 			

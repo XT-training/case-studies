@@ -1,4 +1,4 @@
-.day-selector {
+.screen-selector {
 	display: flex;	
 	justify-content: center;
 	flex-direction: column;
@@ -19,7 +19,7 @@
 
 				.day-tile{
 					padding: 25px 25px;
-					font-size: 12px;
+					font-size: 1rem;
 					font-weight: 700;
 					color: #FFF;
 					background: #555;
@@ -30,6 +30,10 @@
 				}
 			}
 		}
+	}
+
+	&__result {
+		margin: 20px 0 15px;
 	}
 
 	&__selected-day{

@@ -4,9 +4,10 @@ import MovieSelector from './../components/MovieSelector/MovieSelector';
 import { getMovieList } from './../stores/movies/movieService';
 
 function mapStateToProps(state) {
-	const { movies } = state;
+	const { movies, theater } = state;
 	return {
 		movies,
+		theater,
 	};
 }
 

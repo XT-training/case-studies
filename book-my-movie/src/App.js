@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Home from './components/pages/HomePage.jsx';
+import TheaterPage from './containers/TheaterPageContainer.js';
+import MovieScreeningPage from './components/pages/MovieScreeningPage.jsx';
+// import MovieDetailPageContainer from './containers/MovieDetailPageContainer.js';
 import './App.scss';
 
 
@@ -9,7 +11,8 @@ class App extends Component {
     return (
       <Router>
         <div className="app">
-          <Route path="/" component={Home} />
+          <Route exact={true} path="/" component={TheaterPage} />
+          <Route path="/movie-screening" component={MovieScreeningPage} />
         </div>
       </Router>
     );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { Link, Redirect } from 'react-router-dom'
 import Search from './Search.jsx';
 import './MovieSelector.scss';
 
@@ -24,10 +25,10 @@ const MoviePoster = ({ movie }) => {
 
 	return (
 		<div className={`${nodeClass} col-6`}>
-			<div className={`${nodeClass}__item `}>
+			<Link to={`movie/${movie._id}`} className={`${nodeClass}__item `}>
 				<img src={moviePoster} className={`img-responsive ${nodeClass}__item__img`} alt={movieName}></img>
 				<div className={`${nodeClass}__item__title`}>{movieName}</div>
-			</div>
+			</Link>
 		</div>
 	);
 };
@@ -63,7 +64,10 @@ class MovieSelector extends Component {
 	}
 
 	render() {
-		const { movies } = this.props;
+		const { movies, theater } = this.props;
+		if(!theater._id){
+			return <Redirect to="/" />;
+		}
 
 		return (
 			<div className={rootClass}>

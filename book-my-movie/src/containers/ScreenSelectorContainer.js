@@ -7,6 +7,8 @@ import { getMovieList } from './../stores/movies/movieService'
 const mapStateToProps = (state)=> ({
 	days: state.settings.days,
 	timings: state.settings.timings,
+	movies: state.movies,
+	theater: state.theater,
 });
 
 const mapDispatchToProps = (dispatch) => ({

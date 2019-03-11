@@ -1,0 +1,46 @@
+.theater-page {
+	display: flex;
+	flex-direction: column;
+	padding: 100px 20px 30px;
+
+	&__title {
+		font-size: 3rem;
+		color: #2a2a2a;
+		text-shadow: 1px 0px 2px #f8f8f8;
+		margin-bottom: 30px;
+	}
+
+	&__choose-text {
+		font-size: 1.5rem;
+		color: #FFF;
+		text-transform: capitalize;
+		border-bottom: 1px dashed #2a2a2a;
+		padding-bottom: 15px;
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+
+		.theater {
+			flex: 1;
+			display: flex;
+			margin: 15px 0; 
+			padding: 15px;
+			background: #555;
+			border-radius: 5px;
+			color: #000;
+			flex-direction: column;
+
+			&__name {
+				font-size: 1.5rem;
+				font-weight: bold;
+			}
+
+			&__address {
+				font-size: 1.2rem;
+			}
+		}
+	}
+
+}

@@ -7,7 +7,7 @@
 	.header-timing,
 	.header-movie {
 		padding: 15px 10px;
-		font-size: 14px;
+		font-size: 1rem;
 		color: #FFF;
 		&:hover, &:focus {
 			text-decoration: none;
@@ -17,7 +17,7 @@
 		}
 
 		.title{
-			font-size: 14px;
+			font-size: 1rem;
 			padding-left: 10px;
 		}
 	}

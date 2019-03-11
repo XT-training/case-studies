@@ -10,13 +10,13 @@ import './Header.scss';
 const Header = () => {
 	return (
 			<header className="header">
-				<NavLink exact to="/" className="header-movie">
+				<NavLink exact to="/movie-screening" className="header-movie">
 					<Icon icon={film} />
 					<span className="title">
 						<FormattedMessage id="header.tab.title" />
 					</span>
 				</NavLink>
-				<NavLink to="/screen-time" className="header-timing">
+				<NavLink to="/movie-screening/screen-time" className="header-timing">
 					<Icon icon={calendar} />
 					<span className="title">
 						<FormattedMessage id="header.tab.screeTimes" />
