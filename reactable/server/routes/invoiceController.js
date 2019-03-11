@@ -11,37 +11,34 @@ exports.get = (req, res) => {
   } = req.query;
   const filter = req.query.filter ? JSON.parse(req.query.filter) : [];
   const filterObj = getFilterObj(filter);
-  console.log('-----', filterObj);
-  Invoice.count(filterObj, (err, count) => {
-    if (err) {
-      res.status(500).send(err);
-    }
+  const promises = [
+    Invoice.count(filterObj).exec(),
     Invoice.find(filterObj)
       .sort({ [orderby]: order })
       .skip(parseInt(startindex, 10))
       .limit(parseInt(itemsperpage, 10))
-      .exec((error, invoice) => {
-        if (error) {
-          res.status(500).send(error);
-        }
-        const metaData = {
-          count,
-          startindex,
-          itemsperpage,
-        };
-        if (orderby) {
-          metaData.orderby = orderby;
-          metaData.order = order;
-        }
-        if (filter.length) {
-          metaData.filter = filter;
-        }
-        res.status(200).json({
-          data: invoice,
-          metaData,
-        });
+      .exec(),
+  ];
+  Promise.all(promises)
+    .then(data => {
+      const [count, invoices] = data;
+      const metaData = getMetaData(
+        count,
+        startindex,
+        itemsperpage,
+        orderby,
+        order,
+        filter,
+      );
+
+      res.status(200).json({
+        data: invoices,
+        metaData,
       });
-  });
+    })
+    .catch(error => {
+      res.status(500).send(error);
+    });
 };
 
 const getFilterObj = filterArr => {
@@ -58,4 +55,39 @@ const getFilterObj = filterArr => {
     }
   });
   return filterObj;
+};
+
+const getMetaData = (
+  count,
+  startindex,
+  itemsperpage,
+  orderby,
+  order,
+  filter,
+) => {
+  const metaData = {
+    count,
+    startindex,
+    itemsperpage,
+    columnHeader: {
+      _id: 'ID',
+      Invoice: 'Invoice',
+      Created: 'Created on',
+      Status: 'Status',
+      Department: 'Department',
+      Client: 'Client Name',
+      Service: 'Service',
+      Worked: 'Worked Hrs',
+      Rate: 'Rate/Hr',
+      Total: 'Total Cost',
+    },
+  };
+  if (orderby) {
+    metaData.orderby = orderby;
+    metaData.order = order;
+  }
+  if (filter.length) {
+    metaData.filter = filter;
+  }
+  return metaData;
 };
