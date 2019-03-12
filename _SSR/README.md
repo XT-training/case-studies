@@ -1,6 +1,6 @@
-# Loblaw React Boilerplate
+# Cinema SSR
 
-This is React Redux insomorphic rendering template with features 
+This is React Redux isomorphic rendering template with features 
 
 * SEO enabled (Server side redering)
 * Code quality setup 
