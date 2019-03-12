@@ -1,0 +1,35 @@
+{
+    "pixelImage": {
+        "imagePath": "/assets/images/1x1.png"
+    },
+    "logo": {
+        "imagePath": "/assets/images/site/desktop/logo.jpg"
+    },
+    "logoMobile": {
+        "imagePath": "/assets/images/site/mobile/logo.jpg"
+    },
+    "errorBackgroundFour": {
+        "imagePath": "/assets/images/site/mobile/error404-placeholder.png"
+    },
+    "errorBackgroundFourMobile": {
+        "imagePath": "/assets/images/site/mobile/error404-placeholder.png"
+    },
+    "errorBackgroundFourDesktop": {
+        "imagePath": "/assets/images/site/desktop/error404-placeholder.png"
+    },
+    "errorBackgroundFive": {
+        "imagePath": "/assets/images/site/mobile/error500-placeholder.png"
+    },
+    "errorBackgroundFiveMobile": {
+        "imagePath": "/assets/images/site/mobile/error500-placeholder.png"
+    },
+    "errorBackgroundFiveDesktop": {
+        "imagePath": "/assets/images/site/desktop/error500-placeholder.png"
+    },
+    "oval": {
+        "imagePath": "/assets/images/site/desktop/oval.jpg"
+    },
+    "ovalMobile": {
+        "imagePath": "/assets/images/site/mobile/oval.jpg"
+    }
+}

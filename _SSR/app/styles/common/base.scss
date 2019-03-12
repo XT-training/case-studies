@@ -1,0 +1,137 @@
+body {
+    font-size: $small-font-size;
+    font-weight: normal;
+    line-height: $xs-line-height;
+    font-family: $default-font;
+    color: $color-black;
+    @include breakpoint(desktop-above) {
+        font-size: $base-font-size;
+        font-weight: normal;
+    }
+}
+
+.app-container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: stretch;
+    height: 100%;
+    min-height: 100vh;
+}
+
+// UTILITY CLASSES
+
+@include breakpoint(desktop-above) {
+    .hidden-md-up {
+        display: none;
+    }
+}
+
+@include breakpoint(desktop-below) {
+    .hidden-sm-down {
+        display: none;
+    }
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.normaltext {
+    text-transform: none;
+}
+
+.center {
+    text-align: center;
+}
+
+// BLOCK SPACING CLASSES
+
+.unrelated-block {
+    margin-bottom: $unrelated-block-spacing-small;
+
+    @include breakpoint(desktop-above) {
+        margin-bottom: $unrelated-block-spacing-large;
+    }
+}
+
+.related-block {
+    margin-bottom: $related-block-spacing-small;
+
+    @include breakpoint(desktop-above) {
+        margin-bottom: $related-block-spacing-large;
+    }
+}
+
+// Note: To use this class properly, make sure either the parent element or this element has the className col-xs-12, and then apply the background to the ::before tag
+.full-width {
+    &::before {
+        content: '';
+        position: absolute;
+        width: 100vw;
+        height: 100%;
+        top: 0;
+        left: 50%;
+        z-index: -1;
+        margin-left: -50vw;
+    }
+
+    &.bg-yellow-full-width {
+        &:before {
+            content: '';
+            background: $color-yellow;
+        }
+    }
+    &.bg-white-full-width {
+        &:before {
+            content: '';
+            background: $color-white;
+        }
+    }
+}
+.border {
+    height: 3px;
+    background: $color-black;
+    width: 100%;
+}
+.page-container:first-of-type {
+    height: 100%;
+    min-height: 100vh;
+
+    .page-container {
+        order: 0;
+        flex: 1 1 auto;
+        align-self: auto;
+        overflow: hidden;
+    }
+}
+.stop-body-scroll {
+    margin: 0;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    @media all and (max-width: 1024px) {
+        position: fixed;
+    }
+}
+h4,
+.h4 {
+    sup {
+        font-size: 50%;
+    }
+}
+h3,
+.h3,
+h2,
+.h2 {
+    sup {
+        font-size: 30%;
+        top: -1.2em;
+    }
+}
+p {
+    sup {
+        font-size: 60%;
+    }
+}

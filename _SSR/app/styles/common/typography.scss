@@ -1,0 +1,90 @@
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5 {
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    line-height: $no-line-height;
+    color: $color-black;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5 {
+    font-family: $default-bold-font;
+}
+
+h1,
+.h1 {
+    font-size: $heading-font-size-1-small;
+}
+
+h2,
+.h2 {
+    font-size: $heading-font-size-2-small;
+}
+
+h3,
+.h3 {
+    font-size: $heading-font-size-3-small;
+}
+
+h4,
+.h4 {
+    font-size: $heading-font-size-4-small;
+}
+
+@include breakpoint(desktop-above) {
+    h1,
+    .h1 {
+        font-size: $heading-font-size-1-large;
+    }
+
+    h2,
+    .h2 {
+        font-size: $heading-font-size-2-large;
+    }
+
+    h3,
+    .h3 {
+        font-size: $heading-font-size-3-large;
+    }
+
+    h4,
+    .h4 {
+        font-size: $heading-font-size-4-large;
+    }
+}
+
+p {
+    margin: 0;
+    padding: 0;
+    margin-top: $units-2;
+    line-height: $xs-line-height;
+    color: $color-black;
+    font-family: $default-font;
+    font-size: $small-font-size;
+    @include breakpoint(desktop-above) {
+        line-height: $base-line-height;
+        font-size: $base-font-size;
+    }
+
+    & + p,
+    & + a {
+        margin-top: $units-1;
+    }
+}

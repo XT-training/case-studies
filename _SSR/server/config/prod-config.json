@@ -1,0 +1,29 @@
+{
+    "heartbeat": {
+        "tumeric": {
+            "url": "https://tumeric-no-name.lblw.ca/cumin/api/",
+            "method": "GET"
+        }
+    },
+    "cms": {
+        "default": {
+            "url": "https://tumeric-no-name.lblw.ca/cumin/api/components/",
+            "placementUrl":
+                "https://tumeric-no-name.lblw.ca/cumin/api/placements/",
+            "tumericProxy": "http://digitalproxy.gslbext.ngco.com:80",
+            "method": "GET",
+            "timeout": 20000,
+            "placements": {
+                "homePagePlacement": "boilerplate_home_page",
+                "simpleCheckPagePlacement": "boilerplate_home_page",
+                "naturallyImperfectPagePlacement": "boilerplate_home_page"
+            },
+            "common": [
+                "footer_labels_component",
+                "header_labels_component",
+                "error_labels_component",
+                "en_CA_SEO_JSON_Component"
+            ]
+        }
+    }
+}

@@ -1,0 +1,54 @@
+$typography-font-path: '../fonts' !default;
+
+/* @font-face {
+    font-family: "CaslonBld";
+    src:url("#{$typography-font-path}/0e142d75-1bd4-4e3a-8352-1b54cc8a6959.eot?#iefix");
+    src:url("#{$typography-font-path}/0e142d75-1bd4-4e3a-8352-1b54cc8a6959.eot?#iefix") format("eot"),
+    url("#{$typography-font-path}/01a1c33d-fd23-421a-8be4-8928a4677360.woff2") format("woff2"),
+    url("#{$typography-font-path}/296dd293-4b5f-4eaf-8c6b-995f2e0690a2.woff") format("woff"),
+    url("#{$typography-font-path}/e70e5470-bae6-4b40-8666-019c08a79cec.ttf") format("truetype"),
+    url("#{$typography-font-path}/03d2b4e9-649a-41a2-89b4-02ac8e27a478.svg#03d2b4e9-649a-41a2-89b4-02ac8e27a478") format("svg");
+} */
+
+@font-face {
+    font-family: 'HelveticaNeueMd';
+    src: url('#{$typography-font-path}/f95f9fc2-ffda-431c-9d6a-2c3668f5b20b.eot?#iefix');
+    src: url('#{$typography-font-path}/f95f9fc2-ffda-431c-9d6a-2c3668f5b20b.eot?#iefix')
+            format('eot'),
+        url('#{$typography-font-path}/5b1fbd62-45dc-4433-a7df-a2b24a146411.woff2')
+            format('woff2'),
+        url('#{$typography-font-path}/050b1948-f226-4d20-a65a-15d8ed031222.woff')
+            format('woff'),
+        url('#{$typography-font-path}/beb88be6-2a60-46fe-914f-6892b3ae46ce.ttf')
+            format('truetype'),
+        url('#{$typography-font-path}/e5567978-93ef-4de1-804d-1f0e3654a014.svg#e5567978-93ef-4de1-804d-1f0e3654a014')
+            format('svg');
+}
+
+@font-face {
+    font-family: 'HelveticaNeueBld';
+    src: url('#{$typography-font-path}/8a6c3e5a-88a5-430c-91d8-7767ce971d12.eot?#iefix');
+    src: url('#{$typography-font-path}/8a6c3e5a-88a5-430c-91d8-7767ce971d12.eot?#iefix')
+            format('eot'),
+        url('#{$typography-font-path}/531c5a28-5575-4f58-96d4-a80f7b702d7b.woff2')
+            format('woff2'),
+        url('#{$typography-font-path}/439c5962-f9fe-4eaf-a1f6-f41d42edba75.woff')
+            format('woff'),
+        url('#{$typography-font-path}/419a308d-b777-4f84-9235-2caf4a98ec23.ttf')
+            format('truetype'),
+        url('#{$typography-font-path}/e4d5b881-6835-45b7-8766-3e5b9e7cab8b.svg#e4d5b881-6835-45b7-8766-3e5b9e7cab8b')
+            format('svg');
+}
+
+@font-face {
+    font-family: 'SourceSansPro';
+    src: url('#{$typography-font-path}/SourceSansPro-Regular.eot?#iefix');
+    src: url('#{$typography-font-path}/SourceSansPro-Regular.eot?#iefix')
+            format('eot'),
+        url('#{$typography-font-path}/SourceSansPro-Regular.woff2')
+            format('woff2'),
+        url('#{$typography-font-path}/SourceSansPro-Regular.woff')
+            format('woff'),
+        url('#{$typography-font-path}/SourceSansPro-Regular.ttf')
+            format('truetype');
+}

@@ -1,0 +1,22 @@
+.lnk {
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    z-index: 0;
+    color: $color-black;
+    text-decoration: underline;
+    font-size: $small-font-size;
+    span {
+        color: $color-black;
+    }
+    &:hover,
+    &:active {
+        color: $color-black;
+        span {
+            color: $color-black;
+        }
+    }
+    @include breakpoint(desktop-above) {
+        font-size: $base-font-size;
+    }
+}
