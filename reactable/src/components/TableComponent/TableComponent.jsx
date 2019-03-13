@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 import Table from '../Table/Table';
 import Thead from '../Thead/Thead';
+import Tbody from '../Tbody/Tbody';
 import Tr from '../Tr/Tr';
 import Th from '../Th/Th';
 import Td from '../Td/Td';
@@ -20,13 +21,13 @@ class TableComponent extends React.PureComponent {
 
   renderBody(data){
     const headingArray = Object.keys(data[0]);
-    return (<tbody>
+    return (<Tbody>
       {data.map((row, index) => {
-        return <tr key={`row_${index}`}>
+        return <Tr key={`row_${index}`}>
           {headingArray.map(key => <Td key={`col_${key}`}>{row[key]}</Td>)}
-        </tr>
+        </Tr>
       })}
-    </tbody>);
+    </Tbody>);
   }
   render(){
     const { data, className } = this.props;
@@ -50,8 +51,9 @@ TableComponent.defaultProps = {
 }
 
 export default styled(TableComponent)`
+  font-size: 1rem;
   overflow: scroll;
   position: relative;
-  max-height: 100px;
+  max-height: 200px;
   width: 100%;
 `;
