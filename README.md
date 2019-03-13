@@ -22,10 +22,10 @@ Steps for adding and mapping theatres/movies/hall/dates/events
 
 ### Microservice endpoint APIs
 
-- Get All Movie  
+- Get All Movie    
 `/api/v1/movie/filter`
 
-- Get All Theatres  
+- Get All Theatres   
 `/api/v1/theatre/filter`
 
 - Get Movies - based on theatre  
@@ -34,11 +34,11 @@ Steps for adding and mapping theatres/movies/hall/dates/events
 - Search Movies - based on theatre  
 `/api/v1/movie/filter?theatre=<theatreId>&search=<searchTerm>`
 
-- Get Movies - based on theate and based on date (mm/dd/yyyy)  
+- Get Movies - based on theate and based on date (mm/dd/yyyy)   
 `/api/v1/movie/filter?theatre=<theatreId>&searchdate=<searchDate>`
 
-- Get Movies - based on theatre/date/timeStart/timeEnd
+- Get Movies - based on theatre/date/timeStart/timeEnd  
 `/api/v1/movie/filter?theatre=<theatreId>&searchdate=<searchDate>&timeStart=<Number>&timeEnd=<Number>`
 
-- Get Dates/Movie Details - based on theatre/
+- Get Dates/Movie Details - based on theatre  
 `/api/v1/movie/filter?theatre=<theatreId>`
