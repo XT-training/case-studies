@@ -11,6 +11,7 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import Reactable from 'reactable';
 import messages from './messages';
 
 /* eslint-disable react/prefer-stateless-function */
@@ -19,6 +20,24 @@ export default class HomePage extends React.PureComponent {
     return (
       <h1>
         <FormattedMessage {...messages.header} />
+        <Reactable
+          fetchData={() =>
+            new Promise(resolve => {
+              setTimeout(() => {
+                resolve({
+                  data: [
+                    { name: 'naman', oracleId: '124194' },
+                    { name: 'Gaurav', oracleId: '125223' },
+                    { name: 'Avinash', oracleId: '137000' },
+                    { name: 'Sunil', oracleId: '131122' },
+                    { name: 'Shanaullah', oracleId: '102225' },
+                  ],
+                  metadata: {},
+                });
+              }, 300);
+            })
+          }
+        />
       </h1>
     );
   }

@@ -1,16 +1,16 @@
 import resolve from 'rollup-plugin-node-resolve';
-import { uglify } from 'rollup-plugin-uglify';
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
 import sourcemaps from 'rollup-plugin-sourcemaps';
+import pkg from './package.json';
 
 const config = {
   input: 'src/App.jsx',
   output: {
     format: 'cjs',
-    file: 'dist/bundle.js'
+    file: pkg.main
   },
-  external: ["react", "redux", "react-redux", "redux-saga", "prop-types"],
+  external: [].concat(Object.keys(pkg.dependencies)),
   plugins: [
     resolve({
       extensions: ['.js', '.jsx']

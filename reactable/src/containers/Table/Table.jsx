@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Table from '../../components/Table/TableComponent';
+import Table from '../../components/TableComponent/TableComponent';
 
 const mapStateToProps = state => ({
   data: state.table
