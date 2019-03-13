@@ -1,27 +1,25 @@
 import AjaxFactoryUtil from 'utils/ajaxFactoryUtil';
-import { HOME_PAGE, HOME_PAGE_TEST } from '../types';
+import { HOME_PAGE } from '../types';
 import expressEndPointURL from '../app-constants/express-endpoint-url';
 import appConstants from '../app-constants/app-constants';
 import { actionlog } from '../../debug';
 
-
-export const setHomePageData = data => ({
+export const setTheaters = data => ({
     type: HOME_PAGE,
     data
 });
 
-export const getHomePageData = (params, url, headers, res) => {
+export const getTheaters = (params, url, headers, res) => {
     actionlog(`HOME_PAGE_ACTION HOME-PAGE-DATA START URL = ${url}`);
     const options = {
         method: expressEndPointURL.THEATRE.method,
-        url: expressEndPointURL.THEATRE.url,
+        url: expressEndPointURL.THEATRE.url
     };
 
     return dispatch =>
         AjaxFactoryUtil.triggerServerRequest(options)
             .then(value => {
-                console.log(value.body)
-                dispatch(setHomePageData(value.body.data));
+                dispatch(setTheaters(value.body.data));
                 actionlog(`HOME_PAGE_ACTION HOME-PAGE-DATA END, DATA = ${JSON.stringify(value)}`);
             })
             .catch(error => {

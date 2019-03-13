@@ -1,9 +1,9 @@
 $icomoon-font-path: '../fonts' !default;
 @font-face {
-    font-family: 'noname-icn';
-    src: url('#{$icomoon-font-path}/noname-icn.ttf?92kt9x') format('truetype'),
-        url('#{$icomoon-font-path}/noname-icn.woff?92kt9x') format('woff'),
-        url('#{$icomoon-font-path}/noname-icn.svg?92kt9x#noname-icn')
+    font-family: 'theater-icn';
+    src: url('#{$icomoon-font-path}/theater-icn.ttf?92kt9x') format('truetype'),
+        url('#{$icomoon-font-path}/theater-icn.woff?92kt9x') format('woff'),
+        url('#{$icomoon-font-path}/theater-icn.svg?92kt9x#theater-icn')
             format('svg');
     font-weight: normal;
     font-style: normal;
@@ -12,7 +12,7 @@ $icomoon-font-path: '../fonts' !default;
 [class^='icn-'],
 [class*=' icn-'] {
     /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'noname-icn' !important;
+    font-family: 'theater-icn' !important;
     speak: none;
     font-style: normal;
     font-weight: normal;

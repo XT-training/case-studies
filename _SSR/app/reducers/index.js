@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
-import theatres from './theatreReducer';
+import theaters from './theatreReducer';
 import errors from './errors';
 import app from './appReducer';
 import * as types from '../types';
@@ -11,7 +11,7 @@ import * as types from '../types';
 const rootReducer = combineReducers({
     routing,
     errors,
-    theatres,
+    theaters,
     app
 });
 

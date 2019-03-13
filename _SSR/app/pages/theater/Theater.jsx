@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Page from '../../pages/Page';
+import Page from '../Page';
 import commonUtil from '../../utils/commonUtil';
-import HomeContainer from '../../containers/home/HomeContainer';
+import TheaterContainer from '../../containers/theater/TheaterContainer';
 
 class HomePage extends Component {
     constructor(props) {
@@ -18,21 +18,25 @@ class HomePage extends Component {
     // TODO:: title,meta,link function should be part of parent class.
     pageTitle = () => 'Title';
 
-    pageMeta = () => {[]};
+    pageMeta = () => {
+        [];
+    };
 
-    pageLink = () => {[]};
+    pageLink = () => {
+        [];
+    };
 
     render() {
         return (
             <Page {...this.getMetaData()}>
-                <HomeContainer {...this.props} />
+                <TheaterContainer {...this.props} />
             </Page>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    homePage: state.homePage
+    theaters: state.theaters
 });
 
 export default connect(mapStateToProps)(HomePage);

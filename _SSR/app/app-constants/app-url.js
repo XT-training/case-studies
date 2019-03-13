@@ -1,5 +1,5 @@
 export default {
     ROOT: '/',
-    HOME: '/theatres',
+    HOME: '/theaters',
     ABOUT: '/about'
 };

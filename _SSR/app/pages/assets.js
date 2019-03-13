@@ -10,7 +10,7 @@ const metaAssets = () => [
     { charset: 'utf-8' },
     // Meta descriptions are commonly used on search engine result pages to
     // display preview snippets for a given page.
-    { name: 'description', content: 'Noname ' },
+    { name: 'description', content: 'Theater ' },
     // Setting IE=edge tells Internet Explorer to use the latest engine to
     //  render the page and execute Javascript
     { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },

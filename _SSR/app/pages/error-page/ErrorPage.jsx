@@ -20,7 +20,7 @@ class ErrorPage extends Component {
     pageMeta = () => [
         {
             name: 'description',
-            content: 'Noname'
+            content: 'Theater'
         }
     ];
 

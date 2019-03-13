@@ -1,9 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router';
-import HomePage from './pages/home/HomePage';
-import Aboutus from './pages/about-us/Aboutus';
+import Theater from './pages/theater/Theater';
 import ErrorPage from './pages/error-page/ErrorPage';
-import { getHomePageData } from './actions/homePageAction';
+import { getTheaters } from './actions/theaterAction';
 import App from './pages/App';
 import Authentication from './containers/hoc/Authentication';
 import appUrl from './app-constants/app-url';
@@ -19,19 +18,13 @@ export default [
                 path: '/',
                 component: redirectToEn,
                 exact: true,
-                need: [getHomePageData]
+                need: [getTheaters]
             },
             {
                 path: appUrl.HOME,
                 exact: true,
-                component: HomePage,
-                need: [getHomePageData]
-            },
-            {
-                path: appUrl.ABOUT,
-                component: Authentication(Aboutus), // Example of authentication....
-                exact: true,
-                need: [getHomePageData]
+                component: Theater,
+                need: [getTheaters]
             },
             {
                 path: '*',
