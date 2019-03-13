@@ -1,7 +1,0 @@
-.home-container {
-    .buy-now-component {
-        @include breakpoint(desktop-below) {
-            padding-top: $units-7;
-        }
-    }
-}

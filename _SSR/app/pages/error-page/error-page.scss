@@ -3,14 +3,12 @@
         .content {
             h1 {
                 letter-spacing: -0.5px;
-                font-size: $heading-font-size-1-large;
             }
             h4 {
                 line-height: 1.06;
                 letter-spacing: -0.3px;
                 @include breakpoint(desktop-above) {
                     letter-spacing: -0.8px;
-                    line-height: $no-line-height;
                 }
             }
         }

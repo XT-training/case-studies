@@ -1,0 +1,11 @@
+.theater-container {
+    & > * {
+        background: $color-white;
+        padding: 10px;
+        margin: 20px;
+    }
+    h1 {
+        background: none;
+        color: $color-white;
+    }
+}

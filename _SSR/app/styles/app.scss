@@ -1,20 +1,16 @@
 // import all the custom scss files here
 
 // Common files
-@import './common/fonts';
-@import './common/variables';
-@import './common/animation';
-@import './common/mixins';
-@import './common/breakpoints';
-@import './common/functions';
-@import './common/base';
-@import './common/typography';
-@import './common/icons';
-@import './common/buttons';
+@import 'common/fonts';
+@import 'common/variables';
+@import 'common/animation';
+@import 'common/mixins';
+@import 'common/breakpoints';
+@import 'common/functions';
+@import 'common/base';
 
 // common components
+@import '../containers/theater/theatre';
 
 // Pages
 @import '../pages/error-page/error-page';
-
-
