@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Page from '../Page';
 import commonUtil from '../../utils/commonUtil';
-import TheaterContainer from '../../containers/theater/TheaterContainer';
+import ScreeningContainer from '../../containers/screening/ScreeningContainer';
 
-class Theatre extends Component {
+class Screening extends Component {
     constructor(props) {
         super(props);
     }
@@ -29,14 +29,14 @@ class Theatre extends Component {
     render() {
         return (
             <Page {...this.getMetaData()}>
-                <TheaterContainer {...this.props} />
+                <ScreeningContainer {...this.props} />
             </Page>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    theaters: state.theaters
+    movies: state.movies
 });
 
-export default connect(mapStateToProps)(Theatre);
+export default connect(mapStateToProps)(Screening);

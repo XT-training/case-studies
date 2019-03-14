@@ -8,10 +8,10 @@ import { ctrllog } from '../../debug';
 const apiConfig = serviceLocator();
 
 export default (req, res, next) => {
-    const defaultReqURLObject = apiConfig.theatre.default;
+    const defaultReqURLObject = apiConfig.movie.default;
     const options = {
         method: defaultReqURLObject.method,
-        url: defaultReqURLObject.url
+        url: `${defaultReqURLObject.url}?theatre=${req.params.id}`
     };
 
     AjaxFactoryUtil.triggerServerRequest(options)
@@ -20,6 +20,6 @@ export default (req, res, next) => {
             res.send(responseData);
         })
         .catch(error => {
-            res.send(error);
+            res.send(commonUtils.sendError(error));
         });
 };

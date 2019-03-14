@@ -1,12 +1,12 @@
 import * as types from '../types';
 
-export default function theaters(state, action) {
+export default function movies(state, action) {
     switch (action.type) {
-        case types.THEATER: {
+        case types.MOVIE: {
             return Object.assign([], state, action.data);
         }
         default: {
-            return state || {};
+            return [];
         }
     }
 }

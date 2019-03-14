@@ -1,7 +1,6 @@
 import React from 'react';
 import Theater from '../../components/theater/Theater';
 import commonUtil from '../../utils/commonUtil';
-import { Link } from 'react-router-dom';
 
 const generatetheaters = props => {
     const { theaters } = props;

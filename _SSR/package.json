@@ -13,28 +13,35 @@
         "lint:js:fix": "eslint --quiet --ext .js,.jsx app server --fix",
         "lint:scss:fix": "stylelint \"**/*.scss\" --fix",
         "clean": "rimraf public && rimraf compiled",
-        "start": "npm run build && cross-env NODE_ENV=production node compiled/server.js",
-        "dev": "npm run copy && npm run copy-js && cross-env NODE_ENV=development npm run webpack --env.browser && cross-env NODE_ENV=development nodemon",
-        "dev:debug": "npm run copy && npm run copy-js && cross-env NODE_ENV=development npm run webpack --env.browser && cross-env NODE_ENV=development DEBUG=loblaw* nodemon",
-        "build:dev": "cross-env NODE_ENV=development npm run webpack -- --env.server --mode development",
-        "build": "npm run clean && npm run copy && npm run copy-js && cross-env NODE_ENV=production npm run webpack -- --env.browser && cross-env NODE_ENV=production npm run webpack -- --env.server",
-        "webpack": "webpack --colors --display-error-details --config ./webpack/webpack.config.js",
+        "start":
+            "npm run build && cross-env NODE_ENV=production node compiled/server.js",
+        "dev":
+            "npm run copy && npm run copy-js && cross-env NODE_ENV=development npm run webpack --env.browser && cross-env NODE_ENV=development nodemon",
+        "dev:debug":
+            "npm run copy && npm run copy-js && cross-env NODE_ENV=development npm run webpack --env.browser && cross-env NODE_ENV=development DEBUG=loblaw* nodemon",
+        "build:dev":
+            "cross-env NODE_ENV=development npm run webpack -- --env.server --mode development",
+        "build":
+            "npm run clean && npm run copy && npm run copy-js && cross-env NODE_ENV=production npm run webpack -- --env.browser && cross-env NODE_ENV=production npm run webpack -- --env.server",
+        "webpack":
+            "webpack --colors --display-error-details --config ./webpack/webpack.config.js",
         "test": "jest --bail --verbose ",
         "test:watch": "jest --bail --watch --verbose --coverage",
         "test:usnap": "jest --updateSnapshot",
         "test:cov": "jest --coverage",
-        "copy": "copyfiles -u 2 ./app/images/**/*.* ./compiled/images && copyfiles -u 2 ./app/images/**/*.* ./public/assets/images && copyfiles -f ./app/fonts/*.* ./compiled/fonts && copyfiles -f ./app/fonts/*.* ./public/assets/fonts",
-        "copy-js": "copyfiles -f ./app/third-party/*.* ./public/assets/third-party",
-        "prettier": "prettier  --single-quote --trailing-comma es5 --write '{app,server}/**/*.{js,jsx,json,scss}'",
-        "format": "prettier-eslint --write '{app,server}/**/*.{js,jsx,json,scss}'",
+        "copy":
+            "copyfiles -u 2 ./app/images/**/*.* ./compiled/images && copyfiles -u 2 ./app/images/**/*.* ./public/assets/images && copyfiles -f ./app/fonts/*.* ./compiled/fonts && copyfiles -f ./app/fonts/*.* ./public/assets/fonts",
+        "copy-js":
+            "copyfiles -f ./app/third-party/*.* ./public/assets/third-party",
+        "prettier":
+            "prettier  --single-quote --trailing-comma es5 --write '{app,server}/**/*.{js,jsx,json,scss}'",
+        "format":
+            "prettier-eslint --write '{app,server}/**/*.{js,jsx,json,scss}'",
         "precommit": "lint-staged",
         "create": "babel-node ./webpack/automation/index.js"
     },
     "lint-staged": {
-        "*.{js,jsx,json,scss}": [
-            "prettier-eslint --write",
-            "git add"
-        ]
+        "*.{js,jsx,json,scss}": ["prettier-eslint --write", "git add"]
     },
     "author": "Sapient",
     "license": "MIT",
@@ -144,6 +151,7 @@
         "react-dom": "^16.2.0",
         "react-dom-factories": "^1.0.0",
         "react-helmet": "^5.0.2",
+        "react-intl": "^2.8.0",
         "react-lazyload": "^2.2.7",
         "react-redux": "^5.0.3",
         "react-router-config": "^1.0.0-beta.4",

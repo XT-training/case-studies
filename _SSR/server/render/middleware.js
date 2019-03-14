@@ -5,6 +5,7 @@ import * as types from '../../app/types';
 import pageRenderer from './pageRenderer';
 import { preRenderMiddleware } from './preRenderMiddleware';
 import applog from '../../debug';
+import labels from '../locale/en';
 import appConstants from '../../app/app-constants/app-constants';
 /*
  * Export render function to be used in server/config/routes.js
@@ -17,6 +18,7 @@ export default function render(req, res) {
     const store = configureStore(
         {
             app: {
+                labels
             }
         },
         history

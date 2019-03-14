@@ -29,16 +29,6 @@ const AjaxFactoryUtil = {
                 headers: options.header,
                 data
             };
-            if (typeof document !== 'undefined') {
-                const cookie = commonUtil.parseCookies(document.cookie);
-                if (Object.prototype.hasOwnProperty.call(cookies, '_token')) {
-                    if (!options.params) {
-                        options.params = {};
-                    }
-                    options.params._id = cookie._id;
-                    options.params._token = cookie._token;
-                }
-            }
 
             if (!options.headers) {
                 delete options.headers;
@@ -48,7 +38,7 @@ const AjaxFactoryUtil = {
             }
             Object.assign(config, options);
             axios(config).then(
-                (response) => {
+                response => {
                     Event.publish(types.AJAX_COMPLETED);
                     const endTime = new Date().getTime();
                     const delta = endTime - startTime;
@@ -85,7 +75,7 @@ const AjaxFactoryUtil = {
                         body: responseObject
                     });
                 },
-                (error) => {
+                error => {
                     console.error(
                         `AJAX error URL=${error &&
                             error.response &&

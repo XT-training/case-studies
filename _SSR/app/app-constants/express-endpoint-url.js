@@ -1,5 +1,5 @@
 export default {
-    MOVIE: {
+    MOVIE_FILTER: {
         url: '/movie',
         method: 'GET'
     },

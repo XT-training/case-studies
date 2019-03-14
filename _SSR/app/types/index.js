@@ -12,9 +12,9 @@ export const SET_CMS_ERROR = 'SET_CMS_ERROR';
 export const AJAX_REQUEST_SUCCESS = 'AJAX_REQUEST_SUCCESS';
 export const AJAX_REQUEST_FAILURE = 'AJAX_REQUEST_FAILURE';
 
-
-// Static pages
-export const HOME_PAGE = 'HOME_PAGE';
+// Static pagesf
+export const THEATER = 'THEATER';
+export const MOVIE = 'MOVIE';
 
 // Loader Events:
 export const AJAX_STARTED = 'AJAX_STARTED';
