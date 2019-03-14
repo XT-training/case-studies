@@ -18,7 +18,7 @@
         "dev":
             "npm run copy && npm run copy-js && cross-env NODE_ENV=development npm run webpack --env.browser && cross-env NODE_ENV=development nodemon",
         "dev:debug":
-            "npm run copy && npm run copy-js && cross-env NODE_ENV=development npm run webpack --env.browser && cross-env NODE_ENV=development DEBUG=loblaw* nodemon",
+            "npm run copy && npm run copy-js && cross-env NODE_ENV=development npm run webpack --env.browser && cross-env NODE_ENV=development DEBUG=cinema* nodemon",
         "build:dev":
             "cross-env NODE_ENV=development npm run webpack -- --env.server --mode development",
         "build":

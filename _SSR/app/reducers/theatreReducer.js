@@ -6,7 +6,7 @@ export default function theaters(state, action) {
             return Object.assign([], state, action.data);
         }
         default: {
-            return state || {};
+            return state || [];
         }
     }
 }

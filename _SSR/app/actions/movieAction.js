@@ -19,10 +19,10 @@ export const getMovies = (params, url, headers, res) => {
         AjaxFactoryUtil.triggerServerRequest(options)
             .then(value => {
                 dispatch(setMovies(value.body.data));
-                actionlog(`MOVIE_ACTION HOME-PAGE-DATA END, DATA = ${JSON.stringify(value)}`);
+                actionlog(`MOVIE_ACTION DATA END, DATA = ${JSON.stringify(value)}`);
             })
             .catch(error => {
                 actionlog(`HOMEPAGE DATA ERROR = ${error}`);
-                actionlog('MOVIE_ACTION HOME-PAGE-DATA END');
+                actionlog('MOVIE_ACTION DATA END');
             });
 };

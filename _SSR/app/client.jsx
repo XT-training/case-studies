@@ -7,7 +7,6 @@ import { withRouter } from 'react-router-dom';
 import { matchRoutes } from 'react-router-config';
 import configureStore from './store/configureStore';
 import { preRenderMiddleware } from '../server/render/preRenderMiddleware';
-import { IntlProvider } from 'react-intl';
 import routes from '../app/routes';
 
 const initialState = window.__INITIAL_STATE__;
@@ -38,13 +37,11 @@ const RouteDataLoader = withRouter(class extends React.Component {
 
 ReactDOM.hydrate(
     <Provider store={store}>
-        <IntlProvider locale="en" messages={store.getState().app.labels}>
-            <BrowserRouter>
-                <RouteDataLoader routes={routes} dispatch={store.dispatch}>
-                    {renderRoutes(routes)}
-                </RouteDataLoader>
-            </BrowserRouter>
-        </IntlProvider>
+        <BrowserRouter>
+            <RouteDataLoader routes={routes} dispatch={store.dispatch}>
+                {renderRoutes(routes)}
+            </RouteDataLoader>
+        </BrowserRouter>
     </Provider>,
     document.getElementById('app')
 );

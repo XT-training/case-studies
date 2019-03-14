@@ -12,7 +12,8 @@ class Screening extends Component {
         return {
             title: this.pageTitle(),
             meta: this.pageMeta(),
-            link: this.pageLink()
+            link: this.pageLink(),
+            labels: this.props.labels
         };
     }
     // TODO:: title,meta,link function should be part of parent class.
@@ -36,7 +37,8 @@ class Screening extends Component {
 }
 
 const mapStateToProps = state => ({
-    movies: state.movies
+    movies: state.movies,
+    labels: state.app.labels
 });
 
 export default connect(mapStateToProps)(Screening);
