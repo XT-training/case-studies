@@ -15,7 +15,22 @@ import getInvoice from './service';
 
 /* eslint-disable react/prefer-stateless-function */
 export default class HomePage extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+    };
+  }
+
+  componentDidMount() {
+    getInvoice({}, data => {
+      this.setState({
+        data,
+      });
+    });
+  }
+
   render() {
-    return <Reactable fetchData={getInvoice} />;
+    return <Reactable data={this.state.data} />;
   }
 }
