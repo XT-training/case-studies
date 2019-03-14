@@ -1,21 +1,23 @@
-/*
- * HomePage
- *
- * This is the first thing users see of our App, at the '/' route
- *
- * NOTE: while this component should technically be a stateless functional
- * component (SFC), hot reloading does not currently support SFCs. If hot
- * reloading is not a necessity for you then you can refactor it and remove
- * the linting exception.
- */
-
-import React from 'react';
+import React, { Fragment } from 'react';
 import Reactable from 'reactable';
 import getInvoice from './service';
 
+// components
+import QuickView from '../../components/QuickView';
+
 /* eslint-disable react/prefer-stateless-function */
 export default class HomePage extends React.PureComponent {
+
+  renderQuickviewContent() {
+    return <h1>Quick view Content</h1>
+  }
+
   render() {
-    return <Reactable fetchData={getInvoice} />;
+    return (
+      <Fragment>
+        <Reactable fetchData={getInvoice} />
+        <QuickView viewType="sidebar" label="INV-001">{this.renderQuickviewContent()}</QuickView>
+      </Fragment>
+    );
   }
 }
