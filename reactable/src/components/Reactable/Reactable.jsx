@@ -9,7 +9,7 @@ import Th from '../Th/Th';
 import Td from '../Td/Td';
 
 
-class TableComponent extends React.PureComponent {
+class Reactable extends React.PureComponent {
   renderHead(data){
     const headingArray = Object.keys(data[0]);
     return (<Thead>
@@ -46,11 +46,11 @@ class TableComponent extends React.PureComponent {
   }
 }
 
-TableComponent.defaultProps = {
+Reactable.defaultProps = {
   data: []
 }
 
-export default styled(TableComponent)`
+export default styled(Reactable)`
   font-size: 1rem;
   overflow: scroll;
   position: relative;

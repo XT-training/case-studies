@@ -6,6 +6,7 @@ const Th = styled.th`
   text-align: center;
   position: -webkit-sticky;
   position: sticky;
+  color: ${props => props.theme && props.theme.color};
   ${props => (props.row ? `
     left: 0;
   ` : `
