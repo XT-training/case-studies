@@ -10,19 +10,12 @@
  */
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import Reactable from 'reactable';
-import messages from './messages';
 import getInvoice from './service';
 
 /* eslint-disable react/prefer-stateless-function */
 export default class HomePage extends React.PureComponent {
   render() {
-    return (
-      <h1>
-        <FormattedMessage {...messages.header} />
-        <Reactable fetchData={getInvoice} />
-      </h1>
-    );
+    return <Reactable fetchData={getInvoice} />;
   }
 }
