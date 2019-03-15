@@ -54,6 +54,6 @@ const linkAssets = () => {
     return links;
 };
 
-export const title = 'Noname: Shop online';
+export const title = 'Cinema Experience';
 export const meta = metaAssets();
 export const link = linkAssets();
