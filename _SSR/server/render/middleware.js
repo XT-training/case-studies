@@ -28,7 +28,6 @@ export default function render(req, res) {
     preRenderMiddleware(store.dispatch, branch, req, res)
         .then(() => {
             const html = pageRenderer(store, req.url);
-            console.log(html);
             res.status(200).send(html);
             applog(`REQ-END URL = ${req.url}`);
         })
