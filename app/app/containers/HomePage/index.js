@@ -12,6 +12,40 @@ export default class HomePage extends React.PureComponent {
     this.state = {
       data: [],
     };
+    this.columns = [
+      {
+        key: 'Invoice',
+        value: 'Invoice',
+      },
+      {
+        key: 'Created',
+        value: 'Created Date',
+      },
+      {
+        key: 'Status',
+        value: 'Status',
+      },
+      {
+        key: 'Department',
+        value: 'Department',
+      },
+      {
+        key: 'Client',
+        value: 'Client',
+      },
+      {
+        key: 'Worked',
+        value: 'Worked',
+      },
+      {
+        key: 'Rate',
+        value: 'Rate',
+      },
+      {
+        key: 'Total',
+        value: 'Total (INR)',
+      },
+    ];
   }
 
   componentDidMount() {
@@ -23,14 +57,16 @@ export default class HomePage extends React.PureComponent {
   }
 
   renderQuickviewContent() {
-    return <h1>Quick view Content</h1>
+    return <h1>Quick view Content</h1>;
   }
 
   render() {
     return (
       <Fragment>
         <Reactable fetchData={getInvoice} data={this.state.data} />
-        <QuickView viewType="sidebar" label="INV-001">{this.renderQuickviewContent()}</QuickView>
+        <QuickView viewType="sidebar" label="INV-001">
+          {this.renderQuickviewContent()}
+        </QuickView>
       </Fragment>
     );
   }

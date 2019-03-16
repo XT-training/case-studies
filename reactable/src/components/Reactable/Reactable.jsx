@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
 import Table from '../Table/Table';
@@ -8,36 +9,63 @@ import Tr from '../Tr/Tr';
 import Th from '../Th/Th';
 import Td from '../Td/Td';
 
+const Head = ({columns, cellDensity}) => (<Thead>
+<Tr>
+  {columns.map(headingObject => <Th cellDensity={cellDensity} key={headingObject.key}>{headingObject.value}</Th>)}
+</Tr>
+</Thead>);
+
+const Body = ({data, columns, cellDensity}) => (<Tbody>
+{data.map((row, index) => {
+  return <Tr key={`row_${index}`}>
+    {columns.map(headingObject => {
+      const isValueObject = typeof row[headingObject.key] === 'object';
+      const isTh = isValueObject && row[headingObject.key].type === 'heading';
+      const Component = isTh ? Th : Td;
+      const otherProp = isTh ? {
+        heading: true,
+      } : {};
+      return <Component cellDensity={cellDensity} key={`col_${headingObject.key}`} {...otherProp}>{isValueObject ? row[headingObject.key].value : row[headingObject.key]}</Component>;
+    })}
+  </Tr>
+})}
+</Tbody>)
+
 
 class Reactable extends React.PureComponent {
-  renderHead(data){
-    const headingArray = Object.keys(data[0]);
-    return (<Thead>
-      <Tr>
-        {headingArray.map(heading => <Th key={heading}>{heading}</Th>)}
-      </Tr>
-    </Thead>);
+  static propTypes = {
+    columns: PropTypes.array.isRequired,
+    data: PropTypes.array,
+    cellDensity: PropTypes.oneOf([0.5, 1, 1.5])
+  };
+
+  constructor(props) {
+    super(props);
+    this.tableRef = React.createRef();
+    this.state = {
+      styles: {},
+    }
   }
 
-  renderBody(data){
-    const headingArray = Object.keys(data[0]);
-    return (<Tbody>
-      {data.map((row, index) => {
-        return <Tr key={`row_${index}`}>
-          {headingArray.map(key => <Td key={`col_${key}`}>{row[key]}</Td>)}
-        </Tr>
-      })}
-    </Tbody>);
+  componentDidMount() {
+      const tableCont = this.tableRef.current;
+      if(this.tableCont){
+        this.setState({
+          styles: {width: tableCont.clientWidth, height: tableCont.clientHeight}
+        });
+      }
+
   }
+
   render(){
-    const { data, className } = this.props;
+    const { data, className, columns, cellDensity } = this.props;
     if(data instanceof Array && data.length > 0){
       return (
-      <div className={className}>
+      <div className={className} style={this.state.styles} ref={this.tableRef}>
         <Table>
-          {this.renderHead(data)}
-          {this.renderBody(data)}
-        </Table>
+          <Head columns={columns} cellDensity={cellDensity} />
+          <Body data={data} columns={columns} cellDensity={cellDensity} />
+          </Table>
       </div>
       );
     }
@@ -47,13 +75,12 @@ class Reactable extends React.PureComponent {
 }
 
 Reactable.defaultProps = {
-  data: []
+  data: [],
+  cellDensity: 0.5,
 }
 
 export default styled(Reactable)`
   font-size: 1rem;
   overflow: scroll;
   position: relative;
-  max-height: 200px;
-  width: 100%;
 `;
