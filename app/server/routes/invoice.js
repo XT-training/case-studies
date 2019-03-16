@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 const invoiceController = require('./invoiceController');
 
-router
-    .route('/')
-    .get(invoiceController.get)
+router.route('/').get(invoiceController.get);
+
+router.route('/:id').get(invoiceController.getAllDetails);
 
 module.exports = router;
