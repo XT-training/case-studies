@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Page from '../Page';
 import commonUtil from '../../utils/commonUtil';
 import ScreeningContainer from '../../containers/screening/ScreeningContainer';
+import { title, meta, link } from '../assets';
 
 class Screening extends Component {
     constructor(props) {
@@ -10,22 +11,12 @@ class Screening extends Component {
     }
     getMetaData() {
         return {
-            title: this.pageTitle(),
-            meta: this.pageMeta(),
-            link: this.pageLink(),
+            title,
+            meta,
+            link,
             labels: this.props.labels
         };
     }
-    // TODO:: title,meta,link function should be part of parent class.
-    pageTitle = () => 'Title';
-
-    pageMeta = () => {
-        [];
-    };
-
-    pageLink = () => {
-        [];
-    };
 
     render() {
         return (

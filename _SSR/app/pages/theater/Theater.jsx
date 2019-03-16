@@ -4,6 +4,7 @@ import Page from '../Page';
 import commonUtil from '../../utils/commonUtil';
 import TheaterContainer from '../../containers/theater/TheaterContainer';
 import { IntlProvider } from 'react-intl';
+import { title, meta, link } from '../assets';
 
 class Theatre extends Component {
     constructor(props) {
@@ -11,22 +12,12 @@ class Theatre extends Component {
     }
     getMetaData() {
         return {
-            title: this.pageTitle(),
-            meta: this.pageMeta(),
-            link: this.pageLink(),
+            title,
+            meta,
+            link,
             labels: this.props.labels
         };
     }
-    // TODO:: title,meta,link function should be part of parent class.
-    pageTitle = () => 'Title';
-
-    pageMeta = () => {
-        [];
-    };
-
-    pageLink = () => {
-        [];
-    };
 
     render() {
         return (

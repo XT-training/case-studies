@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
 import commonUtil from '../../utils/commonUtil';
 
 const Screen = ({ movie }) => {
@@ -36,12 +35,7 @@ const ScreeningContainer = ({ movies }) => {
 
     return (
         <div className="result-container container">
-            <div className="search-result">
-                <FormattedMessage
-                    id="search.screens"
-                    values={{ screens: movies.length }}
-                />
-            </div>
+            <div className="search-result">{movies.length}</div>
             <div className="list-container">{moviesList}</div>
         </div>
     );
