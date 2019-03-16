@@ -12,7 +12,7 @@ exports.get = (req, res) => {
   const filter = req.query.filter ? JSON.parse(req.query.filter) : [];
   const filterObj = getFilterObj(filter);
   const promises = [
-    Invoice.count(filterObj).exec(),
+    Invoice.countDocuments(filterObj).exec(),
     Invoice.find(filterObj)
       .sort({ [orderby]: order })
       .skip(parseInt(startindex, 10))
@@ -34,6 +34,21 @@ exports.get = (req, res) => {
       res.status(200).json({
         data: invoices,
         metaData,
+      });
+    })
+    .catch(error => {
+      res.status(500).send(error);
+    });
+};
+
+exports.getAllDetails = (req, res) => {
+  const { id } = req.params;
+  const promises = [Invoice.findOne({ _id: id }).exec()];
+  Promise.all(promises)
+    .then(data => {
+      const [invoice] = data;
+      res.status(200).json({
+        data: invoice,
       });
     })
     .catch(error => {
