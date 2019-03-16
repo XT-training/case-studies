@@ -23,8 +23,9 @@ const app = express();
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
 
-const dbURI =
-  'mongodb+srv://avinash:test123@reactable-mxnew.gcp.mongodb.net/reactable?retryWrites=true';
+/* const dbURI =
+  'mongodb+srv://avinash:test123@reactable-mxnew.gcp.mongodb.net/reactable?retryWrites=true'; */
+const dbURI = 'mongodb://localhost:27017/invoices';
 
 const options = {
   reconnectTries: Number.MAX_VALUE,

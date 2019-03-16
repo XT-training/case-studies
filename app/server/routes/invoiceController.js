@@ -15,6 +15,16 @@ exports.get = (req, res) => {
     Invoice.countDocuments(filterObj).exec(),
     Invoice.find(filterObj)
       .sort({ [orderby]: order })
+      .select({
+        index: 1,
+        status: 1,
+        department: 1,
+        created: 1,
+        client: 1,
+        service: 1,
+        worked: 1,
+        rate: 1,
+      })
       .skip(parseInt(startindex, 10))
       .limit(parseInt(itemsperpage, 10))
       .exec(),
@@ -86,15 +96,14 @@ const getMetaData = (
     itemsperpage,
     columnHeader: {
       _id: 'ID',
-      Invoice: 'Invoice',
-      Created: 'Created on',
-      Status: 'Status',
-      Department: 'Department',
-      Client: 'Client Name',
-      Service: 'Service',
-      Worked: 'Worked Hrs',
-      Rate: 'Rate/Hr',
-      Total: 'Total Cost',
+      index: 'Invoice',
+      created: 'Created on',
+      status: 'Status',
+      department: 'Department',
+      client: 'Client Name',
+      service: 'Service',
+      worked: 'Worked Hrs',
+      rate: 'Rate/Hr',
     },
   };
   if (orderby) {
