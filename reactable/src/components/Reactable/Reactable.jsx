@@ -9,17 +9,11 @@ import Tr from "../Tr/Tr";
 import Th from "../Th/Th";
 import Td from "../Td/Td";
 
-const Head = ({ columns, cellDensity }) => (
-  <Thead>
-    <Tr>
-      {columns.map(headingObject => (
-        <Th cellDensity={cellDensity} key={headingObject.key}>
-          {headingObject.value}
-        </Th>
-      ))}
-    </Tr>
-  </Thead>
-);
+const Head = ({ columns, cellDensity, onSort }) => (<Thead>
+  <Tr>
+    {columns.map(headingObject => <Th cellDensity={cellDensity} data={headingObject} onSort={onSort} />)}
+  </Tr>
+  </Thead>);
 
 const Body = ({ data, columns, cellDensity }) => (
   <Tbody>
@@ -67,7 +61,8 @@ class Reactable extends React.PureComponent {
     super(props);
     this.tableRef = React.createRef();
     this.state = {
-      styles: {}
+      styles: {},
+      data: props.data,
     };
   }
 
@@ -81,16 +76,17 @@ class Reactable extends React.PureComponent {
   }
 
   render() {
-    const { data, className, columns, cellDensity } = this.props;
+    const { data, className, columns, cellDensity, onSort } = this.props;
+    const { styles } = this.state;
     if (data instanceof Array && data.length > 0) {
       return (
         <div
           className={className}
-          style={this.state.styles}
+          style={styles}
           ref={this.tableRef}
         >
           <Table>
-            <Head columns={columns} cellDensity={cellDensity} />
+            <Head columns={columns} cellDensity={cellDensity} onSort={onSort} />
             <Body data={data} columns={columns} cellDensity={cellDensity} />
           </Table>
         </div>

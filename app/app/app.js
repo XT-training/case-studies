@@ -26,10 +26,11 @@ import 'file-loader?name=.htaccess!./.htaccess';
 /* eslint-enable import/no-unresolved, import/extensions */
 
 import configureStore from './configureStore';
-
+import rootSaga from './rootSaga';
 // Create redux store with history
 const initialState = {};
 const store = configureStore(initialState, history);
+store.runSaga(rootSaga);
 const MOUNT_NODE = document.getElementById('app');
 
 const render = () => {

@@ -1,17 +1,21 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Reactable from 'reactable';
-import getInvoice from './service';
+import { fetchData as fetchDataAction } from '../Invoices/actions';
 
 // components
 import QuickView from '../../components/QuickView';
 
 /* eslint-disable react/prefer-stateless-function */
-export default class HomePage extends React.PureComponent {
+class HomePage extends React.PureComponent {
+  static propTypes = {
+    invoices: PropTypes.array,
+    fetchData: PropTypes.func,
+  };
+
   constructor(props) {
     super(props);
-    this.state = {
-      data: [],
-    };
     this.columns = [
       {
         key: 'client',
@@ -41,11 +45,7 @@ export default class HomePage extends React.PureComponent {
   }
 
   componentDidMount() {
-    getInvoice({}).then(response => {
-      this.setState({
-        data: response.data,
-      });
-    });
+    this.props.fetchData();
   }
 
   renderQuickviewContent() {
@@ -53,7 +53,10 @@ export default class HomePage extends React.PureComponent {
   }
 
   render() {
-    const data = this.state.data.map(row => {
+    if (!this.props.invoices) {
+      return null;
+    }
+    const data = this.props.invoices.map(row => {
       const items = Object.assign({}, row);
 
       items.client = (
@@ -66,8 +69,30 @@ export default class HomePage extends React.PureComponent {
 
     return (
       <Fragment>
-        <Reactable data={data} columns={this.columns} />
+        <Reactable
+          data={data}
+          columns={this.columns}
+          onSort={(orderby, order) =>
+            this.props.fetchData({
+              orderby,
+              order,
+            })
+          }
+        />
       </Fragment>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  invoices: state.get('invoices'),
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchData: params => dispatch(fetchDataAction(params)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HomePage);

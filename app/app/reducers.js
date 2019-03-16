@@ -4,13 +4,14 @@
 
 import { combineReducers } from 'redux-immutable';
 import { connectRouter } from 'connected-react-router/immutable';
-
 import history from 'utils/history';
+import InvoicesReducer from './containers/Invoices/reducer';
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
  */
 export default function createReducer(injectedReducers = {}) {
   const rootReducer = combineReducers({
+    invoices: InvoicesReducer,
     ...injectedReducers,
   });
 
