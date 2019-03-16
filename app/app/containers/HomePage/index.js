@@ -53,12 +53,20 @@ export default class HomePage extends React.PureComponent {
   }
 
   render() {
-    return (
-      <Fragment>
-        <Reactable data={this.state.data} columns={this.columns} />
-        <QuickView viewType="sidebar" label="INV-001">
+    const data = this.state.data.map(row => {
+      const items = Object.assign({}, row);
+
+      items.client = (
+        <QuickView viewType="modal" label={row.client}>
           {this.renderQuickviewContent()}
         </QuickView>
+      );
+      return items;
+    });
+
+    return (
+      <Fragment>
+        <Reactable data={data} columns={this.columns} />
       </Fragment>
     );
   }
