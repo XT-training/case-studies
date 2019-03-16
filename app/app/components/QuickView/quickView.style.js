@@ -43,7 +43,7 @@ export default {
       dynamicAttr = {
         height: '100vh',
         width: '400px',
-        paddingTop: '32px',
+        paddingTop: '16px',
         position: 'fixed',
         transitionDuration: '1s',
         right: '0px',
@@ -54,6 +54,7 @@ export default {
       position: 'relative',
       backgroundColor: '#FFF',
       boxShadow: '1px 1px 6px rgba(0, 0, 0, 0.3)',
+      overflowY: 'auto',
 
       ...dynamicAttr,
     };
@@ -85,5 +86,52 @@ export default {
 
       ...dynamicAttr,
     };
+  },
+
+  content(viewType) {
+    return {
+      textAlign: 'left',
+      color: '#464646',
+    };
+  },
+  heading: {
+    margin: 0,
+    padding: 0,
+    fontSize: '24px',
+  },
+  topSection: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  breadcrumb: {
+    padding: 0,
+    marginTop: 0,
+    fontFamily: 'inherit',
+  },
+  button: {
+    background: '#658cb3',
+    padding: '16px',
+    color: '#fff',
+    borderRadius: '4px',
+    flex: '0 0 100%',
+    cursor: 'pointer',
+    marginBottom: '16px',
+  },
+  summaryContainer: {
+    display: 'flex',
+    margin: '16px 0',
+    flexWrap: 'wrap',
+  },
+  summaryLabel: {
+    textAlign: 'right',
+    flex: '0 0 calc(100% - 100px)',
+    color: '#5656',
+    textTransform: 'uppercase',
+  },
+  summaryKey: {
+    flex: '0 0 100px',
+    textAlign: 'right',
+    paddingLeft: '16px',
+    fontWeight: 'bold',
   },
 };

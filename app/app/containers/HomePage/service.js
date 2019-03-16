@@ -1,4 +1,4 @@
-const getInvoice = params => {
+export const getInvoice = params => {
   const url = new URL('http://localhost:3000/api/invoice');
   const searchParams = Object.assign(
     {},
@@ -12,4 +12,7 @@ const getInvoice = params => {
   return fetch(url).then(response => response.json());
 };
 
-export default getInvoice;
+export const getInvoiceById = id => {
+  const url = new URL(`http://localhost:3000/api/invoice/${id}`);
+  return fetch(url).then(response => response.json());
+};

@@ -1,43 +1,19 @@
 import React, { Fragment } from 'react';
 import Reactable from 'reactable';
-import getInvoice from './service';
+import { getInvoice } from './service';
 
 // components
-import QuickView from '../../components/QuickView';
+import QuickView from '../QuickView';
 
-/* eslint-disable react/prefer-stateless-function */
+// constants
+import { TABLE_COLUMNS, QUICK_VIEW_TYPE } from '../constants';
 export default class HomePage extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       data: [],
     };
-    this.columns = [
-      {
-        key: 'client',
-        value: 'Client',
-      },
-      {
-        key: 'created',
-        value: 'Created Date',
-      },
-      {
-        key: 'status',
-        value: 'Status',
-      },
-      {
-        key: 'department',
-        value: 'Department',
-      },
-      {
-        key: 'index',
-        value: 'Index',
-      },
-      {
-        key: 'worked',
-        value: 'Worked',
-      },
-    ];
+    this.columns = TABLE_COLUMNS;
   }
 
   componentDidMount() {
@@ -48,20 +24,18 @@ export default class HomePage extends React.PureComponent {
     });
   }
 
-  renderQuickviewContent() {
-    return <h1>Quick view Content</h1>;
-  }
-
   render() {
     const data = this.state.data.map(row => {
-      const items = Object.assign({}, row);
-
-      items.client = (
-        <QuickView viewType="modal" label={row.client}>
-          {this.renderQuickviewContent()}
-        </QuickView>
+      const item = Object.assign({}, row);
+      /* eslint no-underscore-dangle: ["error", { "allow": ["_id"] }] */
+      item.client = (
+        <QuickView
+          viewType={QUICK_VIEW_TYPE}
+          label={row.client}
+          id={item._id}
+        />
       );
-      return items;
+      return item;
     });
 
     return (
