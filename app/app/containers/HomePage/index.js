@@ -49,9 +49,9 @@ export default class HomePage extends React.PureComponent {
   }
 
   componentDidMount() {
-    getInvoice({}, data => {
+    getInvoice({}).then(response => {
       this.setState({
-        data,
+        data: response,
       });
     });
   }
@@ -63,7 +63,7 @@ export default class HomePage extends React.PureComponent {
   render() {
     return (
       <Fragment>
-        <Reactable fetchData={getInvoice} data={this.state.data} />
+        <Reactable data={this.state.data} columns={this.columns} />
         <QuickView viewType="sidebar" label="INV-001">
           {this.renderQuickviewContent()}
         </QuickView>

@@ -2,7 +2,8 @@
 
 const express = require('express');
 const logger = require('./logger');
-
+const fs = require('fs');
+const { join } = require('path');
 const argv = require('./argv');
 const port = require('./port');
 const setup = require('./middlewares/frontendMiddleware');
@@ -44,7 +45,22 @@ mongoose
     },
   );
 
+const loadJSON = file => {
+  try {
+    const data = fs.readFileSync(file, 'utf-8');
+    return JSON.parse(data);
+  } catch (e) {
+    console.error('Server Index.js ::: loadJSON :::', 'Error loading:', file);
+  }
+  return null;
+};
+
 app.use('/api/invoice', invoiceRouter);
+
+app.get('/mockData/*', (req, res) => {
+  console.log('path is ', req.path);
+  res.json(loadJSON(join(process.cwd(), 'server', req.path)));
+});
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {

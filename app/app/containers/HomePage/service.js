@@ -1,5 +1,5 @@
-const getInvoice = (params, callback) => {
-  const url = new URL('http://localhost:3000/api/invoice');
+const getInvoice = params => {
+  const url = new URL('http://localhost:3000/mockData/invoice.json');
   const searchParams = Object.assign(
     {},
     {
@@ -9,7 +9,7 @@ const getInvoice = (params, callback) => {
     params,
   );
   url.search = new URLSearchParams(searchParams);
-  fetch(url).then(response => callback(response.json()));
+  return fetch(url).then(response => response.json());
 };
 
 export default getInvoice;
