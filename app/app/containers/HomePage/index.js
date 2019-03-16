@@ -14,36 +14,28 @@ export default class HomePage extends React.PureComponent {
     };
     this.columns = [
       {
-        key: 'Invoice',
-        value: 'Invoice',
-      },
-      {
-        key: 'Created',
-        value: 'Created Date',
-      },
-      {
-        key: 'Status',
-        value: 'Status',
-      },
-      {
-        key: 'Department',
-        value: 'Department',
-      },
-      {
-        key: 'Client',
+        key: 'client',
         value: 'Client',
       },
       {
-        key: 'Worked',
+        key: 'created',
+        value: 'Created Date',
+      },
+      {
+        key: 'status',
+        value: 'Status',
+      },
+      {
+        key: 'department',
+        value: 'Department',
+      },
+      {
+        key: 'index',
+        value: 'Index',
+      },
+      {
+        key: 'worked',
         value: 'Worked',
-      },
-      {
-        key: 'Rate',
-        value: 'Rate',
-      },
-      {
-        key: 'Total',
-        value: 'Total (INR)',
       },
     ];
   }
@@ -51,7 +43,7 @@ export default class HomePage extends React.PureComponent {
   componentDidMount() {
     getInvoice({}).then(response => {
       this.setState({
-        data: response,
+        data: response.data,
       });
     });
   }

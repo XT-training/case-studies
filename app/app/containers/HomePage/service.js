@@ -1,5 +1,5 @@
 const getInvoice = params => {
-  const url = new URL('http://localhost:3000/mockData/invoice.json');
+  const url = new URL('http://localhost:3000/api/invoice');
   const searchParams = Object.assign(
     {},
     {
