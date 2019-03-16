@@ -1,5 +1,7 @@
 // jest.config.js
 module.exports = {
+    verbose: true,
+    testURL: 'http://localhost/',
     testRegex: '\\.?(test|spec)\\.jsx?$',
     coverageReporters: ['lcov'],
     collectCoverage: false,
