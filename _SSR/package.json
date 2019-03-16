@@ -147,7 +147,7 @@
         "react-intl": "^2.8.0",
         "react-lazyload": "^2.2.7",
         "react-redux": "^5.0.3",
-        "react-router-config": "^1.0.0-beta.4",
+        "react-router-config": "^4.4.0",
         "react-router-dom": "^4.2.2",
         "react-router-redux": "^4.0.0",
         "react-transform-hmr": "^1.0.4",
