@@ -1,12 +1,21 @@
+import { FETCH_DATA_SUCCESS, FETCH_INVOICE_SUCCESS } from './constant';
+
 const initialState = [];
 
-function InvoiceReducer(state = initialState, { type, data }) {
+export function invoicesReducer(state = initialState, { type, data }) {
   switch (type) {
-    case 'FETCH_DATA_SUCCESS':
+    case FETCH_DATA_SUCCESS:
       return data;
     default:
       return state;
   }
 }
 
-export default InvoiceReducer;
+export function invoiceReducer(state = {}, { type, data }) {
+  switch (type) {
+    case FETCH_INVOICE_SUCCESS:
+      return data;
+    default:
+      return state;
+  }
+}

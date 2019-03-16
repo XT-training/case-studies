@@ -26,10 +26,6 @@ class HomePage extends React.PureComponent {
     this.props.fetchData();
   }
 
-  renderQuickviewContent() {
-    return <h1>Quick view Content</h1>;
-  }
-
   render() {
     const { invoices } = this.props;
     if (!invoices) {

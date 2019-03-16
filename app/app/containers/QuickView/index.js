@@ -1,36 +1,23 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+
+// actions
+import { fetchInvoice as fetchInvoiceAction } from '../Invoices/actions';
 
 // components
 import QuickViewComponent from '../../components/QuickView';
 
-// service
-import { getInvoiceById } from '../HomePage/service';
+const QuickView = props => <QuickViewComponent {...props} />;
 
-class QuickView extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: {},
-    };
-  }
+const mapStateToProps = state => ({
+  data: state.get('invoice'),
+});
 
-  static propTypes = {
-    id: PropTypes.string.isRequired,
-  };
+const mapDispatchToProps = dispatch => ({
+  fetchInvoice: params => dispatch(fetchInvoiceAction(params)),
+});
 
-  componentDidMount() {
-    const { id } = this.props;
-
-    getInvoiceById(id).then(response => {
-      this.setState({ data: response.data });
-    });
-  }
-
-  render() {
-    const { data } = this.state;
-    return <QuickViewComponent data={data} {...this.props} />;
-  }
-}
-
-export default QuickView;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(QuickView);

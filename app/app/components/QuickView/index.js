@@ -27,6 +27,8 @@ class QuickView extends Component {
     label: PropTypes.string.isRequired,
     viewType: PropTypes.oneOf(['modal', 'sidebar']),
     data: PropTypes.object.isRequired,
+    id: PropTypes.string.isRequired,
+    fetchInvoice: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -34,6 +36,8 @@ class QuickView extends Component {
   };
 
   showQuickviewHandler = () => {
+    const { id, fetchInvoice } = this.props;
+    fetchInvoice(id);
     this.setState({ showQuickview: true });
   };
 
@@ -140,11 +144,12 @@ class QuickView extends Component {
 
   render() {
     const { showQuickview } = this.state;
-    const { label } = this.props;
+    const { label, data } = this.props;
+
     return (
       <Fragment>
         <Button onClick={this.showQuickviewHandler}>{label}</Button>
-        {showQuickview && this.renderModal()}
+        {showQuickview && data && data.items && this.renderModal()}
       </Fragment>
     );
   }
