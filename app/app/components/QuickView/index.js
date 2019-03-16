@@ -62,13 +62,34 @@ class QuickView extends Component {
   }
 
   renderQuickiewData() {
-    const { data } = this.props;
+    const { data, viewType } = this.props;
     const { index, client, status } = data;
-    const Content = styled('div')(styles.content);
+    const Content = styled('div')(styles.content(viewType));
     const Heading = styled('h3')(styles.heading);
     const TopSection = styled('div')(styles.topSection);
     const Breadcrumb = styled('p')(styles.breadcrumb);
     const PaymentButton = styled('button')(styles.button);
+    const Column1 = styled('div')(styles.column1);
+    const Column2 = styled('div')(styles.column2);
+
+    if (viewType === 'modal') {
+      return (
+        <Content>
+          <Column1>
+            <Heading>
+              &#8942;&nbsp;
+              {index}
+            </Heading>
+            <TopSection>
+              <Breadcrumb>{`${client} | ${status}`}</Breadcrumb>
+              <PaymentButton>Record Payment</PaymentButton>
+            </TopSection>
+            {this.renderMiscellaneousDetail()}
+          </Column1>
+          <Column2>{this.renderItemTable()}</Column2>
+        </Content>
+      );
+    }
 
     return (
       <Content>
@@ -124,7 +145,16 @@ class QuickView extends Component {
 
   renderMiscellaneousDetail() {
     const { data } = this.props;
-    const { client, customer, memo } = data;
+    const {
+      client,
+      customer,
+      department,
+      index,
+      due,
+      memo,
+      created,
+      service,
+    } = data;
     const miscData = [
       {
         key: 'CLIENT',
@@ -133,6 +163,26 @@ class QuickView extends Component {
       {
         key: 'PROJECT',
         value: customer,
+      },
+      {
+        key: 'INVOICE #',
+        value: index,
+      },
+      {
+        key: 'DEPARTMENT',
+        value: department,
+      },
+      {
+        key: 'CREATION',
+        value: created,
+      },
+      {
+        key: 'DUE',
+        value: due,
+      },
+      {
+        key: 'SERVICE',
+        value: service,
       },
       {
         key: 'MEMO',

@@ -37,7 +37,6 @@ export default {
     let dynamicAttr = {
       borderRadius: '8px',
       width: '1000px',
-      height: '400px',
     };
     if (viewType === 'sidebar') {
       dynamicAttr = {
@@ -47,6 +46,7 @@ export default {
         position: 'fixed',
         transitionDuration: '1s',
         right: '0px',
+        overflowY: 'auto',
       };
     }
     return {
@@ -54,7 +54,6 @@ export default {
       position: 'relative',
       backgroundColor: '#FFF',
       boxShadow: '1px 1px 6px rgba(0, 0, 0, 0.3)',
-      overflowY: 'auto',
 
       ...dynamicAttr,
     };
@@ -89,10 +88,29 @@ export default {
   },
 
   content(viewType) {
+    let dynamicAttr = {};
+    if (viewType === 'modal') {
+      dynamicAttr = {
+        display: 'flex',
+        height: '600px',
+        padding: '16px',
+        overflowY: 'auto',
+      };
+    }
     return {
       textAlign: 'left',
       color: '#464646',
+      ...dynamicAttr,
     };
+  },
+  column1: {
+    flexBasis: '50%',
+    paddingRight: '16px',
+  },
+  column2: {
+    flexBasis: '50%',
+    borderLeft: '1px solid #868686',
+    paddingLeft: '16px',
   },
   heading: {
     margin: 0,
