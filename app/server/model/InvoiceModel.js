@@ -1,17 +1,20 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-var InvoiceSchema = new Schema({
-  Invoice: Number,
-  Created: String,
-  Status: String,
-  Department: String,
-  Client: String,
-  Service: String,
-  Worked: Number,
-  Rate: Number,
-  Total: String,
+const InvoiceSchema = new Schema({
+  index: Number,
+  status: String,
+  department: String,
+  created: String,
+  due: String,
+  client: String,
+  service: String,
+  customer: String,
+  worked: Number,
+  rate: String,
+  memo: String,
+  items: Array,
 });
 
-var Invoice = mongoose.model('invoice', InvoiceSchema, 'invoice');
+const Invoice = mongoose.model('invoices', InvoiceSchema, 'invoices');
 module.exports = Invoice;
