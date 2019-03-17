@@ -1,3 +1,4 @@
+import { containerWidth } from '../../assets/styles/variables';
 export default {
   labelLink: {
     color: '#0366d6',
@@ -20,6 +21,11 @@ export default {
     if (viewType === 'sidebar') {
       dynamicAttr = {
         backgroundColor: 'rgba(255, 255, 255, 0.4)',
+      };
+    }
+    if (viewType === 'scrollDown') {
+      dynamicAttr = {
+        position: 'relative',
       };
     }
     return {
@@ -47,6 +53,14 @@ export default {
         transitionDuration: '1s',
         right: '0px',
         overflowY: 'auto',
+      };
+    }
+    if (viewType === 'scrollDown') {
+      dynamicAttr = {
+        position: 'absolute',
+        left: '0',
+        top: '10px',
+        width: `calc(${containerWidth} - 32px)`,
       };
     }
     return {
@@ -117,23 +131,53 @@ export default {
     padding: 0,
     fontSize: '24px',
   },
-  topSection: {
-    display: 'flex',
-    flexDirection: 'column',
+  topSection(viewType) {
+    let dynamicAttr = {};
+    if (viewType === 'sidebar') {
+      dynamicAttr = {};
+    }
+    return {
+      display: 'flex',
+      flexWrap: 'wrap',
+      alignItems: 'center',
+      ...dynamicAttr,
+    };
   },
-  breadcrumb: {
-    padding: 0,
-    marginTop: 0,
-    fontFamily: 'inherit',
+  breadcrumb(viewType) {
+    let dynamicAttr = {
+      flexBasis: '100%',
+    };
+    if (viewType === 'modal') {
+      dynamicAttr = {
+        flexBasis: '50%',
+      };
+    }
+    return {
+      padding: 0,
+      marginTop: 0,
+      fontFamily: 'inherit',
+      ...dynamicAttr,
+    };
   },
-  button: {
-    background: '#658cb3',
-    padding: '16px',
-    color: '#fff',
-    borderRadius: '4px',
-    flex: '0 0 100%',
-    cursor: 'pointer',
-    marginBottom: '16px',
+  button(viewType) {
+    let dynamicAttr = {
+      flexBasis: '100%',
+    };
+    if (viewType === 'modal') {
+      dynamicAttr = {
+        flexBasis: '50%',
+      };
+    }
+    return {
+      background: '#658cb3',
+      padding: '16px',
+      color: '#fff',
+      borderRadius: '4px',
+      flex: '0 0 100%',
+      cursor: 'pointer',
+      marginBottom: '16px',
+      ...dynamicAttr,
+    };
   },
   summaryContainer: {
     display: 'flex',
@@ -151,5 +195,17 @@ export default {
     textAlign: 'right',
     paddingLeft: '16px',
     fontWeight: 'bold',
+  },
+  miscContainer(viewType) {
+    let dynamicAttr = {};
+    if (viewType === 'scrollDown') {
+      dynamicAttr = {
+        marginBottom: '16px',
+      };
+    }
+
+    return {
+      ...dynamicAttr,
+    };
   },
 };

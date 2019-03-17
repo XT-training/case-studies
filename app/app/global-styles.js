@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { containerWidth } from './assets/styles/variables';
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -25,6 +26,13 @@ const GlobalStyle = createGlobalStyle`
   label {
     font-family: Georgia, Times, 'Times New Roman', serif;
     line-height: 1.5em;
+  }
+
+  .container {
+    width: ${containerWidth};
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 0;
   }
 
   .width-15 {

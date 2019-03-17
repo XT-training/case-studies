@@ -11,13 +11,12 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
-import QuickView from '../../components/QuickView';
 
 import GlobalStyle from '../../global-styles';
 
 export default function App() {
   return (
-    <React.Fragment>
+    <div className="container">
       <header className="container mb-1">
         <nav className="navbar navbar-light bg-light px-0">
           <a className="navbar-brand" href="/">
@@ -40,6 +39,6 @@ export default function App() {
       </div>
       {/* <QuickView /> */}
       <footer className="container">copyright information</footer>
-    </React.Fragment>
+    </div>
   );
 }

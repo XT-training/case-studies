@@ -25,7 +25,7 @@ class QuickView extends Component {
 
   static propTypes = {
     label: PropTypes.string.isRequired,
-    viewType: PropTypes.oneOf(['modal', 'sidebar']),
+    viewType: PropTypes.oneOf(['modal', 'sidebar', 'scrollDown']),
     data: PropTypes.object.isRequired,
     id: PropTypes.string.isRequired,
     fetchInvoice: PropTypes.func.isRequired,
@@ -37,8 +37,9 @@ class QuickView extends Component {
 
   showQuickviewHandler = () => {
     const { id, fetchInvoice } = this.props;
+    const { showQuickview } = this.state;
     fetchInvoice(id);
-    this.setState({ showQuickview: true });
+    this.setState({ showQuickview: !showQuickview });
   };
 
   closeModalHandler = () => {
@@ -54,7 +55,9 @@ class QuickView extends Component {
     return (
       <QuickViewOverlay>
         <QuickViewMain>
-          <CloseButton onClick={this.closeModalHandler}>&times;</CloseButton>
+          {viewType !== 'scrollDown' && (
+            <CloseButton onClick={this.closeModalHandler}>&times;</CloseButton>
+          )}
           {this.renderQuickiewData()}
         </QuickViewMain>
       </QuickViewOverlay>
@@ -66,9 +69,9 @@ class QuickView extends Component {
     const { index, client, status } = data;
     const Content = styled('div')(styles.content(viewType));
     const Heading = styled('h3')(styles.heading);
-    const TopSection = styled('div')(styles.topSection);
-    const Breadcrumb = styled('p')(styles.breadcrumb);
-    const PaymentButton = styled('button')(styles.button);
+    const TopSection = styled('div')(styles.topSection(viewType));
+    const Breadcrumb = styled('p')(styles.breadcrumb(viewType));
+    const PaymentButton = styled('button')(styles.button(viewType));
     const Column1 = styled('div')(styles.column1);
     const Column2 = styled('div')(styles.column2);
 
@@ -98,11 +101,18 @@ class QuickView extends Component {
           {index}
         </Heading>
         <TopSection>
-          <Breadcrumb>{`${client} | ${status}`}</Breadcrumb>
-          <PaymentButton>Record Payment</PaymentButton>
+          {viewType !== 'scrollDown' && (
+            <Breadcrumb>{`${client} | ${status}`}</Breadcrumb>
+          )}
+          {viewType !== 'scrollDown' && (
+            <PaymentButton>Record Payment</PaymentButton>
+          )}
         </TopSection>
         {this.renderItemTable()}
-        {this.renderMiscellaneousDetail()}
+        {viewType !== 'scrollDown' && this.renderMiscellaneousDetail()}
+        {viewType === 'scrollDown' && (
+          <PaymentButton>Record Payment</PaymentButton>
+        )}
       </Content>
     );
   }
@@ -144,7 +154,8 @@ class QuickView extends Component {
   }
 
   renderMiscellaneousDetail() {
-    const { data } = this.props;
+    const { data, viewType } = this.props;
+    const MiscContainer = styled('div')(styles.miscContainer(viewType));
     const {
       client,
       customer,
@@ -189,16 +200,32 @@ class QuickView extends Component {
         value: memo,
       },
     ];
-    return <Reactable data={miscData} columns={QUICK_MISC_COLUMNS} />;
+    return (
+      <MiscContainer>
+        <Reactable data={miscData} columns={QUICK_MISC_COLUMNS} />
+      </MiscContainer>
+    );
   }
 
   render() {
     const { showQuickview } = this.state;
-    const { label, data } = this.props;
+    const { label, data, viewType } = this.props;
 
     return (
       <Fragment>
-        <Button onClick={this.showQuickviewHandler}>{label}</Button>
+        <Button onClick={this.showQuickviewHandler}>
+          {viewType === 'scrollDown' && (
+            <span>
+              {showQuickview ? (
+                <span className="fa fa-angle-down" />
+              ) : (
+                <span className="fa fa-angle-up" />
+              )}
+              &nbsp;
+            </span>
+          )}
+          {label}
+        </Button>
         {showQuickview && data && data.items && this.renderModal()}
       </Fragment>
     );
