@@ -120,9 +120,7 @@ export default {
   topSection(viewType) {
     let dynamicAttr = {};
     if (viewType === 'sidebar') {
-      dynamicAttr = {
-        flexDirection: 'column',
-      };
+      dynamicAttr = {};
     }
     return {
       display: 'flex',
@@ -132,7 +130,9 @@ export default {
     };
   },
   breadcrumb(viewType) {
-    let dynamicAttr = {};
+    let dynamicAttr = {
+      flexBasis: '100%',
+    };
     if (viewType === 'modal') {
       dynamicAttr = {
         flexBasis: '50%',
@@ -146,7 +146,9 @@ export default {
     };
   },
   button(viewType) {
-    let dynamicAttr = {};
+    let dynamicAttr = {
+      flexBasis: '100%',
+    };
     if (viewType === 'modal') {
       dynamicAttr = {
         flexBasis: '50%',
