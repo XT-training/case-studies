@@ -27,8 +27,8 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.5em;
   }
 
-  .margin-bottom {
-    margin-bottom: 1rem;
+  .width-15 {
+    width: 15%;
   }
 `;
 

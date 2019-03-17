@@ -13,6 +13,7 @@ class Pagination extends React.PureComponent {
   constructor(props) {
     super(props);
     this.currentPage = 1;
+    this.changePageSize = this.changePageSize.bind(this);
   }
 
   handlePageClick(index) {
@@ -35,6 +36,15 @@ class Pagination extends React.PureComponent {
     if (this.currentPage < totalPages) {
       this.handlePageClick(this.currentPage + 1);
     }
+  }
+
+  changePageSize(e) {
+    const itemsperpage = e.target.value;
+    const { fetchData } = this.props;
+    fetchData({
+      startindex: 0,
+      itemsperpage,
+    });
   }
 
   render() {
@@ -67,7 +77,23 @@ class Pagination extends React.PureComponent {
       ];
     }
     return (
-      <nav aria-label="Page navigation example">
+      <nav className="d-flex justify-content-between">
+        <div className="input-group mb-3 width-15">
+          <div className="input-group-prepend">
+            <label className="input-group-text" htmlFor="pageSize">
+              Page Size
+            </label>
+          </div>
+          <select
+            className="custom-select"
+            id="pageSize"
+            onChange={this.changePageSize}
+          >
+            <option value="10">10</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
         <ul className="pagination justify-content-end">
           <li
             key="previous-page"
