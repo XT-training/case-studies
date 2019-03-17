@@ -9,9 +9,9 @@ import Tr from "../Tr/Tr";
 import Th from "../Th/Th";
 import Td from "../Td/Td";
 
-const Head = ({ columns, cellDensity, onSort }) => (<Thead>
+const Head = ({ columns, cellDensity, onSort, currentTheme }) => (<Thead>
   <Tr>
-    {columns.map(headingObject => <Th cellDensity={cellDensity} data={headingObject} onSort={onSort} />)}
+    {columns.map(headingObject => <Th cellDensity={cellDensity} data={headingObject} onSort={onSort} currentTheme={currentTheme} />)}
   </Tr>
   </Thead>);
 
@@ -76,7 +76,7 @@ class Reactable extends React.PureComponent {
   }
 
   render() {
-    const { data, className, columns, cellDensity, onSort } = this.props;
+    const { data, className, columns, cellDensity, onSort, currentTheme } = this.props;
     const { styles } = this.state;
     if (data instanceof Array && data.length > 0) {
       return (
@@ -86,7 +86,7 @@ class Reactable extends React.PureComponent {
           ref={this.tableRef}
         >
           <Table>
-            <Head columns={columns} cellDensity={cellDensity} onSort={onSort} />
+            <Head columns={columns} cellDensity={cellDensity} onSort={onSort} currentTheme={currentTheme} />
             <Body data={data} columns={columns} cellDensity={cellDensity} />
           </Table>
         </div>

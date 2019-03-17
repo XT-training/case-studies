@@ -1,11 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
+import SortIcon from "../SortIcon/SortIcon";
 
 class Th extends React.PureComponent {
   static propTypes = {
     onSort: PropTypes.func,
-    data: PropTypes.object
+    data: PropTypes.object,
+    currentTheme: PropTypes.object
   };
 
   static defaultProps = {
@@ -14,32 +16,18 @@ class Th extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.state = {
-      order: props.data.order
-    };
     this.clickHandler = this.clickHandler.bind(this);
   }
 
   clickHandler() {
     const { onSort, data } = this.props;
     const newOrder =
-      this.state.order === ""
-        ? "asc"
-        : this.state.order === "asc"
-        ? "desc"
-        : "asc";
-    this.setState(
-      {
-        order: newOrder
-      },
-      () => {
-        onSort(data.key, this.state.order);
-      }
-    );
+      data.order === "" ? "asc" : data.order === "asc" ? "desc" : "asc";
+    onSort(data.key, newOrder);
   }
 
   render() {
-    const { data, className, key } = this.props;
+    const { data, className, key, currentTheme } = this.props;
     return (
       <th
         className={className}
@@ -47,6 +35,7 @@ class Th extends React.PureComponent {
         onClick={this.clickHandler}
       >
         {data.value}
+        <SortIcon order={data.order} currentTheme={currentTheme} />
       </th>
     );
   }

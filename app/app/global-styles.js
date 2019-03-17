@@ -32,6 +32,10 @@ const GlobalStyle = createGlobalStyle`
     width: ${containerWidth};
     margin: 0 auto;
   }
+
+  .margin-bottom {
+    margin-bottom: 1rem;
+  }
 `;
 
 export default GlobalStyle;

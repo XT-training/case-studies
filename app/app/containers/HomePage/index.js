@@ -6,6 +6,8 @@ import { fetchData as fetchDataAction } from '../Invoices/actions';
 
 // components
 import QuickView from '../QuickView';
+import Pagination from '../Pagination/Pagination';
+import theme from '../../theme';
 
 // constants
 import { TABLE_COLUMNS, QUICK_VIEW_TYPE } from '../constants';
@@ -15,6 +17,7 @@ class HomePage extends React.PureComponent {
   static propTypes = {
     invoices: PropTypes.array,
     fetchData: PropTypes.func,
+    sort: PropTypes.object,
   };
 
   constructor(props) {
@@ -23,7 +26,10 @@ class HomePage extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.props.fetchData();
+    this.props.fetchData({
+      orderby: 'client',
+      order: 'asc',
+    });
   }
 
   render() {
@@ -45,18 +51,32 @@ class HomePage extends React.PureComponent {
       return item;
     });
 
+    const columns = this.columns.map(col => {
+      const colObj = Object.assign({}, col);
+      if (colObj.key === this.props.sort.orderby) {
+        colObj.order = this.props.sort.order;
+      }
+      return colObj;
+    });
+
     return (
       <Fragment>
-        <Reactable
-          data={data}
-          columns={this.columns}
-          onSort={(orderby, order) =>
-            this.props.fetchData({
-              orderby,
-              order,
-            })
-          }
-        />
+        <div className="margin-bottom">
+          <Reactable
+            data={data}
+            columns={columns}
+            onSort={(orderby, order) =>
+              this.props.fetchData({
+                orderby,
+                order,
+              })
+            }
+            theme={theme}
+          />
+        </div>
+        <div className="margin-bottom">
+          <Pagination />
+        </div>
       </Fragment>
     );
   }
@@ -64,6 +84,7 @@ class HomePage extends React.PureComponent {
 
 const mapStateToProps = state => ({
   invoices: state.get('invoices'),
+  sort: state.get('sort'),
 });
 
 const mapDispatchToProps = dispatch => ({

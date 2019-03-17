@@ -6,6 +6,8 @@ import { combineReducers } from 'redux-immutable';
 import { connectRouter } from 'connected-react-router/immutable';
 import history from 'utils/history';
 import { invoicesReducer, invoiceReducer } from './containers/Invoices/reducer';
+import PaginationReducer from './containers/Pagination/reducer';
+import SortReducer from './containers/Sort/reducer';
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
  */
@@ -13,6 +15,8 @@ export default function createReducer(injectedReducers = {}) {
   const rootReducer = combineReducers({
     invoices: invoicesReducer,
     invoice: invoiceReducer,
+    pagination: PaginationReducer,
+    sort: SortReducer,
     ...injectedReducers,
   });
 
