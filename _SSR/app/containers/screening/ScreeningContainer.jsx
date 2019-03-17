@@ -41,7 +41,9 @@ const ScreeningContainer = ({ movies, labels, onChange }) => {
                     values={{ screens: movies.length }}
                 />
             </div>
-            <div className="list-container row">{moviesList}</div>
+            {moviesCount > 0 && (
+                <div className="list-container row">{moviesList}</div>
+            )}
         </div>
     );
 };
