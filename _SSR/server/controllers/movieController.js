@@ -24,6 +24,6 @@ export default (req, res, next) => {
             res.send(responseData);
         })
         .catch(error => {
-            res.send(commonUtils.sendError(error));
+            res.send(error);
         });
 };

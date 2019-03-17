@@ -4,7 +4,7 @@ import Screening from './pages/screening/Screening';
 import Movie from './pages/movie/Movie';
 import ErrorPage from './pages/error-page/ErrorPage';
 import { getTheaters } from './actions/theaterAction';
-import { getMovies } from './actions/movieAction';
+import { getMovies, getMovieDetail } from './actions/movieAction';
 import appUrl from './app-constants/app-url';
 
 export default [
@@ -27,10 +27,10 @@ export default [
         need: [getMovies]
     },
     {
-        path: `${appUrl.MOVIE_DETAILS}/:id`,
+        path: `${appUrl.MOVIE_DETAILS}/:theater/:movie`,
         exact: true,
         component: Movie,
-        need: []
+        need: [getMovieDetail]
     },
     {
         path: `${appUrl.SCREENING_TIMINGS}`,

@@ -27,7 +27,10 @@ class Movie extends Component {
 }
 
 const mapStateToProps = state => ({
-    movie: state.movies,
+    theater: state.theaters[0],
+    movie: state.movies[0],
+    date: state.movies[0].dates[0].dates[0].date,
+    timeObj: state.movies[0].dates[0].dates[0].timing[0],
     labels: state.app.labels
 });
 

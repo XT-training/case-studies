@@ -33,6 +33,27 @@ export const searchMovies = (theaterId, searchTerm) => {
             });
 };
 
+export const getMovieDetail = (params, url, headers, res) => {
+    actionlog(`MOVIE_ACTION HOME-PAGE-DATA START URL = ${url}`);
+    const options = {
+        method: expressEndPointURL.MOVIE_FILTER.method,
+        url: `${expressEndPointURL.MOVIE_FILTER.url}?theater=${params.theater}`
+    };
+    return dispatch =>
+        AjaxFactoryUtil.triggerServerRequest(options)
+            .then(value => {
+                const data = value.body.data;
+                const filterMovie = data.filter(movie => movie._id == params.movie);
+                dispatch(setActiveMovie(filterMovie));
+                dispatch(setActiveTheater(params.theater));
+                actionlog(`MOVIE_ACTION DATA END, DATA = ${JSON.stringify(filterMovie)}`);
+            })
+            .catch(error => {
+                actionlog(`HOMEPAGE DATA ERROR = ${error}`);
+                actionlog('MOVIE_ACTION DATA END');
+            });
+};
+
 export const getMovies = (params, url, headers, res) => {
     actionlog(`MOVIE_ACTION HOME-PAGE-DATA START URL = ${url}`);
     const options = {
