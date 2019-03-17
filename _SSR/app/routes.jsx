@@ -29,7 +29,7 @@ export default [
         path: `${appUrl.MOVIE_DETAILS}/:id`,
         exact: true,
         component: Screening,
-        need: [movieDetails]
+        need: []
     },
     {
         path: `${appUrl.SCREENING_TIMINGS}`,
