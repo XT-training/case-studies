@@ -31,6 +31,8 @@ const GlobalStyle = createGlobalStyle`
   .container {
     width: ${containerWidth};
     margin: 0 auto;
+    max-width: 100%;
+    padding: 0;
   }
 
   .margin-bottom {
