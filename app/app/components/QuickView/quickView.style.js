@@ -1,3 +1,4 @@
+import { containerWidth } from '../../assets/styles/variables';
 export default {
   labelLink: {
     color: '#0366d6',
@@ -20,6 +21,11 @@ export default {
     if (viewType === 'sidebar') {
       dynamicAttr = {
         backgroundColor: 'rgba(255, 255, 255, 0.4)',
+      };
+    }
+    if (viewType === 'scrollDown') {
+      dynamicAttr = {
+        position: 'relative',
       };
     }
     return {
@@ -47,6 +53,14 @@ export default {
         transitionDuration: '1s',
         right: '0px',
         overflowY: 'auto',
+      };
+    }
+    if (viewType === 'scrollDown') {
+      dynamicAttr = {
+        position: 'absolute',
+        left: '0',
+        top: '10px',
+        width: `calc(${containerWidth} - 32px)`,
       };
     }
     return {
@@ -181,5 +195,17 @@ export default {
     textAlign: 'right',
     paddingLeft: '16px',
     fontWeight: 'bold',
+  },
+  miscContainer(viewType) {
+    let dynamicAttr = {};
+    if (viewType === 'scrollDown') {
+      dynamicAttr = {
+        marginBottom: '16px',
+      };
+    }
+
+    return {
+      ...dynamicAttr,
+    };
   },
 };

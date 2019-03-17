@@ -11,13 +11,12 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
-import QuickView from '../../components/QuickView';
 
 import GlobalStyle from '../../global-styles';
 
 export default function App() {
   return (
-    <React.Fragment>
+    <div className="container">
       <header>
         <h1>DataTable App</h1>
       </header>
@@ -29,6 +28,6 @@ export default function App() {
       </div>
       {/* <QuickView /> */}
       <footer>copyright information</footer>
-    </React.Fragment>
+    </div>
   );
 }

@@ -37,8 +37,9 @@ class QuickView extends Component {
 
   showQuickviewHandler = () => {
     const { id, fetchInvoice } = this.props;
+    const { showQuickview } = this.state;
     fetchInvoice(id);
-    this.setState({ showQuickview: true });
+    this.setState({ showQuickview: !showQuickview });
   };
 
   closeModalHandler = () => {
@@ -54,7 +55,9 @@ class QuickView extends Component {
     return (
       <QuickViewOverlay>
         <QuickViewMain>
-          <CloseButton onClick={this.closeModalHandler}>&times;</CloseButton>
+          {viewType !== 'scrollDown' && (
+            <CloseButton onClick={this.closeModalHandler}>&times;</CloseButton>
+          )}
           {this.renderQuickiewData()}
         </QuickViewMain>
       </QuickViewOverlay>
@@ -98,11 +101,18 @@ class QuickView extends Component {
           {index}
         </Heading>
         <TopSection>
-          <Breadcrumb>{`${client} | ${status}`}</Breadcrumb>
-          <PaymentButton>Record Payment</PaymentButton>
+          {viewType !== 'scrollDown' && (
+            <Breadcrumb>{`${client} | ${status}`}</Breadcrumb>
+          )}
+          {viewType !== 'scrollDown' && (
+            <PaymentButton>Record Payment</PaymentButton>
+          )}
         </TopSection>
         {this.renderItemTable()}
-        {this.renderMiscellaneousDetail()}
+        {viewType !== 'scrollDown' && this.renderMiscellaneousDetail()}
+        {viewType === 'scrollDown' && (
+          <PaymentButton>Record Payment</PaymentButton>
+        )}
       </Content>
     );
   }
@@ -144,7 +154,8 @@ class QuickView extends Component {
   }
 
   renderMiscellaneousDetail() {
-    const { data } = this.props;
+    const { data, viewType } = this.props;
+    const MiscContainer = styled('div')(styles.miscContainer(viewType));
     const {
       client,
       customer,
@@ -189,16 +200,27 @@ class QuickView extends Component {
         value: memo,
       },
     ];
-    return <Reactable data={miscData} columns={QUICK_MISC_COLUMNS} />;
+    return (
+      <MiscContainer>
+        <Reactable data={miscData} columns={QUICK_MISC_COLUMNS} />
+      </MiscContainer>
+    );
   }
 
   render() {
     const { showQuickview } = this.state;
-    const { label, data } = this.props;
+    const { label, data, viewType } = this.props;
 
     return (
       <Fragment>
-        <Button onClick={this.showQuickviewHandler}>{label}</Button>
+        <Button onClick={this.showQuickviewHandler}>
+          {viewType === 'scrollDown' && (
+            <span>
+              {showQuickview ? <span>&dArr;</span> : <span>&uArr;</span>} &nbsp;
+            </span>
+          )}
+          {label}
+        </Button>
         {showQuickview && data && data.items && this.renderModal()}
       </Fragment>
     );

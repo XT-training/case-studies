@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Reactable from 'reactable';
@@ -31,6 +31,7 @@ class HomePage extends React.PureComponent {
     if (!invoices) {
       return null;
     }
+
     const data = invoices.map(row => {
       const item = Object.assign({}, row);
       /* eslint no-underscore-dangle: ["error", { "allow": ["_id"] }] */
