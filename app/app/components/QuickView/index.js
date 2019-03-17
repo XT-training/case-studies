@@ -216,7 +216,12 @@ class QuickView extends Component {
         <Button onClick={this.showQuickviewHandler}>
           {viewType === 'scrollDown' && (
             <span>
-              {showQuickview ? <span>&dArr;</span> : <span>&uArr;</span>} &nbsp;
+              {showQuickview ? (
+                <span className="fa fa-angle-down" />
+              ) : (
+                <span className="fa fa-angle-up" />
+              )}
+              &nbsp;
             </span>
           )}
           {label}

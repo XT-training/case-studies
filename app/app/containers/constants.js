@@ -25,7 +25,7 @@ export const TABLE_COLUMNS = [
   },
 ];
 
-export const QUICK_VIEW_TYPE = 'scrollDown';
+export const QUICK_VIEW_TYPE = 'sidebar';
 
 export const QUICK_VIEW_COLUMNS = [
   {
