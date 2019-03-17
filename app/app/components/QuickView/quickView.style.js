@@ -117,23 +117,51 @@ export default {
     padding: 0,
     fontSize: '24px',
   },
-  topSection: {
-    display: 'flex',
-    flexDirection: 'column',
+  topSection(viewType) {
+    let dynamicAttr = {};
+    if (viewType === 'sidebar') {
+      dynamicAttr = {
+        flexDirection: 'column',
+      };
+    }
+    return {
+      display: 'flex',
+      flexWrap: 'wrap',
+      alignItems: 'center',
+      ...dynamicAttr,
+    };
   },
-  breadcrumb: {
-    padding: 0,
-    marginTop: 0,
-    fontFamily: 'inherit',
+  breadcrumb(viewType) {
+    let dynamicAttr = {};
+    if (viewType === 'modal') {
+      dynamicAttr = {
+        flexBasis: '50%',
+      };
+    }
+    return {
+      padding: 0,
+      marginTop: 0,
+      fontFamily: 'inherit',
+      ...dynamicAttr,
+    };
   },
-  button: {
-    background: '#658cb3',
-    padding: '16px',
-    color: '#fff',
-    borderRadius: '4px',
-    flex: '0 0 100%',
-    cursor: 'pointer',
-    marginBottom: '16px',
+  button(viewType) {
+    let dynamicAttr = {};
+    if (viewType === 'modal') {
+      dynamicAttr = {
+        flexBasis: '50%',
+      };
+    }
+    return {
+      background: '#658cb3',
+      padding: '16px',
+      color: '#fff',
+      borderRadius: '4px',
+      flex: '0 0 100%',
+      cursor: 'pointer',
+      marginBottom: '16px',
+      ...dynamicAttr,
+    };
   },
   summaryContainer: {
     display: 'flex',

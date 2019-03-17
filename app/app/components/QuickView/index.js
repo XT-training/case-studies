@@ -25,7 +25,7 @@ class QuickView extends Component {
 
   static propTypes = {
     label: PropTypes.string.isRequired,
-    viewType: PropTypes.oneOf(['modal', 'sidebar']),
+    viewType: PropTypes.oneOf(['modal', 'sidebar', 'scrollDown']),
     data: PropTypes.object.isRequired,
     id: PropTypes.string.isRequired,
     fetchInvoice: PropTypes.func.isRequired,
@@ -66,9 +66,9 @@ class QuickView extends Component {
     const { index, client, status } = data;
     const Content = styled('div')(styles.content(viewType));
     const Heading = styled('h3')(styles.heading);
-    const TopSection = styled('div')(styles.topSection);
-    const Breadcrumb = styled('p')(styles.breadcrumb);
-    const PaymentButton = styled('button')(styles.button);
+    const TopSection = styled('div')(styles.topSection(viewType));
+    const Breadcrumb = styled('p')(styles.breadcrumb(viewType));
+    const PaymentButton = styled('button')(styles.button(viewType));
     const Column1 = styled('div')(styles.column1);
     const Column2 = styled('div')(styles.column2);
 
