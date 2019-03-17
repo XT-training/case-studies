@@ -1,11 +1,11 @@
 import { mount, shallow, render } from 'enzyme';
 import React from 'react';
 
-import SPA from './SPA';
+import spa from './spa';
 
-describe('SPA', () => {
+describe('spa', () => {
     it('should render correctly in "debug" mode', () => {
-        const component = shallow(<SPA debug />);
+        const component = shallow(<spa debug />);
 
         expect(component).toMatchSnapshot();
     });
