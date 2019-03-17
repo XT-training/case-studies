@@ -3,8 +3,8 @@ export const fetchData = params => ({
   params,
 });
 
-export const fetchDataSuccess = (data, metadata) => ({
+export const fetchDataSuccess = (data, metaData) => ({
   type: 'FETCH_DATA_SUCCESS',
   data,
-  metadata,
+  metaData,
 });
