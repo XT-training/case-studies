@@ -26,6 +26,18 @@ export default [
         need: [getMovies]
     },
     {
+        path: `${appUrl.MOVIE_DETAILS}/:id`,
+        exact: true,
+        component: Screening,
+        need: [movieDetails]
+    },
+    {
+        path: `${appUrl.SCREENING_TIMINGS}`,
+        exact: true,
+        component: Screening,
+        need: []
+    },
+    {
         path: '*',
         component: ErrorPage,
         exact: true

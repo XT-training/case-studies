@@ -144,6 +144,7 @@
         "react-dom": "^16.2.0",
         "react-dom-factories": "^1.0.0",
         "react-helmet": "^5.0.2",
+        "react-icons-kit": "^1.2.1",
         "react-intl": "^2.8.0",
         "react-lazyload": "^2.2.7",
         "react-redux": "^5.0.3",
