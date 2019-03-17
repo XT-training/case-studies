@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import appUrl from '../../app-constants/app-url';
+import Search from '../../components/common/Search';
 import { FormattedMessage } from 'react-intl';
 
 const Screen = ({ movie }) => {
@@ -25,14 +26,15 @@ const Screen = ({ movie }) => {
     );
 };
 
-const ScreeningContainer = ({ movies }) => {
-    if (!movies.length) return null;
-    const moviesList = movies.map(movie => (
-        <Screen movie={movie} key={movie._id} />
-    ));
+const ScreeningContainer = ({ movies, labels, onChange }) => {
+    const moviesCount = movies.length;
+    const moviesList =
+        moviesCount &&
+        movies.map(movie => <Screen movie={movie} key={movie._id} />);
 
     return (
         <div className="result-container container">
+            <Search labels={labels} onChange={onChange} />
             <div className="search-result">
                 <FormattedMessage
                     id="search.screens"

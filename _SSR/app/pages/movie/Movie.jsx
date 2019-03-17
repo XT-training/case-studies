@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Page from '../Page';
-import TheaterContainer from '../../containers/theater/TheaterContainer';
+import MovieContainer from '../../containers/movie-details/MovieContainer';
 import { title, meta, link } from '../assets';
 
-class Theatre extends Component {
+class Movie extends Component {
     constructor(props) {
         super(props);
     }
@@ -20,15 +20,15 @@ class Theatre extends Component {
     render() {
         return (
             <Page {...this.getMetaData()}>
-                <TheaterContainer {...this.props} />
+                <MovieContainer {...this.props} />
             </Page>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    theaters: state.theaters,
+    movie: state.movies,
     labels: state.app.labels
 });
 
-export default connect(mapStateToProps)(Theatre);
+export default connect(mapStateToProps)(Movie);

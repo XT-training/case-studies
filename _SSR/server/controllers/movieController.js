@@ -9,9 +9,13 @@ const apiConfig = serviceLocator();
 
 export default (req, res, next) => {
     const defaultReqURLObject = apiConfig.movie.default;
+    const searchTerm = req.query.search;
+    const searchQuery = searchTerm ? `&search=${searchTerm}` : '';
     const options = {
         method: defaultReqURLObject.method,
-        url: `${defaultReqURLObject.url}?theatre=${req.params.id}`
+        url: `${defaultReqURLObject.url}?theatre=${
+            req.query.theater
+        }${searchQuery}`
     };
 
     AjaxFactoryUtil.triggerServerRequest(options)

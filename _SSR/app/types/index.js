@@ -15,6 +15,8 @@ export const AJAX_REQUEST_FAILURE = 'AJAX_REQUEST_FAILURE';
 // Static pagesf
 export const THEATER = 'THEATER';
 export const MOVIE = 'MOVIE';
+export const ACTIVE_THEATER = 'ACTIVE_THEATER';
+export const ACTIVE_MOVIE = 'ACTIVE_MOVIE';
 
 // Loader Events:
 export const AJAX_STARTED = 'AJAX_STARTED';

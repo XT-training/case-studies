@@ -7,5 +7,5 @@ export default app => {
     // app.use(AuthController);
 
     app.get(expressEndPointURL.THEATRE.url, TheatreController);
-    app.get(`${expressEndPointURL.MOVIE_FILTER.url}/:id`, MovieController);
+    app.get(expressEndPointURL.MOVIE_FILTER.url, MovieController);
 };

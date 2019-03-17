@@ -1,6 +1,7 @@
 import React from 'react';
 import Theater from './pages/theater/Theater';
 import Screening from './pages/screening/Screening';
+import Movie from './pages/movie/Movie';
 import ErrorPage from './pages/error-page/ErrorPage';
 import { getTheaters } from './actions/theaterAction';
 import { getMovies } from './actions/movieAction';
@@ -28,7 +29,7 @@ export default [
     {
         path: `${appUrl.MOVIE_DETAILS}/:id`,
         exact: true,
-        component: Screening,
+        component: Movie,
         need: []
     },
     {

@@ -1,11 +1,15 @@
 import AjaxFactoryUtil from 'utils/ajaxFactoryUtil';
-import { THEATER } from '../types';
+import { THEATER, ACTIVE_THEATER } from '../types';
 import expressEndPointURL from '../app-constants/express-endpoint-url';
 import appConstants from '../app-constants/app-constants';
 import { actionlog } from '../../debug';
 
 export const setTheaters = data => ({
     type: THEATER,
+    data
+});
+export const setActiveTheater = data => ({
+    type: ACTIVE_THEATER,
     data
 });
 
