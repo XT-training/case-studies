@@ -5,7 +5,7 @@
 import { combineReducers } from 'redux-immutable';
 import { connectRouter } from 'connected-react-router/immutable';
 import history from 'utils/history';
-import InvoicesReducer from './containers/Invoices/reducer';
+import { invoicesReducer, invoiceReducer } from './containers/Invoices/reducer';
 import PaginationReducer from './containers/Pagination/reducer';
 import SortReducer from './containers/Sort/reducer';
 /**
@@ -13,7 +13,8 @@ import SortReducer from './containers/Sort/reducer';
  */
 export default function createReducer(injectedReducers = {}) {
   const rootReducer = combineReducers({
-    invoices: InvoicesReducer,
+    invoices: invoicesReducer,
+    invoice: invoiceReducer,
     pagination: PaginationReducer,
     sort: SortReducer,
     ...injectedReducers,

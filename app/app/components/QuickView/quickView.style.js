@@ -37,16 +37,16 @@ export default {
     let dynamicAttr = {
       borderRadius: '8px',
       width: '1000px',
-      height: '400px',
     };
     if (viewType === 'sidebar') {
       dynamicAttr = {
         height: '100vh',
         width: '400px',
-        paddingTop: '32px',
+        paddingTop: '16px',
         position: 'fixed',
         transitionDuration: '1s',
         right: '0px',
+        overflowY: 'auto',
       };
     }
     return {
@@ -85,5 +85,71 @@ export default {
 
       ...dynamicAttr,
     };
+  },
+
+  content(viewType) {
+    let dynamicAttr = {};
+    if (viewType === 'modal') {
+      dynamicAttr = {
+        display: 'flex',
+        height: '600px',
+        padding: '16px',
+        overflowY: 'auto',
+      };
+    }
+    return {
+      textAlign: 'left',
+      color: '#464646',
+      ...dynamicAttr,
+    };
+  },
+  column1: {
+    flexBasis: '50%',
+    paddingRight: '16px',
+  },
+  column2: {
+    flexBasis: '50%',
+    borderLeft: '1px solid #868686',
+    paddingLeft: '16px',
+  },
+  heading: {
+    margin: 0,
+    padding: 0,
+    fontSize: '24px',
+  },
+  topSection: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  breadcrumb: {
+    padding: 0,
+    marginTop: 0,
+    fontFamily: 'inherit',
+  },
+  button: {
+    background: '#658cb3',
+    padding: '16px',
+    color: '#fff',
+    borderRadius: '4px',
+    flex: '0 0 100%',
+    cursor: 'pointer',
+    marginBottom: '16px',
+  },
+  summaryContainer: {
+    display: 'flex',
+    margin: '16px 0',
+    flexWrap: 'wrap',
+  },
+  summaryLabel: {
+    textAlign: 'right',
+    flex: '0 0 calc(100% - 100px)',
+    color: '#5656',
+    textTransform: 'uppercase',
+  },
+  summaryKey: {
+    flex: '0 0 100px',
+    textAlign: 'right',
+    paddingLeft: '16px',
+    fontWeight: 'bold',
   },
 };
