@@ -72,7 +72,7 @@ const AjaxFactoryUtil = {
                         });
                     }
                     return reject(new Error('failure'), {
-                        body: responseObject
+                        body: 'ERROR'
                     });
                 },
                 error => {
@@ -98,7 +98,7 @@ const AjaxFactoryUtil = {
                             null
                     };
                     return reject(new Error('failure'), {
-                        body: responseObject
+                        body: 'ERROR'
                     });
                 }
             );

@@ -9,9 +9,7 @@ import routes from '../../app/routes';
 
 const createApp = (store, url) =>
     renderToString(<Provider store={store}>
-        <StaticRouter location={url}>
-            {renderRoutes(routes[0].routes)}
-        </StaticRouter>
+        <StaticRouter location={url}>{renderRoutes(routes)}</StaticRouter>
     </Provider>);
 
 const buildPage = ({ componentHTML, initialState, headAssets }) => `

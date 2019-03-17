@@ -7,7 +7,7 @@ export const preRenderMiddleware = (dispatch, branch, req, res) =>
         )
         .map(need => {
             if (need) {
-                return dispatch(need(branch[1].match.params, req.url, req.headers, res));
+                return dispatch(need(branch[0].match.params, req.url, req.headers, res));
             }
             return false;
         }));

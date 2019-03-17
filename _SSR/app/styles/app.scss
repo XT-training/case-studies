@@ -10,7 +10,12 @@
 @import 'common/base';
 
 // common components
+@import '../components/common/header';
+@import '../components/common/search';
+
+// containers components
 @import '../containers/theater/theatre';
+@import '../containers/screening/screening';
 
 // Pages
 @import '../pages/error-page/error-page';
