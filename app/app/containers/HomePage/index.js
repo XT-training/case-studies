@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
@@ -115,6 +115,8 @@ class HomePage extends React.PureComponent {
             }
             theme={theme}
             cellDensity={this.state.cellDensity}
+            resizable
+            id="mainTable"
           />
         </div>
         <div className="mb-3">

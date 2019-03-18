@@ -1,4 +1,6 @@
 import React from "react";
+import ReactDOM from "react-dom";
+import ColumnResizer from "column-resizer";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 
@@ -63,7 +65,10 @@ class Reactable extends React.PureComponent {
   static propTypes = {
     columns: PropTypes.array.isRequired,
     data: PropTypes.array,
-    cellDensity: PropTypes.oneOf([0.5, 1, 1.5])
+    cellDensity: PropTypes.oneOf([0.5, 1, 1.5]),
+    id: PropTypes.string.isRequired,
+    resizable: PropTypes.bool,
+    resizerOptions: PropTypes.object
   };
 
   constructor(props) {
@@ -82,6 +87,54 @@ class Reactable extends React.PureComponent {
         styles: { width: tableCont.clientWidth, height: tableCont.clientHeight }
       });
     }
+    if (this.props.resizable) {
+      this.enableResize();
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.props.resizable) {
+      this.disableResize();
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.resizable) {
+      this.enableResize();
+    }
+  }
+
+  componentWillUpdate() {
+    if (this.props.resizable) {
+      this.disableResize();
+    }
+  }
+
+  enableResize() {
+    const { id, resizerOptions } = this.props;
+    const options = resizerOptions;
+
+    const target =
+      id &&
+      ReactDOM.findDOMNode(this) &&
+      ReactDOM.findDOMNode(this).querySelector(`#${id}`);
+
+    if (target) {
+      if (!this.resizer) {
+        this.resizer = new ColumnResizer(
+          ReactDOM.findDOMNode(this).querySelector(`#${id}`),
+          options
+        );
+      } else {
+        this.resizer.reset(options);
+      }
+    }
+  }
+
+  disableResize() {
+    if (this.resizer) {
+      this.resizer.reset({ disable: true });
+    }
   }
 
   render() {
@@ -91,13 +144,14 @@ class Reactable extends React.PureComponent {
       columns,
       cellDensity,
       onSort,
-      currentTheme
+      currentTheme,
+      id
     } = this.props;
     const { styles } = this.state;
     if (data instanceof Array && data.length > 0) {
       return (
         <div className={className} style={styles} ref={this.tableRef}>
-          <Table>
+          <Table id={id}>
             <Head
               columns={columns}
               cellDensity={cellDensity}
@@ -116,7 +170,9 @@ class Reactable extends React.PureComponent {
 
 Reactable.defaultProps = {
   data: [],
-  cellDensity: 0.5
+  cellDensity: 0.5,
+  resizable: false,
+  resizerOptions: {}
 };
 
 export default styled(Reactable)`
