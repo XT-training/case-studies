@@ -11,6 +11,7 @@ function PaginationReducer(state = initialState, { type, metaData }) {
         count: metaData.count,
         itemsperpage: parseInt(metaData.itemsperpage, 10),
         startindex: parseInt(metaData.startindex, 10),
+        filter:JSON.stringify(metaData.filter)
       };
     default:
       return state;

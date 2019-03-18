@@ -7,9 +7,7 @@ const initialState = {
 function FilterReducer(state = initialState, { type, metaData }) {
   switch (type) {
     case 'FETCH_DATA_SUCCESS':
-      return {
-        status: metaData.status
-      };
+    return JSON.stringify([{status:metaData.status}]);
     default:
       return state;
   }
