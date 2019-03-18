@@ -5,7 +5,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = "mayank2610/movieApp"
+        DOCKER_IMAGE_NAME = "mayank2610/movieapp"
     }
     stages {
         stage('Build') {
