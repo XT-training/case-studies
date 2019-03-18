@@ -13,6 +13,7 @@ class Pagination extends React.PureComponent {
   constructor(props) {
     super(props);
     this.currentPage = 1;
+    this.changePageSize = this.changePageSize.bind(this);
   }
 
   handlePageClick(index) {
@@ -35,6 +36,15 @@ class Pagination extends React.PureComponent {
     if (this.currentPage < totalPages) {
       this.handlePageClick(this.currentPage + 1);
     }
+  }
+
+  changePageSize(e) {
+    const itemsperpage = e.target.value;
+    const { fetchData } = this.props;
+    fetchData({
+      startindex: 0,
+      itemsperpage,
+    });
   }
 
   render() {
@@ -67,57 +77,76 @@ class Pagination extends React.PureComponent {
       ];
     }
     return (
-      <nav aria-label="Page navigation example">
-        <ul className="pagination justify-content-end">
-          <li
-            key="previous-page"
-            className={classNames('page-item', {
-              disabled: this.currentPage === 1,
-            })}
+      <nav className="d-flex justify-content-between">
+        <div className="input-group mb-3 width-15">
+          <div className="input-group-prepend">
+            <label className="input-group-text" htmlFor="pageSize">
+              Page Size
+            </label>
+          </div>
+          <select
+            className="custom-select"
+            id="pageSize"
+            onChange={this.changePageSize}
           >
-            <button
-              type="button"
-              className="page-link"
-              aria-label="Previous"
-              onClick={() => this.handlePrev()}
-            >
-              <span aria-hidden="true">&laquo;</span>
-              <span className="sr-only">Previous</span>
-            </button>
-          </li>
-          {pagesArray.map(pageNumber => (
+            <option value="10">10</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+        <div className="d-flex">
+          <ul className="pagination justify-content-end mr-3">
             <li
-              key={`page_${pageNumber}`}
+              key="previous-page"
               className={classNames('page-item', {
-                active: this.currentPage === pageNumber,
+                disabled: this.currentPage === 1,
               })}
             >
               <button
                 type="button"
                 className="page-link"
-                onClick={() => this.handlePageClick(pageNumber)}
+                aria-label="Previous"
+                onClick={() => this.handlePrev()}
               >
-                {pageNumber}
+                <span aria-hidden="true">&laquo;</span>
+                <span className="sr-only">Previous</span>
               </button>
             </li>
-          ))}
-          <li
-            key="next-page"
-            className={classNames('page-item', {
-              disabled: this.currentPage === totalPages,
-            })}
-          >
-            <button
-              type="button"
-              className="page-link"
-              aria-label="Next"
-              onClick={() => this.handleNext()}
+            {pagesArray.map(pageNumber => (
+              <li
+                key={`page_${pageNumber}`}
+                className={classNames('page-item', {
+                  active: this.currentPage === pageNumber,
+                })}
+              >
+                <button
+                  type="button"
+                  className="page-link"
+                  onClick={() => this.handlePageClick(pageNumber)}
+                >
+                  {pageNumber}
+                </button>
+              </li>
+            ))}
+            <li
+              key="next-page"
+              className={classNames('page-item', {
+                disabled: this.currentPage === totalPages,
+              })}
             >
-              <span aria-hidden="true">&raquo;</span>
-              <span className="sr-only">Next</span>
-            </button>
-          </li>
-        </ul>
+              <button
+                type="button"
+                className="page-link"
+                aria-label="Next"
+                onClick={() => this.handleNext()}
+              >
+                <span aria-hidden="true">&raquo;</span>
+                <span className="sr-only">Next</span>
+              </button>
+            </li>
+          </ul>
+          <span className="navbar-text">of {totalPages}</span>
+        </div>
       </nav>
     );
   }

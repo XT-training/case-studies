@@ -1,7 +1,9 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import Reactable from 'reactable';
+
 import { fetchData as fetchDataAction } from '../Invoices/actions';
 
 // components
@@ -24,12 +26,21 @@ class HomePage extends React.PureComponent {
   constructor(props) {
     super(props);
     this.columns = TABLE_COLUMNS;
+    this.state = {
+      cellDensity: 0.5,
+    };
   }
 
   componentDidMount() {
     this.props.fetchData({
       orderby: 'client',
       order: 'asc'
+    });
+  }
+
+  changeDensity(cellDensity) {
+    this.setState({
+      cellDensity,
     });
   }
 
@@ -64,6 +75,38 @@ class HomePage extends React.PureComponent {
       <Fragment>
         <FilterStatus/>
         <div className="margin-bottom">
+        <div className="mb-3 d-flex justify-content-end">
+          <div className="btn-group" role="group" aria-label="Cell Density">
+            <button
+              type="button"
+              className={classNames('btn btn-secondary', {
+                active: this.state.cellDensity === 0.5,
+              })}
+              onClick={() => this.changeDensity(0.5)}
+            >
+              1x
+            </button>
+            <button
+              type="button"
+              className={classNames('btn btn-secondary', {
+                active: this.state.cellDensity === 1,
+              })}
+              onClick={() => this.changeDensity(1)}
+            >
+              2x
+            </button>
+            <button
+              type="button"
+              className={classNames('btn btn-secondary', {
+                active: this.state.cellDensity === 1.5,
+              })}
+              onClick={() => this.changeDensity(1.5)}
+            >
+              3x
+            </button>
+          </div>
+        </div>
+        <div className="mb-3">
           <Reactable
             data={data}
             columns={columns}
@@ -74,9 +117,10 @@ class HomePage extends React.PureComponent {
               })
             }
             theme={theme}
+            cellDensity={this.state.cellDensity}
           />
         </div>
-        <div className="margin-bottom">
+        <div className="mb-3">
           <Pagination />
         </div>
       </Fragment>

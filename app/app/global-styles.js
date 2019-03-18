@@ -35,8 +35,8 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
 
-  .margin-bottom {
-    margin-bottom: 1rem;
+  .width-15 {
+    width: 15%;
   }
 `;
 
