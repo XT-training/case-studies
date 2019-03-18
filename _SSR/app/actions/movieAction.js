@@ -14,6 +14,25 @@ export const setActiveMovie = data => ({
     data
 });
 
+export const selectSeats = (seats, movie, theater, date, time) => {
+    const options = {
+        method: expressEndPointURL.MOVIE_SEAT_SELECT.method,
+        url: `${
+            expressEndPointURL.MOVIE_SEAT_SELECT.url
+        }?seats=${seats}&movie=${movie}&theater=${theater}&date=${date}&time=${time}`
+    };
+    return dispatch =>
+        AjaxFactoryUtil.triggerServerRequest(options)
+            .then(value => {
+                console.log('DonE');
+                actionlog(`MOVIE_ACTION SEAT_SELECT END, DATA = ${JSON.stringify(value)}`);
+            })
+            .catch(error => {
+                actionlog(`HOMEPAGE DATA ERROR = ${error}`);
+                actionlog('MOVIE_ACTION SEAT_SELECT END');
+            });
+};
+
 export const searchMovies = (theaterId, searchTerm) => {
     const options = {
         method: expressEndPointURL.MOVIE_FILTER.method,

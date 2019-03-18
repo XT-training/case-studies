@@ -47,6 +47,13 @@ module.exports = {
 			res.send("DELETED!!!")
 		});
 	},
+	seatSelect: function(req, res, next) {
+		const {seats, theater, movie, date, time} = req.query;
+		console.log({
+			seats, theater, movie, date, time
+		})
+		res.send("UPDATED!!")
+	},
 	movieFilter: function (req, res, next) {
 		const id = req.params.id;
 		const findIt = id ? { _id: id } : {};

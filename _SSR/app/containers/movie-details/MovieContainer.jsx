@@ -5,7 +5,7 @@ import { times } from 'react-icons-kit/fa/times';
 import { Link } from 'react-router-dom';
 import appUrl from '../../app-constants/app-url';
 
-const handleClick = e => {
+const triggerSeatSelection = e => {
     const element = e.currentTarget;
     const classList = element.classList;
     if (classList.contains('available')) {
@@ -28,7 +28,8 @@ const generateSeats = (total, available) => {
                     <div
                         className={`seat ${availabilityClass}`}
                         key={`${row}-${seat}`}
-                        onClick={handleClick}
+                        data-id={seat}
+                        onClick={triggerSeatSelection}
                     >
                         <span>{seat}</span>
                     </div>
@@ -52,7 +53,7 @@ const setTime = time => {
 };
 
 const MovieContainer = ({
-    theater, movie, date, timeObj
+    theater, movie, date, timeObj, selectSeats
 }) => (
     <div className="movie-details container">
         <Link
@@ -71,7 +72,24 @@ const MovieContainer = ({
         <div className="seat-map">
             {generateSeats(timeObj.total_seats, timeObj.seats_available)}
         </div>
-        <button>Checkout</button>
+        <button
+            onClick={e => {
+                const elements = document.querySelectorAll('.selected');
+                const seatsSelected = [];
+                elements.forEach(el => {
+                    seatsSelected.push(el.getAttribute('data-id'));
+                });
+                selectSeats(
+                    seatsSelected,
+                    movie._id,
+                    theater._id,
+                    date,
+                    timeObj._id
+                );
+            }}
+        >
+            Checkout
+        </button>
     </div>
 );
 
