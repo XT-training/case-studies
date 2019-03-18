@@ -5,7 +5,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = "mayank2610/movieapp"
+        DOCKER_IMAGE_NAME = "mayank2610/movieapi"
     }
     stages {
         stage('Build') {
@@ -16,10 +16,8 @@ pipeline {
             }
 
             steps {
-              dir('case-studies') {
                 sh 'npm install'
                 sh 'npm test'
-              }
             }
         }
         stage('Build Docker Image') {
@@ -57,7 +55,7 @@ def deploy(environment) {
 	def containerName = ''
 	def port = ''
     if ("${environment}" == 'live') {
-		containerName = "book-my-movie-live"
+		containerName = "movie-api-live"
 		port = "8181"
 	}
 	else {
@@ -67,6 +65,6 @@ def deploy(environment) {
 
 	sh "docker ps -f name=${containerName} -q | xargs --no-run-if-empty docker stop"
 	sh "docker ps -a -f name=${containerName} -q | xargs -r docker rm"
-	sh "docker run -d -p ${port}:8080 --name ${containerName} mayank2610/book-my-movie"
+	sh "docker run -d -p ${port}:8080 --name ${containerName} mayank2610/movie-api"
   
 }
