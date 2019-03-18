@@ -22,11 +22,9 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-              dir('case-studies') {
                 script {
                     app = docker.build(DOCKER_IMAGE_NAME)
                 }
-              }
             }
         }
         stage('Push Docker Image') {
