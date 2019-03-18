@@ -73,8 +73,10 @@ class HomePage extends React.PureComponent {
 
     return (
       <Fragment>
-        <FilterStatus />
         <div className="margin-bottom">
+        <div className="d-flex justify-content-between">
+        <div className="mb-3 width-15"><FilterStatus /></div>
+
           <div className="mb-3 d-flex justify-content-end">
             <div className="btn-group" role="group" aria-label="Cell Density">
               <button
@@ -105,6 +107,7 @@ class HomePage extends React.PureComponent {
                 3x
               </button>
             </div>
+          </div>
           </div>
           <div className="mb-3">
             <Reactable

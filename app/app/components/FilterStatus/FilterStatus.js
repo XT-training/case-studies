@@ -32,7 +32,7 @@ class FilterStatus extends React.PureComponent {
     let filterOption = ['All Statusess', 'Outstanding', 'Approved', 'Rejected'];
 
     return (
-      <select onChange={this.handleChange}>
+      <select className="custom-select" onChange={this.handleChange}>
         {filterOption.map( (val,index) => (
           <option key={`filter_${index}`} value={val}>{val}</option>
         ))}
