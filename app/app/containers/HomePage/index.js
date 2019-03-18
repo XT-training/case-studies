@@ -7,6 +7,7 @@ import { fetchData as fetchDataAction } from '../Invoices/actions';
 // components
 import QuickView from '../QuickView';
 import Pagination from '../Pagination/Pagination';
+import FilterStatus from '../FilterStatus/FilterStatus';
 import theme from '../../theme';
 
 // constants
@@ -28,7 +29,7 @@ class HomePage extends React.PureComponent {
   componentDidMount() {
     this.props.fetchData({
       orderby: 'client',
-      order: 'asc',
+      order: 'asc'
     });
   }
 
@@ -61,6 +62,7 @@ class HomePage extends React.PureComponent {
 
     return (
       <Fragment>
+        <FilterStatus/>
         <div className="margin-bottom">
           <Reactable
             data={data}
