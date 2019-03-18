@@ -1,4 +1,4 @@
-import AjaxFactoryUtil from 'utils/ajaxFactoryUtil';
+import AjaxFactoryUtil from '../utils/ajaxFactoryUtil';
 import { THEATER, ACTIVE_THEATER } from '../types';
 import expressEndPointURL from '../app-constants/express-endpoint-url';
 import appConstants from '../app-constants/app-constants';

@@ -1,10 +1,6 @@
 /* Based on the template in Web Starter Kit :
 https://github.com/google/web-starter-kit/blob/master/app/index.html
 */
-import chromeFavicon from '../images/site/chrome-ninja192-precomposed.png';
-import appleFavicon from '../images/site/apple-ninja152-precomposed.png';
-import msFavicon from '../images/site/ms-ninja144-precomposed.png';
-import favicon from '../images/site/favicon.png';
 
 const metaAssets = () => [
     { charset: 'utf-8' },
