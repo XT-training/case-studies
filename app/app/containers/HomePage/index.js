@@ -28,6 +28,7 @@ class HomePage extends React.PureComponent {
     this.state = {
       cellDensity: 0.5,
     };
+    this.rowHeaderKey = 'client';
   }
 
   componentDidMount() {
@@ -117,6 +118,7 @@ class HomePage extends React.PureComponent {
             cellDensity={this.state.cellDensity}
             resizable
             id="mainTable"
+            rowHeaderKey={this.rowHeaderKey}
           />
         </div>
         <div className="mb-3">

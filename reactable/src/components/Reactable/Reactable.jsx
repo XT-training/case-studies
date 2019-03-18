@@ -11,49 +11,37 @@ import Tr from "../Tr/Tr";
 import Th from "../Th/Th";
 import Td from "../Td/Td";
 
-const Head = ({ columns, cellDensity, onSort, currentTheme }) => (
+const Head = ({ columns, cellDensity, onSort, currentTheme, rowHeaderKey }) => (
   <Thead>
-    <Tr>
-      {columns.map(headingObject => (
-        <Th
+    <Tr key={'row_header'}>
+      {rowHeaderKey && <Th key={`row_header_${rowHeaderKey}`} cellDensity={cellDensity} data={{ key: rowHeaderKey, value: '' }} currentTheme={currentTheme} />}
+      {columns.map(headingObject => {
+        if(headingObject.key !== rowHeaderKey){
+          return <Th
+          key={`row_header_${headingObject.key}`}
           cellDensity={cellDensity}
           data={headingObject}
           onSort={onSort}
           currentTheme={currentTheme}
         />
-      ))}
+        }
+        return null;
+      })}
     </Tr>
   </Thead>
 );
 
-const Body = ({ data, columns, cellDensity }) => (
+const Body = ({ data, columns, cellDensity, rowHeaderKey, currentTheme }) => (
   <Tbody>
     {data.map((row, index) => {
       return (
         <Tr key={`row_${index}`}>
           {columns.map(headingObject => {
-            const isValueObject =
-              typeof row[headingObject.key] === "object" &&
-              row[headingObject.key].value;
             const isTh =
-              isValueObject && row[headingObject.key].type === "heading";
-            const Component = isTh ? Th : Td;
-            const otherProp = isTh
-              ? {
-                  heading: true
-                }
-              : {};
-            return (
-              <Component
-                cellDensity={cellDensity}
-                key={`col_${headingObject.key}`}
-                {...otherProp}
-              >
-                {isValueObject
-                  ? row[headingObject.key].value
-                  : row[headingObject.key]}
-              </Component>
-            );
+              headingObject.key === rowHeaderKey;
+            {return isTh ? <Th cellDensity={cellDensity} data={{ key: rowHeaderKey, value: row[headingObject.key] }} currentTheme={currentTheme} /> : <Td cellDensity={cellDensity}
+            key={`col_${headingObject.key}`}
+            >{row[headingObject.key]}</Td>}
           })}
         </Tr>
       );
@@ -68,7 +56,8 @@ class Reactable extends React.PureComponent {
     cellDensity: PropTypes.oneOf([0.5, 1, 1.5]),
     id: PropTypes.string.isRequired,
     resizable: PropTypes.bool,
-    resizerOptions: PropTypes.object
+    resizerOptions: PropTypes.object,
+    rowHeaderKey: PropTypes.string,
   };
 
   constructor(props) {
@@ -145,7 +134,8 @@ class Reactable extends React.PureComponent {
       cellDensity,
       onSort,
       currentTheme,
-      id
+      id,
+      rowHeaderKey
     } = this.props;
     const { styles } = this.state;
     if (data instanceof Array && data.length > 0) {
@@ -157,8 +147,9 @@ class Reactable extends React.PureComponent {
               cellDensity={cellDensity}
               onSort={onSort}
               currentTheme={currentTheme}
+              rowHeaderKey={rowHeaderKey}
             />
-            <Body data={data} columns={columns} cellDensity={cellDensity} />
+            <Body data={data} columns={columns} cellDensity={cellDensity}  rowHeaderKey={rowHeaderKey} currentTheme={currentTheme}/>
           </Table>
         </div>
       );
