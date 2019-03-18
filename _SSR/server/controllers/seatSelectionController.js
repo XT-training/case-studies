@@ -1,9 +1,5 @@
 import serviceLocator from '../services/serviceLocator';
 import AjaxFactoryUtil from '../../app/utils/ajaxFactoryUtil';
-import request from 'request';
-import commonUtil from '../../app/utils/commonUtil';
-import appConstants from '../../app/app-constants/app-constants';
-import { ctrllog } from '../../debug';
 
 const apiConfig = serviceLocator();
 
@@ -18,7 +14,7 @@ export default (req, res, next) => {
             defaultReqURLObject.url
         }?seats=${seats}&theater=${theater}&time=${time}&movie=${movie}&date=${date}`
     };
-
+    console.log(options);
     AjaxFactoryUtil.triggerServerRequest(options)
         .then(value => {
             const responseData = value.body.data;

@@ -32,6 +32,7 @@ const mapStateToProps = state => ({
     theater: state.theaters[0],
     movie: state.movies[0],
     date: state.movies[0].dates[0].dates[0].date,
+    dateId: state.movies[0].dates[0].dates[0]._id,
     timeObj: state.movies[0].dates[0].dates[0].timing[0],
     labels: state.app.labels
 });

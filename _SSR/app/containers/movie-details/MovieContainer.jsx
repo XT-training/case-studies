@@ -53,7 +53,12 @@ const setTime = time => {
 };
 
 const MovieContainer = ({
-    theater, movie, date, timeObj, selectSeats
+    theater,
+    movie,
+    date,
+    timeObj,
+    selectSeats,
+    dateId
 }) => (
     <div className="movie-details container">
         <Link
@@ -83,7 +88,7 @@ const MovieContainer = ({
                     seatsSelected,
                     movie._id,
                     theater._id,
-                    date,
+                    dateId,
                     timeObj._id
                 );
             }}
