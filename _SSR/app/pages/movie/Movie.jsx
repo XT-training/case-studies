@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Page from '../Page';
 import MovieContainer from '../../containers/movie-details/MovieContainer';
+import { selectSeats } from '../../actions/movieAction';
 import { title, meta, link } from '../assets';
 
 class Movie extends Component {
@@ -27,8 +29,18 @@ class Movie extends Component {
 }
 
 const mapStateToProps = state => ({
-    movie: state.movies,
+    theater: state.theaters[0],
+    movie: state.movies[0],
+    date: state.movies[0].dates[0].dates[0].date,
+    dateId: state.movies[0].dates[0].dates[0]._id,
+    timeObj: state.movies[0].dates[0].dates[0].timing[0],
     labels: state.app.labels
 });
 
-export default connect(mapStateToProps)(Movie);
+const matchDispatchToProps = dispatch =>
+    bindActionCreators({ selectSeats }, dispatch);
+
+export default connect(
+    mapStateToProps,
+    matchDispatchToProps
+)(Movie);

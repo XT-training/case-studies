@@ -5,13 +5,13 @@ import appUrl from '../../app-constants/app-url';
 import Search from '../../components/common/Search';
 import { FormattedMessage } from 'react-intl';
 
-const Screen = ({ movie }) => {
+const Screen = ({ movie, theaterSelected }) => {
     const { moviePoster, movieName, _id } = movie;
 
     return (
         <div className="item col-6">
             <div className="poster">
-                <Link to={`${appUrl.MOVIE_DETAILS}/${_id}`}>
+                <Link to={`${appUrl.MOVIE_DETAILS}/${theaterSelected}/${_id}`}>
                     <img
                         className="img-responsive"
                         src={moviePoster}
@@ -26,11 +26,19 @@ const Screen = ({ movie }) => {
     );
 };
 
-const ScreeningContainer = ({ movies, labels, onChange }) => {
+const ScreeningContainer = ({
+    movies, labels, onChange, theaterSelected
+}) => {
     const moviesCount = movies.length;
     const moviesList =
         moviesCount &&
-        movies.map(movie => <Screen movie={movie} key={movie._id} />);
+        movies.map(movie => (
+            <Screen
+                movie={movie}
+                theaterSelected={theaterSelected}
+                key={movie._id}
+            />
+        ));
 
     return (
         <div className="result-container container">

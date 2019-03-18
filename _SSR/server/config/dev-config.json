@@ -1,10 +1,4 @@
 {
-    "heartbeat": {
-        "tumeric": {
-            "url": "https://tumeric-no-name.lblw.ca/cumin/api/",
-            "method": "GET"
-        }
-    },
     "theatre": {
         "default": {
             "url": "http://localhost:4001/api/v1/theatre/filter",
@@ -14,6 +8,12 @@
     "movie": {
         "default": {
             "url": "http://localhost:4001/api/v1/movie/filter",
+            "method": "GET"
+        }
+    },
+    "seatSelect": {
+        "default": {
+            "url": "http://localhost:4001/api/v1/movie/seats",
             "method": "GET"
         }
     }

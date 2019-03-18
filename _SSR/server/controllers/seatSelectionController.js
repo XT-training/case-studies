@@ -4,16 +4,17 @@ import AjaxFactoryUtil from '../../app/utils/ajaxFactoryUtil';
 const apiConfig = serviceLocator();
 
 export default (req, res, next) => {
-    const defaultReqURLObject = apiConfig.movie.default;
-    const searchTerm = req.query.search;
-    const searchQuery = searchTerm ? `&search=${searchTerm}` : '';
+    const defaultReqURLObject = apiConfig.seatSelect.default;
+    const {
+        seats, theater, movie, date, time
+    } = req.query;
     const options = {
         method: defaultReqURLObject.method,
-        url: `${defaultReqURLObject.url}?theatre=${
-            req.query.theater
-        }${searchQuery}`
+        url: `${
+            defaultReqURLObject.url
+        }?seats=${seats}&theater=${theater}&time=${time}&movie=${movie}&date=${date}`
     };
-
+    console.log(options);
     AjaxFactoryUtil.triggerServerRequest(options)
         .then(value => {
             const responseData = value.body.data;

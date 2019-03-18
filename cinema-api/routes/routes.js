@@ -2,6 +2,7 @@ const {
     movieCreate,
     movieEdit,
     movieDelete,
+    seatSelect,
     movieFilter
 } = require('../controllers/movieController');
 const {
@@ -21,9 +22,6 @@ const {
     eventPopulatedFilter,
     dateFilter
 } = require('../controllers/eventController');
-const {
-    cinemaFilter
-} = require('../controllers/cinemaController');
 const apiURL = '/api/v1';
 
 module.exports = function(app) {
@@ -42,6 +40,7 @@ module.exports = function(app) {
     app.get(`${apiURL}/movie/edit`, movieEdit);
     app.delete(`${apiURL}/movie/delete/:id`, movieDelete);
     app.get(`${apiURL}/movie/filter`, movieFilter);
+    app.get(`${apiURL}/movie/seats`, seatSelect);
 
     /* event REST API */
     app.post(`${apiURL}/event/create`, eventCreate);
@@ -51,7 +50,5 @@ module.exports = function(app) {
     app.get(`${apiURL}/event/filter`, eventFilter);
     app.get(`${apiURL}/date/filter`, dateFilter);
     
-    /* global REST API */
-    app.get(`${apiURL}/cinema/filter`, cinemaFilter);
 
 };
