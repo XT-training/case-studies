@@ -34,7 +34,7 @@ class HomePage extends React.PureComponent {
   componentDidMount() {
     this.props.fetchData({
       orderby: 'client',
-      order: 'asc'
+      order: 'asc',
     });
   }
 
@@ -73,58 +73,58 @@ class HomePage extends React.PureComponent {
 
     return (
       <Fragment>
-        <FilterStatus/>
+        <FilterStatus />
         <div className="margin-bottom">
-        <div className="mb-3 d-flex justify-content-end">
-          <div className="btn-group" role="group" aria-label="Cell Density">
-            <button
-              type="button"
-              className={classNames('btn btn-secondary', {
-                active: this.state.cellDensity === 0.5,
-              })}
-              onClick={() => this.changeDensity(0.5)}
-            >
-              1x
-            </button>
-            <button
-              type="button"
-              className={classNames('btn btn-secondary', {
-                active: this.state.cellDensity === 1,
-              })}
-              onClick={() => this.changeDensity(1)}
-            >
-              2x
-            </button>
-            <button
-              type="button"
-              className={classNames('btn btn-secondary', {
-                active: this.state.cellDensity === 1.5,
-              })}
-              onClick={() => this.changeDensity(1.5)}
-            >
-              3x
-            </button>
+          <div className="mb-3 d-flex justify-content-end">
+            <div className="btn-group" role="group" aria-label="Cell Density">
+              <button
+                type="button"
+                className={classNames('btn btn-secondary', {
+                  active: this.state.cellDensity === 0.5,
+                })}
+                onClick={() => this.changeDensity(0.5)}
+              >
+                1x
+              </button>
+              <button
+                type="button"
+                className={classNames('btn btn-secondary', {
+                  active: this.state.cellDensity === 1,
+                })}
+                onClick={() => this.changeDensity(1)}
+              >
+                2x
+              </button>
+              <button
+                type="button"
+                className={classNames('btn btn-secondary', {
+                  active: this.state.cellDensity === 1.5,
+                })}
+                onClick={() => this.changeDensity(1.5)}
+              >
+                3x
+              </button>
+            </div>
           </div>
-        </div>
-        <div className="mb-3">
-          <Reactable
-            data={data}
-            columns={columns}
-            onSort={(orderby, order) =>
-              this.props.fetchData({
-                orderby,
-                order,
-              })
-            }
-            theme={theme}
-            cellDensity={this.state.cellDensity}
-            resizable
-            id="mainTable"
-          />
-        </div>
-        <div className="mb-3">
-          <Pagination />
-        </div>
+          <div className="mb-3">
+            <Reactable
+              data={data}
+              columns={columns}
+              onSort={(orderby, order) =>
+                this.props.fetchData({
+                  orderby,
+                  order,
+                })
+              }
+              theme={theme}
+              cellDensity={this.state.cellDensity}
+              resizable
+              id="mainTable"
+            />
+          </div>
+          <div className="mb-3">
+            <Pagination />
+          </div>
         </div>
       </Fragment>
     );
