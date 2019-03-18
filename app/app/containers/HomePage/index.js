@@ -9,6 +9,7 @@ import { fetchData as fetchDataAction } from '../Invoices/actions';
 // components
 import QuickView from '../QuickView';
 import Pagination from '../Pagination/Pagination';
+import FilterStatus from '../FilterStatus/FilterStatus';
 import theme from '../../theme';
 
 // constants
@@ -73,56 +74,59 @@ class HomePage extends React.PureComponent {
 
     return (
       <Fragment>
-        <div className="mb-3 d-flex justify-content-end">
-          <div className="btn-group" role="group" aria-label="Cell Density">
-            <button
-              type="button"
-              className={classNames('btn btn-secondary', {
-                active: this.state.cellDensity === 0.5,
-              })}
-              onClick={() => this.changeDensity(0.5)}
-            >
-              1x
-            </button>
-            <button
-              type="button"
-              className={classNames('btn btn-secondary', {
-                active: this.state.cellDensity === 1,
-              })}
-              onClick={() => this.changeDensity(1)}
-            >
-              2x
-            </button>
-            <button
-              type="button"
-              className={classNames('btn btn-secondary', {
-                active: this.state.cellDensity === 1.5,
-              })}
-              onClick={() => this.changeDensity(1.5)}
-            >
-              3x
-            </button>
+        <div className="margin-bottom">
+          <div className="mb-3 d-flex justify-content-between">
+            <FilterStatus />
+            <div className="btn-group" role="group" aria-label="Cell Density">
+              <button
+                type="button"
+                className={classNames('btn btn-secondary', {
+                  active: this.state.cellDensity === 0.5,
+                })}
+                onClick={() => this.changeDensity(0.5)}
+              >
+                1x
+              </button>
+              <button
+                type="button"
+                className={classNames('btn btn-secondary', {
+                  active: this.state.cellDensity === 1,
+                })}
+                onClick={() => this.changeDensity(1)}
+              >
+                2x
+              </button>
+              <button
+                type="button"
+                className={classNames('btn btn-secondary', {
+                  active: this.state.cellDensity === 1.5,
+                })}
+                onClick={() => this.changeDensity(1.5)}
+              >
+                3x
+              </button>
+            </div>
           </div>
-        </div>
-        <div className="mb-3">
-          <Reactable
-            data={data}
-            columns={columns}
-            onSort={(orderby, order) =>
-              this.props.fetchData({
-                orderby,
-                order,
-              })
-            }
-            theme={theme}
-            cellDensity={this.state.cellDensity}
-            resizable
-            id="mainTable"
-            rowHeaderKey={this.rowHeaderKey}
-          />
-        </div>
-        <div className="mb-3">
-          <Pagination />
+          <div className="mb-3">
+            <Reactable
+              data={data}
+              columns={columns}
+              onSort={(orderby, order) =>
+                this.props.fetchData({
+                  orderby,
+                  order,
+                })
+              }
+              theme={theme}
+              cellDensity={this.state.cellDensity}
+              resizable
+              id="mainTable"
+              rowHeaderKey={this.rowHeaderKey}
+            />
+          </div>
+          <div className="mb-3">
+            <Pagination />
+          </div>
         </div>
       </Fragment>
     );

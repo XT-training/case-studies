@@ -7,7 +7,15 @@ function* fetchData({ params }) {
   const url = new URL('http://localhost:3000/api/invoice');
   const sort = yield select(state => state.get('sort'));
   const pagination = yield select(state => state.get('pagination'));
-  const searchParams = Object.assign({}, sort, pagination, params);
+  const filter = yield select(state => state.get('filter'));
+  let filterObj;
+  if (params.filter === false) {
+    filterObj = {};
+    delete params.filter;
+  } else if (filter && filter.length > 0 && !params.filter) {
+    filterObj = { filter: JSON.stringify(filter) };
+  }
+  const searchParams = Object.assign({}, sort, pagination, filterObj, params);
   url.search = new URLSearchParams(searchParams);
   const response = yield call(fetch, url);
   const { data, metaData } = yield call([response, 'json']);
