@@ -52,7 +52,13 @@ module.exports = {
 		console.log({
 			seats, theater, movie, date, time
 		})
-		res.send("UPDATED!!")
+		MovieDate.find({
+			'dates': { $elemMatch: { _id: date } }
+		}, function (err, dates) {
+			if (err) return handleError(err);
+			const firstTiming = dates[0].dates[0].timing[0]
+			res.send(firstTiming);
+		});
 	},
 	movieFilter: function (req, res, next) {
 		const id = req.params.id;
