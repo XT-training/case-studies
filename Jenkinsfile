@@ -16,7 +16,7 @@ pipeline {
             }
 
             steps {
-              dir('case-studies/book-my-movie') {
+              dir('case-studies') {
                 sh 'npm install'
                 sh 'npm test'
               }
@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-              dir('case-studies/book-my-movie') {
+              dir('case-studies') {
                 script {
                     app = docker.build(DOCKER_IMAGE_NAME)
                 }
@@ -57,7 +57,7 @@ def deploy(environment) {
 	def containerName = ''
 	def port = ''
     if ("${environment}" == 'live') {
-		containerName = "products-catalog-api-live"
+		containerName = "book-my-movie-live"
 		port = "8181"
 	}
 	else {
@@ -67,6 +67,6 @@ def deploy(environment) {
 
 	sh "docker ps -f name=${containerName} -q | xargs --no-run-if-empty docker stop"
 	sh "docker ps -a -f name=${containerName} -q | xargs -r docker rm"
-	sh "docker run -d -p ${port}:8080 --name ${containerName} nagabhushanamn/products-catalog-api"
+	sh "docker run -d -p ${port}:8080 --name ${containerName} mayank2610/book-my-movie"
   
 }
