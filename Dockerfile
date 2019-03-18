@@ -15,5 +15,5 @@ RUN npm install --production
 # Bundle app source
 COPY . .
  
-EXPOSE 8081
+EXPOSE 9999
 CMD [ "npm", "run", "start:api" ]
