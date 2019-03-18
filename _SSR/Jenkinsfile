@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Build') {
              steps {
-              dir('case-studies/book-my-movie') {
+              dir('case-studies/_SSR') {
                 sh 'npm install'
                 sh 'npm test'
               }
@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-              dir('case-studies/book-my-movie') {
+              dir('case-studies/_SSR') {
                 script {
                     app = docker.build(DOCKER_IMAGE_NAME)
                 }
