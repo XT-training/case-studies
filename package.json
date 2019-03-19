@@ -3,9 +3,9 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "start": "PORT=4001 nodemon ./cinema-api/server.js",
-        "start:api": "PORT=4001 nodemon ./cinema-api/server.js",
-        "start:app": "PORT=4002 nodemon ./cinema-db-template.js"
+        "start": "PORT=4001 node ./cinema-api/server.js",
+        "start:api": "PORT=4001 node ./cinema-api/server.js",
+        "start:app": "PORT=4002 node ./cinema-db-template.js"
     },
     "dependencies": {
         "cookie-parser": "~1.4.3",
