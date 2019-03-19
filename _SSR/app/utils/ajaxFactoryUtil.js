@@ -76,17 +76,7 @@ const AjaxFactoryUtil = {
                     });
                 },
                 error => {
-                    console.error(
-                        `AJAX error URL=${error &&
-                            error.response &&
-                            error.response.request &&
-                            error.response.request.res &&
-                            error.response.request.res
-                                .responseUrl}, Request Status=${error &&
-                            error.response &&
-                            error.response.status}, Request response data=`,
-                        error.response.data
-                    );
+                    console.error(`AJAX error URL=${error}`);
                     // Return the error object to display call failure message
                     const responseObject = {
                         ajaxRequestStatus: 'failure',

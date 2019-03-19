@@ -14,13 +14,13 @@ export default (req, res, next) => {
             defaultReqURLObject.url
         }?seats=${seats}&theater=${theater}&time=${time}&movie=${movie}&date=${date}`
     };
-    console.log(options);
     AjaxFactoryUtil.triggerServerRequest(options)
         .then(value => {
-            const responseData = value.body.data;
+            const responseData = value.body && value.body.data;
             res.send(responseData);
         })
         .catch(error => {
+            console.log(error);
             res.send(error);
         });
 };

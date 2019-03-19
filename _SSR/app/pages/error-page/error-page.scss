@@ -1,16 +1,10 @@
 .error-page {
-    .home-hero {
-        .content {
-            h1 {
-                letter-spacing: -0.5px;
-            }
-            h4 {
-                line-height: 1.06;
-                letter-spacing: -0.3px;
-                @include breakpoint(desktop-above) {
-                    letter-spacing: -0.8px;
-                }
-            }
-        }
-    }
+    color: $color-white;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    font-size: 100px;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
 }

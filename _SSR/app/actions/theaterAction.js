@@ -23,7 +23,8 @@ export const getTheaters = (params, url, headers, res) => {
     return dispatch =>
         AjaxFactoryUtil.triggerServerRequest(options)
             .then(value => {
-                dispatch(setTheaters(value.body.data));
+                const data = value.body && value.body.data;
+                dispatch(setTheaters(data || []));
                 actionlog(`THEATER_ACTION HOME-PAGE-DATA END, DATA = ${JSON.stringify(value)}`);
             })
             .catch(error => {

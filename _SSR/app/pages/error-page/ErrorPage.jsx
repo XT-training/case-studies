@@ -34,7 +34,9 @@ class ErrorPage extends Component {
         const { errorType } = this.props;
         return (
             <Page {...this.getMetaData()}>
-                <div>Error Page</div>
+                <div className="error-page">
+                    Oops! <br /> Error Page
+                </div>
             </Page>
         );
     }

@@ -16,10 +16,11 @@ export default (req, res, next) => {
 
     AjaxFactoryUtil.triggerServerRequest(options)
         .then(value => {
-            const responseData = value.body.data;
+            const responseData = value.body && value.body.data;
             res.send(responseData);
         })
         .catch(error => {
+            console.log(error);
             res.send(error);
         });
 };

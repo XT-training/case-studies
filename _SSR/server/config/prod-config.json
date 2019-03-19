@@ -10,5 +10,11 @@
             "url": "http://localhost:4001/api/v1/movie/filter",
             "method": "GET"
         }
+    },
+    "seatSelect": {
+        "default": {
+            "url": "http://localhost:4001/api/v1/movie/seats",
+            "method": "GET"
+        }
     }
 }

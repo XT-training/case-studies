@@ -25,6 +25,7 @@ export default function render(req, res) {
     );
 
     const branch = matchRoutes(routes, req.url);
+
     preRenderMiddleware(store.dispatch, branch, req, res)
         .then(() => {
             const html = pageRenderer(store, req.url);

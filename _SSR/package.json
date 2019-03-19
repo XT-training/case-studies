@@ -5,6 +5,7 @@
     "repository": "",
     "main": "index.js",
     "scripts": {
+        "serve": "node compiled/server.js",
         "prepush": "npm run test",
         "lint": "npm run lint:js && npm run lint:scss",
         "lint:js": "eslint --quiet --ext .js,.jsx app server",

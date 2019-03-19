@@ -43,7 +43,8 @@ export const searchMovies = (theaterId, searchTerm) => {
     return dispatch =>
         AjaxFactoryUtil.triggerServerRequest(options)
             .then(value => {
-                dispatch(setMovies(value.body.data));
+                const data = value.body && value.body.data;
+                dispatch(setMovies(data || []));
                 actionlog(`MOVIE_ACTION SEARCH END, DATA = ${JSON.stringify(value)}`);
             })
             .catch(error => {
@@ -61,8 +62,9 @@ export const getMovieDetail = (params, url, headers, res) => {
     return dispatch =>
         AjaxFactoryUtil.triggerServerRequest(options)
             .then(value => {
-                const data = value.body.data;
-                const filterMovie = data.filter(movie => movie._id == params.movie);
+                const data = value.body && value.body.data;
+                const filterMovie =
+                    data && data.filter(movie => movie._id == params.movie);
                 dispatch(setActiveMovie(filterMovie));
                 dispatch(setActiveTheater(params.theater));
                 actionlog(`MOVIE_ACTION DATA END, DATA = ${JSON.stringify(filterMovie)}`);
@@ -82,7 +84,8 @@ export const getMovies = (params, url, headers, res) => {
     return dispatch =>
         AjaxFactoryUtil.triggerServerRequest(options)
             .then(value => {
-                dispatch(setMovies(value.body.data));
+                const data = value.body && value.body.data;
+                dispatch(setMovies(data || []));
                 dispatch(setActiveTheater(params.id));
                 actionlog(`MOVIE_ACTION DATA END, DATA = ${JSON.stringify(value)}`);
             })

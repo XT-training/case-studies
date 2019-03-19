@@ -7,10 +7,14 @@ import Helmet from 'react-helmet';
 import staticAssets from './static-assets';
 import routes from '../../app/routes';
 
-const createApp = (store, url) =>
-    renderToString(<Provider store={store}>
-        <StaticRouter location={url}>{renderRoutes(routes)}</StaticRouter>
+const createApp = (store, url) => {
+    const context = {};
+    return renderToString(<Provider store={store}>
+        <StaticRouter location={url} context={context}>
+            {renderRoutes(routes)}
+        </StaticRouter>
     </Provider>);
+};
 
 const buildPage = ({ componentHTML, initialState, headAssets }) => `
 <!doctype html>
@@ -33,6 +37,7 @@ export default (store, url) => {
     const initialState = store.getState();
     const componentHTML = createApp(store, url);
     const headAssets = Helmet.renderStatic();
+
     return buildPage({
         componentHTML,
         initialState,
