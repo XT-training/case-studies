@@ -36,6 +36,10 @@ class QuickView extends Component {
   };
 
   showQuickviewHandler = () => {
+    const stickColumns = document.querySelectorAll('th[scope=row]');
+    stickColumns && stickColumns[0] && stickColumns.forEach(elem => {
+      elem.style.position = 'inherit';
+    });
     const { id, fetchInvoice } = this.props;
     const { showQuickview } = this.state;
     fetchInvoice(id);
@@ -43,6 +47,10 @@ class QuickView extends Component {
   };
 
   closeModalHandler = () => {
+    const stickColumns = document.querySelectorAll('th[scope=row]');
+    stickColumns && stickColumns[0] && stickColumns.forEach(elem => {
+      elem.removeAttribute('style');
+    });
     this.setState({ showQuickview: false });
   };
 
