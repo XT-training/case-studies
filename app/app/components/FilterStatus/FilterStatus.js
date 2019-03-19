@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 class FilterStatus extends React.PureComponent {
   static propTypes = {
     fetchData: PropTypes.func,
+    filter: PropTypes.array,
   };
 
   constructor(props) {
@@ -39,11 +40,17 @@ class FilterStatus extends React.PureComponent {
   };
 
   render() {
+    const { filter } = this.props;
+    const filterValue = filter && filter.length > 0 ? filter[0].status : '';
     return (
-      <select onChange={this.handleChange} className="custom-select width-15">
-        {this.filterOptions.map(filter => (
-          <option key={filter.value} value={filter.value}>
-            {filter.label}
+      <select
+        onChange={this.handleChange}
+        className="custom-select width-15"
+        value={filterValue}
+      >
+        {this.filterOptions.map(f => (
+          <option key={f.value} value={f.value}>
+            {f.label}
           </option>
         ))}
       </select>

@@ -107,26 +107,27 @@ class HomePage extends React.PureComponent {
               </button>
             </div>
           </div>
-          <div className="mb-3">
-            <Reactable
-              data={data}
-              columns={columns}
-              onSort={(orderby, order) =>
-                this.props.fetchData({
-                  orderby,
-                  order,
-                })
-              }
-              theme={theme}
-              cellDensity={this.state.cellDensity}
-              resizable
-              id="mainTable"
-              rowHeaderKey={this.rowHeaderKey}
-            />
-          </div>
-          <div className="mb-3">
-            <Pagination />
-          </div>
+        </div>
+        <div className="mb-3">
+          <Reactable
+            data={data}
+            columns={columns}
+            onSort={(orderby, order) =>
+              this.props.fetchData({
+                orderby,
+                order,
+                filter: false,
+              })
+            }
+            theme={theme}
+            cellDensity={this.state.cellDensity}
+            resizable
+            id="mainTable"
+            rowHeaderKey={this.rowHeaderKey}
+          />
+        </div>
+        <div className="mb-3">
+          <Pagination />
         </div>
       </Fragment>
     );
