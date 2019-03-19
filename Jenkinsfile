@@ -48,7 +48,6 @@ pipeline {
     }
 }
 
-
 def deploy(environment) {
 	def containerName = ''
 	def port = ''
