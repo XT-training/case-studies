@@ -49,9 +49,10 @@ export default styled(Th)`
   position: sticky;
   color: ${props => props.theme && props.theme.color};
   ${props =>
-    props.heading
+    props.scope === 'row'
       ? `
     left: 0;
+    background-color: ${props.theme.borderColor}
   `
       : `
     top: 0;

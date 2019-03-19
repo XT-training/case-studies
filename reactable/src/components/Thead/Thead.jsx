@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 const Thead = styled.thead`
   & th {
-    background: #fff;
+    background: ${props => props.theme.borderColor};
   }
   & th:first-child {
     left: 0;

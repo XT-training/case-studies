@@ -11,10 +11,16 @@ import Tr from "../Tr/Tr";
 import Th from "../Th/Th";
 import Td from "../Td/Td";
 
+const RowHeader = ({columns, cellDensity, onSort, currentTheme, rowHeaderKey}) => {
+  const rowHeader = columns.find(col => col.key === rowHeaderKey);
+  const style = rowHeader ? {width: rowHeader.width } : {};
+  return <Th key={`row_header_${rowHeaderKey}`} cellDensity={cellDensity} data={{ key: rowHeaderKey, value: '' }} currentTheme={currentTheme} scope="col" style={style}/>
+}
+
 const Head = ({ columns, cellDensity, onSort, currentTheme, rowHeaderKey }) => (
   <Thead>
     <Tr key={'row_header'}>
-      {rowHeaderKey && <Th key={`row_header_${rowHeaderKey}`} cellDensity={cellDensity} data={{ key: rowHeaderKey, value: '' }} currentTheme={currentTheme} scope="col"/>}
+      {rowHeaderKey && <RowHeader columns={columns} cellDensity={cellDensity} onSort={onSort} currentTheme={currentTheme}  rowHeaderKey={rowHeaderKey}/>}
       {columns.map(headingObject => {
         if(headingObject.key !== rowHeaderKey){
           return <Th
@@ -71,12 +77,6 @@ class Reactable extends React.PureComponent {
   }
 
   componentDidMount() {
-    const tableCont = this.tableRef.current;
-    if (this.tableCont) {
-      this.setState({
-        styles: { width: tableCont.clientWidth, height: tableCont.clientHeight }
-      });
-    }
     if (this.props.resizable) {
       this.enableResize();
     }
@@ -172,4 +172,5 @@ export default styled(Reactable)`
   font-size: 1rem;
   overflow: scroll;
   position: relative;
+  max-height: 1000px;
 `;
