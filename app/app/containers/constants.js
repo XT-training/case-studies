@@ -2,26 +2,32 @@ export const TABLE_COLUMNS = [
   {
     key: 'client',
     value: 'Client',
+    width: '10%',
   },
   {
     key: 'created',
     value: 'Created Date',
+    width: '20%',
   },
   {
     key: 'status',
     value: 'Status',
+    width: '10%',
   },
   {
     key: 'department',
     value: 'Department',
+    width: '10%',
   },
   {
     key: 'index',
     value: 'Index',
+    width: '5%',
   },
   {
     key: 'worked',
     value: 'Worked',
+    width: '5%',
   },
 ];
 

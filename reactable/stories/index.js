@@ -14,10 +14,7 @@ storiesOf('Reactable', module)
       <Reactable
       data={[
         {
-          column: {
-            value: 'row 1',
-            type: 'heading'
-          },
+          column: 'row 1',
           column1: 'row 1 col 1',
           column2: 'row 1 col 2',
           column3: 'row 1 col 3',
@@ -29,10 +26,7 @@ storiesOf('Reactable', module)
           column9: 'row 1 col 9'
         },
         {
-          column: {
-            value: 'row 2',
-            type: 'heading'
-          },
+          column: 'row 2',
           column1: 'row 2 col 1',
           column2: 'row 2 col 2',
           column3: 'row 2 col 3',
@@ -44,10 +38,7 @@ storiesOf('Reactable', module)
           column9: 'row 2 col 9'
         },
         {
-          column: {
-            value: 'row 3',
-            type: 'heading'
-          },
+          column: 'row 3',
           column1: 'row 3 col 1',
           column2: 'row 3 col 2',
           column3: 'row 3 col 3',
@@ -59,10 +50,7 @@ storiesOf('Reactable', module)
           column9: 'row 3 col 9'
         },
         {
-          column: {
-            value: 'row 4',
-            type: 'heading'
-          },
+          column: 'row 4',
           column1: 'row 4 col 1',
           column2: 'row 4 col 2',
           column3: 'row 4 col 3',
@@ -74,10 +62,7 @@ storiesOf('Reactable', module)
           column9: 'row 4 col 9'
         },
         {
-          column: {
-            value: 'row 5',
-            type: 'heading'
-          },
+          column: 'row 5',
           column1: 'row 5 col 1',
           column2: 'row 5 col 2',
           column3: 'row 5 col 3',

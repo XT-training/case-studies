@@ -5,6 +5,8 @@ const Table = styled.table`
   border-collapse: collapse;
   width: 100%;
   table-layout: fixed;
+  line-height: 1;
+  border: 1px solid ${props => props.theme.borderColor};
 `
 
 export default Table;

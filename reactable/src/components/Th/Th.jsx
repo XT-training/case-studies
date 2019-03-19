@@ -27,22 +27,22 @@ class Th extends React.PureComponent {
   }
 
   render() {
-    const { data, className, key, currentTheme } = this.props;
+    const { data, className, key, currentTheme, scope } = this.props;
     return (
       <th
         className={className}
         key={key || data.key}
         onClick={this.clickHandler}
+        scope={scope}
       >
         {data.value}
-        <SortIcon order={data.order} currentTheme={currentTheme} />
+        {(scope === 'col' && data.value) && <SortIcon order={data.order} currentTheme={currentTheme} />}
       </th>
     );
   }
 }
 
 export default styled(Th)`
-  background-color: #e5e5e5;
   padding: ${props => `${props.cellDensity}rem`};
   text-align: left;
   position: -webkit-sticky;

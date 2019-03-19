@@ -14,7 +14,7 @@ import Td from "../Td/Td";
 const Head = ({ columns, cellDensity, onSort, currentTheme, rowHeaderKey }) => (
   <Thead>
     <Tr key={'row_header'}>
-      {rowHeaderKey && <Th key={`row_header_${rowHeaderKey}`} cellDensity={cellDensity} data={{ key: rowHeaderKey, value: '' }} currentTheme={currentTheme} />}
+      {rowHeaderKey && <Th key={`row_header_${rowHeaderKey}`} cellDensity={cellDensity} data={{ key: rowHeaderKey, value: '' }} currentTheme={currentTheme} scope="col"/>}
       {columns.map(headingObject => {
         if(headingObject.key !== rowHeaderKey){
           return <Th
@@ -23,6 +23,7 @@ const Head = ({ columns, cellDensity, onSort, currentTheme, rowHeaderKey }) => (
           data={headingObject}
           onSort={onSort}
           currentTheme={currentTheme}
+          scope="col"
         />
         }
         return null;
@@ -39,7 +40,7 @@ const Body = ({ data, columns, cellDensity, rowHeaderKey, currentTheme }) => (
           {columns.map(headingObject => {
             const isTh =
               headingObject.key === rowHeaderKey;
-            {return isTh ? <Th cellDensity={cellDensity} data={{ key: rowHeaderKey, value: row[headingObject.key] }} currentTheme={currentTheme} /> : <Td cellDensity={cellDensity}
+            {return isTh ? <Th cellDensity={cellDensity} data={{ key: rowHeaderKey, value: row[headingObject.key] }} currentTheme={currentTheme} scope="row"/> : <Td cellDensity={cellDensity}
             key={`col_${headingObject.key}`}
             >{row[headingObject.key]}</Td>}
           })}
@@ -163,7 +164,8 @@ Reactable.defaultProps = {
   data: [],
   cellDensity: 0.5,
   resizable: false,
-  resizerOptions: {}
+  resizerOptions: {},
+  currentTheme: {}
 };
 
 export default styled(Reactable)`

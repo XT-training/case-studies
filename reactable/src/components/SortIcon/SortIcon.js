@@ -1,13 +1,17 @@
 import React from 'react';
+import styled from '@emotion/styled';
 
-const SortIcon = ({ order, currentTheme }) => {
-  let sortClass = '';
+const SortIcon = ({ className, order, currentTheme }) => {
+  let sortClass = currentTheme.sort;
   if(order === 'asc'){
     sortClass = currentTheme.sortAsc;
   } else if (order === 'desc') {
     sortClass = currentTheme.sortDesc;
   }
-  return <span className={sortClass} />
+  return <span className={`${sortClass} ${className}`} />
 }
 
-export default SortIcon;
+export default styled(SortIcon)`
+  float: right;
+  margin-right: 10px;
+`;
