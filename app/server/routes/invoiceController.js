@@ -21,9 +21,11 @@ exports.get = (req, res) => {
         department: 1,
         created: 1,
         client: 1,
+        due: 1,
         service: 1,
         worked: 1,
         rate: 1,
+        memo: 1,
       })
       .skip(parseInt(startindex, 10))
       .limit(parseInt(itemsperpage, 10))
