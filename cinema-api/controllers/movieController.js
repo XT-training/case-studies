@@ -57,8 +57,16 @@ module.exports = {
 		}, function (err, dates) {
 			if (err) return handleError(err);
 			const firstTiming = dates[0].dates[0].timing[0]
-			res.send(firstTiming);
+			firstTiming.seats_available = firstTiming.seats_available.replace(','+seats, '');
+			const newseats = firstTiming.seats_available
+			
+			MovieDate.findByIdAndUpdate(date,{newseats:firstTiming.seats_available},function(err,resp){
+				const sampleData = dates[0].dates[0].timing[0]
+				res.send(sampleData);
+			})
+			
 		});
+
 	},
 	movieFilter: function (req, res, next) {
 		const id = req.params.id;

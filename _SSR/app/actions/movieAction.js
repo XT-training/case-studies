@@ -25,6 +25,7 @@ export const selectSeats = (seats, movie, theater, date, time) => {
         AjaxFactoryUtil.triggerServerRequest(options)
             .then(value => {
                 console.log('DonE');
+
                 actionlog(`MOVIE_ACTION SEAT_SELECT END, DATA = ${JSON.stringify(value)}`);
             })
             .catch(error => {
