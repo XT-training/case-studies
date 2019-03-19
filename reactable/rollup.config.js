@@ -1,7 +1,6 @@
 import resolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
-import sourcemaps from 'rollup-plugin-sourcemaps';
 import pkg from './package.json';
 
 const config = {
@@ -20,8 +19,7 @@ const config = {
     }),
     babel({
       exclude: "node_modules/**"
-    }),
-    sourcemaps()
+    })
   ]
 }
 

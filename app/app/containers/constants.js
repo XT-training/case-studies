@@ -5,9 +5,19 @@ export const TABLE_COLUMNS = [
     width: '10%',
   },
   {
+    key: 'memo',
+    value: 'Description',
+    width: '5%',
+  },
+  {
     key: 'created',
     value: 'Created Date',
     width: '20%',
+  },
+  {
+    key: 'due',
+    value: 'Due Date',
+    width: '5%',
   },
   {
     key: 'status',
@@ -31,7 +41,7 @@ export const TABLE_COLUMNS = [
   },
 ];
 
-export const QUICK_VIEW_TYPE = 'modal';
+export const QUICK_VIEW_TYPE = 'sidebar'; // sidebar, modal
 
 export const QUICK_VIEW_COLUMNS = [
   {

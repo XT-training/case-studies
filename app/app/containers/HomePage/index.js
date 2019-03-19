@@ -117,6 +117,7 @@ class HomePage extends React.PureComponent {
                 orderby,
                 order,
                 filter: false,
+                startindex: 0,
               })
             }
             theme={theme}

@@ -40,14 +40,14 @@ const Head = ({ columns, cellDensity, onSort, currentTheme, rowHeaderKey }) => (
 
 const Body = ({ data, columns, cellDensity, rowHeaderKey, currentTheme }) => (
   <Tbody>
-    {data.map((row, index) => {
+    {data.map((row) => {
       return (
-        <Tr key={`row_${index}`}>
+        <Tr key={`row_${row.index}`}>
           {columns.map(headingObject => {
             const isTh =
               headingObject.key === rowHeaderKey;
             {return isTh ? <Th cellDensity={cellDensity} data={{ key: rowHeaderKey, value: row[headingObject.key] }} currentTheme={currentTheme} scope="row"/> : <Td cellDensity={cellDensity}
-            key={`col_${headingObject.key}`}
+            key={`col_${row.index}_${headingObject.key}`}
             >{row[headingObject.key]}</Td>}
           })}
         </Tr>
@@ -172,5 +172,5 @@ export default styled(Reactable)`
   font-size: 1rem;
   overflow: scroll;
   position: relative;
-  max-height: 1000px;
+  max-height: 500px;
 `;
