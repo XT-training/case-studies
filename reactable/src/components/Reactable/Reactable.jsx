@@ -172,5 +172,5 @@ export default styled(Reactable)`
   font-size: 1rem;
   overflow: scroll;
   position: relative;
-  max-height: 500px;
+  max-height: 400px;
 `;
