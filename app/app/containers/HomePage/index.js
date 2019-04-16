@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import classNames from 'classnames';
 import Reactable from 'reactable';
 
@@ -21,6 +22,8 @@ class HomePage extends React.PureComponent {
     invoices: PropTypes.array,
     fetchData: PropTypes.func,
     sort: PropTypes.object,
+    history: PropTypes.object,
+    user: PropTypes.object,
   };
 
   constructor(props) {
@@ -33,10 +36,14 @@ class HomePage extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.props.fetchData({
-      orderby: 'client',
-      order: 'asc',
-    });
+    if (this.props.user.userInfo) {
+      this.props.fetchData({
+        orderby: 'client',
+        order: 'asc',
+      });
+    } else {
+      this.props.history.push('/');
+    }
   }
 
   changeDensity(cellDensity) {
@@ -138,13 +145,16 @@ class HomePage extends React.PureComponent {
 const mapStateToProps = state => ({
   invoices: state.get('invoices'),
   sort: state.get('sort'),
+  user: state.get('user'),
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchData: params => dispatch(fetchDataAction(params)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(HomePage);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(HomePage),
+);

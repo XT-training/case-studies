@@ -26,8 +26,14 @@ export const create = (req, res, next) => {
 
 export const authenticate = (req, res, next) => {
   userModel.findOne({ email: req.body.email }, function(err, user) {
+    console.log('user is ', user);
     if (err) {
       next(err);
+    } else if(!user) {
+      res.json({
+        status: "error",
+        message: "No such user exists!!!",
+      })
     } else {
       if (bcrypt.compareSync(req.body.password, user.password)) {
         const userInfo = {

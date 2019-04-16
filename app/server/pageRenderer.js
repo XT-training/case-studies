@@ -17,7 +17,7 @@ const template = (req, res) => {
               </head>
               <body>
                 <div class="content">
-                   <div id="app" class="wrap-inner">
+                   <div id="root">
                       ${content}
                    </div>
                 </div>

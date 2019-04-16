@@ -33,7 +33,7 @@ import rootSaga from './rootSaga';
 const initialState = window.__STATE__ || {};
 const store = configureStore(initialState, history);
 store.runSaga(rootSaga);
-const MOUNT_NODE = document.getElementById('app');
+const MOUNT_NODE = document.getElementById('root');
 
 const render = () => {
   hydrate(

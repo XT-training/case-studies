@@ -1,4 +1,11 @@
-import { LOGIN, LOGIN_SUCCESS, REGISTER, REGISTER_SUCCESS } from './constant';
+import {
+  LOGIN,
+  LOGIN_SUCCESS,
+  LOGIN_ERROR,
+  REGISTER,
+  REGISTER_SUCCESS,
+  LOGOUT,
+} from './constant';
 
 export const login = params => ({
   type: LOGIN,
@@ -9,6 +16,15 @@ export const loginSuccess = (userInfo, accessToken) => ({
   type: LOGIN_SUCCESS,
   userInfo,
   accessToken,
+});
+
+export const loginError = message => ({
+  type: LOGIN_ERROR,
+  message,
+});
+
+export const logout = () => ({
+  type: LOGOUT,
 });
 
 export const register = params => ({
