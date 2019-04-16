@@ -3,16 +3,14 @@
  */
 
 const path = require('path');
-const webpack = require('webpack');
-const CircularDependencyPlugin = require('circular-dependency-plugin');
 
 const clientBuild = require('./webpack.base.babel')({
+  name: 'client',
   mode: 'development',
 
   // Add hot reloading in development
   entry: [
     require.resolve('react-app-polyfill/ie11'),
-    'webpack-hot-middleware/client?reload=true',
     path.join(process.cwd(), 'app/app.js'), // Start with js/app.js
   ],
 
@@ -22,13 +20,7 @@ const clientBuild = require('./webpack.base.babel')({
     chunkFilename: '[name].chunk.js',
   },
   // Add development plugins
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(), // Tell webpack we want hot reloading
-    new CircularDependencyPlugin({
-      exclude: /a\.js|node_modules/, // exclude node_modules
-      failOnError: false, // show a warning when there is a circular dependency
-    }),
-  ],
+  plugins: [],
 
   // Emit a source map for easier debugging
   // See https://webpack.js.org/configuration/devtool/#devtool
@@ -40,6 +32,7 @@ const clientBuild = require('./webpack.base.babel')({
 });
 
 const serverBuild = require('./webpack.base.babel')({
+  name: 'server',
   mode: 'development',
   target: 'node',
 

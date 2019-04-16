@@ -17,12 +17,11 @@
     "preanalyze": "npm run analyze:clean",
     "analyze": "node ./internals/scripts/analyze.js",
     "extract-intl": "node ./internals/scripts/extract-intl.js",
-    "npmcheckversion": "node ./internals/scripts/npmcheckversion.js",
-    "preinstall": "npm run npmcheckversion",
     "prebuild": "npm run build:clean",
     "build": "cross-env NODE_ENV=development webpack --config internals/webpack/webpack.dev.babel.js --color -p --progress",
     "build:clean": "rimraf ./build",
-    "start": "cross-env NODE_ENV=development node server",
+    "server": "cross-env NODE_ENV=development node server",
+    "start": "npm run build && npm run server",
     "start:tunnel": "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
     "start:production": "npm run test && npm run build && npm run start:prod",
     "start:prod": "cross-env NODE_ENV=production node server",
@@ -42,8 +41,7 @@
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "prettify": "prettier --write",
-    "server": "nodemon server"
+    "prettify": "prettier --write"
   },
   "lint-staged": {
     "*.js": [
@@ -147,6 +145,7 @@
     "jest-cli": "23.6.0",
     "jest-styled-components": "6.2.2",
     "lint-staged": "7.3.0",
+    "mini-css-extract-plugin": "^0.6.0",
     "ngrok": "3.1.0",
     "node-plop": "0.16.0",
     "nodemon": "^1.18.10",

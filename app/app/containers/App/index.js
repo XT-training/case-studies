@@ -10,8 +10,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import HomePage from 'containers/HomePage/Loadable';
-import Login from 'containers/User/Login';
+import Login from '../User/Login';
+import HomePage from '../HomePage/Loadable';
 
 import GlobalStyle from '../../global-styles';
 
