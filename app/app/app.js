@@ -10,7 +10,7 @@ import '@babel/polyfill';
 
 // Import all the third party stuff
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router/immutable';
 import history from 'utils/history';
@@ -30,13 +30,13 @@ import 'file-loader?name=.htaccess!./.htaccess';
 import configureStore from './configureStore';
 import rootSaga from './rootSaga';
 // Create redux store with history
-const initialState = {};
+const initialState = window.__STATE__ || {};
 const store = configureStore(initialState, history);
 store.runSaga(rootSaga);
 const MOUNT_NODE = document.getElementById('app');
 
 const render = () => {
-  ReactDOM.render(
+  hydrate(
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <App />

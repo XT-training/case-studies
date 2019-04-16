@@ -9,6 +9,7 @@ import { invoicesReducer, invoiceReducer } from './containers/Invoices/reducer';
 import PaginationReducer from './containers/Pagination/reducer';
 import SortReducer from './containers/Sort/reducer';
 import FilterReducer from './containers/FilterStatus/reducer';
+import UserReducer from './containers/User/reducer';
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
  */
@@ -19,6 +20,7 @@ export default function createReducer(injectedReducers = {}) {
     pagination: PaginationReducer,
     sort: SortReducer,
     filter: FilterReducer,
+    user: UserReducer,
     ...injectedReducers,
   });
 

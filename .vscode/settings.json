@@ -1,0 +1,8 @@
+{
+  "gitlens.advanced.messages": {
+      "suppressShowKeyBindingsNotice": true
+  },
+  "window.zoomLevel": 1,
+  "prettier.eslintIntegration": true,
+  "eslint.autoFixOnSave": true,
+}
