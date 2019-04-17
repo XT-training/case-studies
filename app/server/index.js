@@ -45,6 +45,10 @@ const requestHandler = (req, res, next) => {
 client.on('connect', function() {
   isRedisEnabled = true;
   console.log('Redis client connected');
+  client.keys('*', function (err, keys) {
+    if (err) return console.log(err);
+    console.log('current redis keys are:', keys.join(','))
+  });
 });
 
 client.on('error', function (err) {
@@ -63,8 +67,8 @@ app.use('/cache/invalidate', (req, res) => {
       });
     } else {
       res.json({
-        'status': 'success',
-        'message': 'cache invalidated'
+        'status': 'error',
+        'message': 'There is some issue in cache invalidation, please try again'
       });
     }
   });
