@@ -2,3 +2,4 @@ node_modules
 .DS_Store
 reactable-ex
 dist
+db/data

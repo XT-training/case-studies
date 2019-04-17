@@ -1,0 +1,24 @@
+version: '2'
+
+services:  
+    mongodb:
+        image: mongo
+        ports:
+            - 27017:27017
+        volumes:
+            - /db/data:/data/db
+    mongo_seed:
+        image: mongo
+        links:
+            - mongodb
+        volumes:
+            - ./db:/db
+        command:
+            /db/entrypoint.sh
+
+networks:  
+  backend:
+    driver: bridge
+
+volumes:  
+  mongo-data:
