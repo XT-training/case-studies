@@ -40,8 +40,8 @@ function validateUser(req, res, next) {
   if (!isValid) {
     res.json({ status: "error", message: 'Invalid user', data: null });
   } else {
-    const userId = decode(req.headers["x-access-token"]);
-    req.body.userId = userId;
+    const payloadObject = decode(req.headers["x-access-token"]);
+    req.body.userId = payloadObject.payload.id;
     next();
   }
 }

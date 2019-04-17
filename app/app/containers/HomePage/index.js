@@ -58,6 +58,14 @@ class HomePage extends React.PureComponent {
       return null;
     }
 
+    if (invoices.length === 0) {
+      return (
+        <div className="alert alert-info" role="alert">
+          {"Sorry!!! You don't have any invoice available"}
+        </div>
+      );
+    }
+
     const data = invoices.map(row => {
       const item = Object.assign({}, row);
       /* eslint no-underscore-dangle: ["error", { "allow": ["_id"] }] */

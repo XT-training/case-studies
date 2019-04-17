@@ -7,7 +7,10 @@ export const get = (req, res) => {
     orderby,
     order = 'asc',
   } = req.query;
+  const userID = req.body.userId;
+  console.log('userId is ', userID);
   const filter = req.query.filter ? JSON.parse(req.query.filter) : [];
+  filter.push({ userID });
   const filterObj = getFilterObj(filter);
   const promises = [
     Invoice.countDocuments(filterObj).exec(),
@@ -15,6 +18,7 @@ export const get = (req, res) => {
       .sort({ [orderby]: order })
       .select({
         index: 1,
+        userID: 1,
         status: 1,
         department: 1,
         created: 1,
@@ -53,13 +57,27 @@ export const get = (req, res) => {
 
 export const getAllDetails = (req, res) => {
   const { id } = req.params;
-  const promises = [Invoice.findOne({ _id: id }).exec()];
+  const userID = req.body.userId;
+  const promises = [Invoice.findOne({ _id: id }).lean().exec()];
   Promise.all(promises)
     .then(data => {
       const [invoice] = data;
-      res.status(200).json({
+      if (invoice.userID !== userID) {
+
+          res.status(403).send({
+            status: 'error',
+            message: 'Forbidden user'
+          });
+
+        } else {
+
+        res.status(200).json({
+
         data: invoice,
-      });
+
+        });
+
+        }
     })
     .catch(error => {
       res.status(500).send(error);

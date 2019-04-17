@@ -40,7 +40,7 @@ class Login extends React.PureComponent {
           </Link>
           {userInfo ? (
             <div>
-              <span className="navbar-text">Welcome {userInfo.name}</span>
+              <span className="navbar-text mr-2">Welcome {userInfo.name}</span>
               <button
                 type="button"
                 className="btn btn-outline-success my-2 my-sm-0"
