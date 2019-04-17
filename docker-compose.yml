@@ -3,22 +3,55 @@ version: '2'
 services:  
     mongodb:
         image: mongo
+        restart: always
+        container_name: mongodb_server
         ports:
             - 27017:27017
         volumes:
             - /db/data:/data/db
+        networks:
+            - reactablenet       
     mongo_seed:
         image: mongo
+        container_name: mongodb_seed
         links:
             - mongodb
         volumes:
             - ./db:/db
         command:
             /db/entrypoint.sh
-
+        networks:
+            - reactablenet
+    app_server:
+        image: reactable-app
+        restart: always
+        container_name: reactable_app_server
+        build: ./app
+        ports:
+            - "4000:4000"
+        volumes:
+            - ./app:/app
+            - /app/node_modules
+        links:
+            - api_server
+        networks:
+            - reactablenet
+    api_server:
+        image: webapp-api
+        restart: always
+        build: ./api-server
+        container_name: reactable_api_server
+        ports:
+            - "5000:5000"
+        volumes:
+            - ./api-server:/api-server
+            - /api-server/node_modules
+        depends_on:
+            - mongodb
+        links:
+            - mongodb
+        networks:
+            - reactablenet
 networks:  
-  backend:
-    driver: bridge
-
-volumes:  
-  mongo-data:
+    reactablenet:
+        driver: bridge
