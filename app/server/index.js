@@ -1,22 +1,78 @@
 /* eslint-disable */
 const express = require('express');
+const helmet = require('helmet');
 const resolve = require('path').resolve;
 const logger = require('./logger');
+const redis = require('redis');
 
 const port = require('./port');
 
 const app = express();
+app.use(helmet());
+const client = redis.createClient(6379);
 
-app.use('/', express.static('build'));
+const redisKey = 'invoice_';
 
+let isRedisEnabled = false;
+
+const getPage = (req, res) => {
+  const pageRenderer = require(resolve(process.cwd(), 'build/compiledServer/server.js')).default;
+  return pageRenderer(req, res);
+}
 const requestHandler = (req, res, next) => {
   const acceptHeaders = (req.headers && req.headers.accept) || '';
   if(acceptHeaders.indexOf('text/html') > -1) {
-    const pageRenderer = require(resolve(process.cwd(), 'build/compiledServer/server.js')).default;
-    res.send(pageRenderer(req, res));
+    if(isRedisEnabled){
+      const cacheKey = `${redisKey}${req.url}`;
+      return client.get(cacheKey, (err, html) => {
+        if(html){
+          console.log('serving from redis cache');
+          res.send(html);
+        } else {
+          const pageHtml = getPage(req, res);
+          client.set(cacheKey, pageHtml, redis.print);
+          res.send(pageHtml);
+        }
+      });
+    }
+    const pageHtml = getPage(req, res);
+    res.send(pageHtml);
+    return;
   }
   next();
 };
+
+client.on('connect', function() {
+  isRedisEnabled = true;
+  console.log('Redis client connected');
+  client.keys('*', function (err, keys) {
+    if (err) return console.log(err);
+    console.log('current redis keys are:', keys.join(','))
+  });
+});
+
+client.on('error', function (err) {
+  isRedisEnabled = false;
+  console.log('Could not connect to redi client ' + err);
+});
+
+app.use('/', express.static('build'));
+
+app.use('/cache/invalidate', (req, res) => {
+  client.flushdb((err, success) => {
+    if(success){
+      res.json({
+        'status': 'success',
+        'message': 'cache invalidated'
+      });
+    } else {
+      res.json({
+        'status': 'error',
+        'message': 'There is some issue in cache invalidation, please try again'
+      });
+    }
+  });
+});
 
 // use the gzipped bundle
 app.get('*.js', (req, res, next) => {

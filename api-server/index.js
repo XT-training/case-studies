@@ -1,10 +1,12 @@
 import express from "express";
 import bodyParser from "body-parser";
 import logger from "morgan";
+import helmet from "helmet";
 import database from './config/database';
 
 import users from "./routes/users";
 import invoices from "./routes/invoices";
+
 
 import { verify, decode } from "./utils/jwt";
 
@@ -12,6 +14,7 @@ import { PORT } from "./config";
 
 const app = express();
 
+app.use(helmet());
 
 app.use(logger("dev"));
 app.use(bodyParser.json());
@@ -37,8 +40,8 @@ function validateUser(req, res, next) {
   if (!isValid) {
     res.json({ status: "error", message: 'Invalid user', data: null });
   } else {
-    const userId = decode(req.headers["x-access-token"]);
-    req.body.userId = userId;
+    const payloadObject = decode(req.headers["x-access-token"]);
+    req.body.userId = payloadObject.payload.id;
     next();
   }
 }
