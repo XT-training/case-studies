@@ -1,5 +1,6 @@
 /* eslint-disable */
 const express = require('express');
+const helmet = require('helmet');
 const resolve = require('path').resolve;
 const logger = require('./logger');
 const redis = require('redis');
@@ -7,6 +8,7 @@ const redis = require('redis');
 const port = require('./port');
 
 const app = express();
+app.use(helmet());
 const client = redis.createClient(6379);
 
 const redisKey = 'invoice_';
